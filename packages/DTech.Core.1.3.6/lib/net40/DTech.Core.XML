@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DTech.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DTech.Core.Builders.IHierarchicalDataBuilder`1">
+            <summary>
+            Interface for the builder implementations of TreeView data
+            </summary>
+            <typeparam name="T">Complex type of the original collection containing hierarchical data</typeparam>
+        </member>
+        <member name="M:DTech.Core.Builders.IHierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This overload generates data model for display-only TreeView control (i.e. without selection facility). Returns TreeView compatible data by converting the source collection. 
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.IHierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Boolean,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for single/ multiple selection TreeView control. Returns TreeView compatible data by converting the source collection. 
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="allowMultiSelection">True = Allow multiple nodes selection, False = Single nodes selection</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="dataBindControlIDPrefix">Used to form data-binding properties of the input controls. Pass Model.HierarchyNodes. Here, replace Model by name of the model which is bound with the MVC view hosting the TreeViewControl</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <param name="currentEntityId">EntityID of the entity being edit. Should ONLY be supplied when the type of source collection is as same as the type of object which is being modified. Nodes matching the EntityID will be shown as non-selectable</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.IHierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for display-only TreeView control with links to detail/ manage page for each node. Returns TreeView compatible data by converting the source collection.
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="manageButtonActionUrl">URL of the Action which should be called when user clicks on Manage button</param>
+            <param name="manageButtonActionUrlIDPlaceHolder">URL of the Action must contain some placeholder for the node ID, which will then be replaced by the actual ID of the entity</param>
+            <param name="manageButtonDisplayText">Caption for Manage button</param>
+            <param name="manageButtonToolTip">Tooltip for Manage button</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.IHierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Boolean,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for single/ multiple selection TreeView control with links to detail/ manage page for each node. Returns TreeView compatible data by converting the source collection.
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="allowMultiSelection">True = Allow multiple nodes selection, False = Single nodes selection</param>
+            <param name="manageButtonActionUrl">URL of the Action which should be called when user clicks on Manage button</param>
+            <param name="manageButtonActionUrlIDPlaceHolder">URL of the Action must contain some placeholder for the node ID, which will then be replaced by the actual ID of the entity</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="dataBindControlIDPrefix">Used to form data-binding properties of the input controls. Pass Model.HierarchyNodes. Here, replace Model by name of the model which is bound with the MVC view hosting the TreeViewControl</param>
+            <param name="manageButtonDisplayText">Caption for Manage button</param>
+            <param name="manageButtonToolTip">Tooltip for Manage button</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <param name="currentEntityId">EntityID of the entity being edit. Should ONLY be supplied when the type of source collection is as same as the type of object which is being modified. Nodes matching the EntityID will be shown as non-selectable</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.IHierarchicalDataBuilder`1.GetSelectedNodeIDs(System.Collections.Generic.List{DTech.Models.HierarchyNodeRawModel})">
+            <summary>
+            Returns ID values of the selected nodes in TreeView control. This method should be called during POST action of a view hosting TreeView control
+            </summary>
+            <param name="models">Collection of hierarchical nodes after postback</param>
+            <returns></returns>
+        </member>
+        <member name="T:DTech.Core.Builders.HierarchicalDataBuilder`1">
+            <summary>
+            Builder implementation containing methods to generate Treeview compatible data from the source collection, and also method to return selected IDs
+            </summary>
+            <typeparam name="T">Complex type of the original collection containing hierarchical data</typeparam>
+        </member>
+        <member name="M:DTech.Core.Builders.HierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This overload generates data model for display-only TreeView control (i.e. without selection facility). Returns TreeView compatible data by converting the source collection. 
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+        </member>
+        <member name="M:DTech.Core.Builders.HierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Boolean,System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for single/ multiple selection TreeView control. Returns TreeView compatible data by converting the source collection. 
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="allowMultiSelection">True = Allow multiple nodes selection, False = Single nodes selection</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="dataBindControlIDPrefix">Used to form data-binding properties of the input controls. Pass Model.HierarchyNodes. Here, replace Model by name of the model which is bound with the MVC view hosting the TreeViewControl</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <param name="currentEntityId">EntityID of the entity being edit. Should ONLY be supplied when the type of source collection is as same as the type of object which is being modified. Nodes matching the EntityID will be shown as non-selectable</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.HierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Boolean,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for single/ multiple selection TreeView control with links to detail/ manage page for each node. Returns TreeView compatible data by converting the source collection.
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="allowMultiSelection">True = Allow multiple nodes selection, False = Single nodes selection</param>
+            <param name="manageButtonActionUrl">URL of the Action which should be called when user clicks on Manage button</param>
+            <param name="manageButtonActionUrlIDPlaceHolder">URL of the Action must contain some placeholder for the node ID, which will then be replaced by the actual ID of the entity</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="dataBindControlIDPrefix">Used to form data-binding properties of the input controls. Pass Model.HierarchyNodes. Here, replace Model by name of the model which is bound with the MVC view hosting the TreeViewControl</param>
+            <param name="manageButtonDisplayText">Caption for Manage button</param>
+            <param name="manageButtonToolTip">Tooltip for Manage button</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <param name="currentEntityId">EntityID of the entity being edit. Should ONLY be supplied when the type of source collection is as same as the type of object which is being modified. Nodes matching the EntityID will be shown as non-selectable</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.HierarchicalDataBuilder`1.CreateHierarchicalDataModel(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This overload generates data model for display-only TreeView control with links to detail/ manage page for each node. Returns TreeView compatible data by converting the source collection.
+            </summary>
+            <param name="sourceCollection">Collection which should be transformed into a TreeView compatible data model</param>
+            <param name="selectedNodeIds">Collection of Ids of the nodes which should be displayed as selected. Pass null, if there are no selected nodes</param>
+            <param name="manageButtonActionUrl">URL of the Action which should be called when user clicks on Manage button</param>
+            <param name="manageButtonActionUrlIDPlaceHolder">URL of the Action must contain some placeholder for the node ID, which will then be replaced by the actual ID of the entity</param>
+            <param name="manageButtonDisplayText">Caption for Manage button</param>
+            <param name="manageButtonToolTip">Tooltip for Manage button</param>
+            <param name="emptyCollectionMessage">A message that should be displayed in case if sourceCollection is null or not having any items</param>
+            <returns></returns>
+        </member>
+        <member name="M:DTech.Core.Builders.HierarchicalDataBuilder`1.GetSelectedNodeIDs(System.Collections.Generic.List{DTech.Models.HierarchyNodeRawModel})">
+            <summary>
+            Returns ID values of the selected nodes in TreeView control. This method should be called during POST action of a view hosting TreeView control
+            </summary>
+            <param name="models">Collection of hierarchical nodes after postback</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

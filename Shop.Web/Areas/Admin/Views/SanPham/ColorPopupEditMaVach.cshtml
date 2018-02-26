@@ -1,0 +1,457 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/bootstrap-colorpicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-colorpicker.min.js"></script>
+
+@model Shop.Web.Areas.Admin.Models.EditMaVachWinDowsOpen
+@using (Html.BeginForm("SaveEditPopupMaVach", "SanPham", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+   
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">@ViewData["TenSp"]</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: green; height: 50px;">
+                        @if (Model.CountMaVach == 0)
+                        {
+                            <button type="button" class="btn btn-success" onclick="return add()">Thêm mới</button>
+                            <!--chua co ma vạch load ra khong chọn ô nào trên radio-->
+                            <div class="checkbox-mavach" style="float: right;">
+                                <label class="radio-inline" style="color: black;">Loại mã vạch của sản phẩm:  </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="0">Không có gì
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="1">Màu
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="2">Mùi
+                               
+                                </label>
+                            </div>
+                        
+                           
+                        }
+                        else if (Model.CountMaVach != 0)
+                        {
+                            if (Model.Flag == 0 || Model.Flag == null)
+                            {
+                              
+                            <div class="checkbox-mavach" style="float: right;">
+                                <label class="radio-inline" style="color: black;">Loại mã vạch của sản phẩm:  </label>
+                                <label class="radio-inline">
+
+                                    <input type="radio" name="flag" checked="checked" value="0">Không có gì
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="1">Màu
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="2">Mùi
+                               
+                                </label>
+                            </div>
+
+                            }
+                            else if (Model.Flag == 1)
+                            {
+                            <button type="button" class="btn btn-success" onclick="return add()">Thêm mới</button>
+                            <div class="checkbox-mavach" style="float: right;">
+                                <label class="radio-inline" style="color: black;">Loại mã vạch của sản phẩm:  </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="0">Không có gì
+                              
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" checked="checked" value="1">Màu
+                              
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="2">Mùi
+                               
+                                </label>
+                            </div>
+                            }
+                            else
+                            {
+                            <button type="button" class="btn btn-success" onclick="return add()">Thêm mới</button>
+                            <div class="checkbox-mavach" style="float: right;">
+                                <label class="radio-inline" style="color: black;">Loại mã vạch của sản phẩm:  </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="0">Không có gì
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" value="1">Màu
+                               
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="flag" checked="checked" value="2">Mùi
+                               
+                                </label>
+                            </div>
+                            }
+                        }
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+
+                                <table class="table table-bordered" id="table_menu">
+                                    @if (Model.CountMaVach != 0)
+                                    {
+                                        if (Model.Flag == 0 || Model.Flag == null)
+                                        {
+                                            //khong co gi
+                                        <thead>
+                                            <tr>
+                                                <th style="font-weight: normal;">Mã vạch</th>
+
+                                                <th style="font-weight: normal;">Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        }
+                                        else
+                                        {
+  
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center; font-weight: normal;">Tên loại</th>
+                                                <th style="text-align: center; font-weight: normal;">Mã vạch</th>
+                                                <th style="text-align: center; font-weight: normal;">Ảnh màu</th>
+                                            
+                                                <th style="text-align: center; font-weight: normal;">Thêm màu</th>
+                                                <th style="text-align: center; font-weight: normal;">Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        }
+                                    }
+
+
+                                    @if (Model.DanhSachMaVachs.Any())
+                                    {
+                                        foreach (var mv in Model.DanhSachMaVachs)
+                                        {
+                                            if (mv.Flag == 1 || mv.Flag == 2)
+                                            {
+  
+                                                
+                                        <tr id="row_@mv.id_">
+                                            <td>
+                                                <input type="text" value="@mv.TenLoai" id="TenLoai_@mv.id_" class="form-control txtTenLoai"/>
+                                            </td>
+                                            <td>
+                                                <input type="text" value="@mv.Barcode" id="Barcode_@mv.id_" class="form-control txtBarCode" style="width: 130px;"/>
+                                            </td>
+
+                                           
+                                            @if ((mv.Img.IndexOf("#") !=-1)||(mv.Img.IndexOf("rgba")!=-1)||(mv.Img.IndexOf("rgb")!=-1))
+                                            {
+
+                                                <td>
+                                                    <div style="width: 16px;height: 16px;margin-top: 10px;background-color:@mv.Img"></div>
+                                                </td>
+                                               
+                                                <td>
+                                                    <div class="demo-section hidden-on-narrow k-content wide">
+                                                        <div id="background">
+                                                            <div class="column">
+                                                               <input id="picker" class="sample-selector" value="@mv.Img"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <img src="@string.Format("/Upload/Files/{0}", mv.Img)" style="width: 16px;height: 16px;margin-top: 10px;"/>
+                                                </td>
+                                                  <td>
+                                                    <div class="demo-section hidden-on-narrow k-content wide">
+                                                        <div id="background">
+                                                            <div class="column">
+                                                               <input id="picker" class="sample-selector" value="@mv.Img"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            }
+
+
+                                            <td style="display: none;">
+                                                <button type="button" class="btn btn-success" onclick="return save(@mv.id_,this)">Cập nhật</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success" onclick="return Xoa(@mv.id_)">Xóa</button>
+
+                                            </td>
+
+                                        </tr>
+                                           
+                                            }
+                                            else
+                                            {
+  
+                                               
+                                        <tr id="row_@mv.id_">
+
+                                            <td>
+                                                <input type="text" value="@mv.Barcode" id="Barcode_@mv.id_" class="form-control txtBarCode" style="width: 130px;"/>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-success" onclick="return Xoa(@mv.id_)">Xóa</button>
+
+                                            </td>
+
+                                        </tr>
+                                            }
+
+                                        }
+                                    }
+                                </table>
+                                <button type="button" class="btn btn-success" onclick="return CapNhatTong()">Cập nhật</button>
+                            </div>
+
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+}
+<script>
+
+    $(function() {
+        $('.sample-selector').colorpicker();
+    });
+    
+  
+</script>
+
+<style>
+    .sample-selector {
+        width: 65px
+    }
+    .column
+    {
+        float: left;
+        width: 100px;
+        text-align: center;
+    }
+
+        .column .title
+        {
+            color: #a3a3a3;
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+    #palette
+    {
+        vertical-align: top;
+        display: inline-block;
+    }
+
+    .k-colorpicker
+    {
+        vertical-align: top;
+    }
+</style>
+<script>
+
+
+    function save(id, ui) {
+        //save tung cai
+        var $tr = $(ui).parent().parent();
+        //alert($tr);
+        var tenLoai = $tr.find("input#TenLoai_" + id).val();
+        var mv_Barcode = $tr.find("input#Barcode_" + id).val();
+        var mv_Img = $tr.find("input#Img_" + id).val();
+        //lay gia tri tu radio button
+        var flag = $('input[name=flag]:checked').val();
+        var pathArray = window.location.pathname.split('/admin/sanpham/EditMaVach/');
+        var newPathname = "";
+        for (i = 0; i < pathArray.length; i++) {
+            newPathname += "";
+            newPathname += pathArray[i];//idmenu
+        }
+        //kiem tra neu khong nhap hinh anh thi thong bao
+        if (tenLoai == "" || mv_Barcode == "" || mv_Img == "") {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+        } else {
+
+            //alert(newPathname);
+            $.post("/maVach/SaveBarcode", {
+                    Id: id,
+                    IdMenu: newPathname,
+                    TenLoai: tenLoai,
+                    Barcode: mv_Barcode,
+                    Hinh: mv_Img,
+                    Flag: flag
+                }, function (data) {
+                    if (!data.ok) {
+                        //du lieu khong dung
+                        alert(data.message);
+                    } else {
+                        //du lieu chinh xac --> sua
+                        alert(data.message);
+
+                    }
+                });
+        }
+    }
+    function add() {
+        //kiem tra khi them moi neu la khong co gi thi load ra 1 field nguoc lai 2 field
+        var flag = $('input[name=flag]:checked').val();
+        var hinhanh = $(this).attr('Img_0');
+
+        if (flag == 0) {
+            $('#table_menu').append('<tbody></tbody>' +
+                '<tr id="row_0">' +
+                '<td><input type="text" id="Barcode_0" class="form-control txtBarCode" placeholder="Mã vạch"></td>' +
+                '<td><button type="button" class="btn btn-success" onclick="return Xoa(' + hinhanh + ')">Xóa</button></td></tr>');
+        } else if (flag == 1 || flag == 2) {
+            var now = Date.now();
+            $('#table_menu').append('<tbody></tbody>' +
+                '<tr id="row_0">' +
+                '<td><input type="text" id="TenLoai_0" class="form-control txtTenLoai" placeholder="Tên loại"></td>' +
+                '<td><input type="text" id="Barcode_0" class="form-control txtBarCode" placeholder="Mã vạch"></td>' +
+                '<td><img src="' + "/Upload/Files/" + hinhanh + '" style="width: 16px;height: 16px;margin-top: 10px;"/></td>' +
+            
+                '<td><div class="demo-section hidden-on-narrow k-content wide"><div id="background">  <div class="column"> <input class="sample-selector" id="picker" /></div></div></div></td>' +
+                '<td><button type="button" class="btn btn-success" onclick="return Xoa(' + hinhanh + ')">Xóa</button></td></tr>');
+            $('.sample-selector').colorpicker();
+        } else if (flag == undefined) {
+
+            alert("Vui lòng chọn loại mã vạch để thêm mới!");
+
+        }
+
+    }
+
+    function Xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        var pathArray = window.location.pathname.split('/admin/sanpham/EditMaVach/');
+        var newPathname = "";
+        for (i = 0; i < pathArray.length; i++) {
+            newPathname += "";
+            newPathname += pathArray[i];//idmenu
+        }
+        if (r) {
+            $.post("/admin/SanPham/DeleteBarcode", {
+                    id: f,
+                    IdMenu: newPathname
+
+                }, function (data) {
+                    if (data.ok) {
+
+                        alert(data.message);
+                        //load lai trang
+                        location.reload();
+                    }
+                });
+
+        }
+    }
+    function CapNhatTong() {
+        var listTr = $("#table_menu tbody tr");
+        var listBarCode = [];
+        var ids = [];
+        $(listTr).each(function (index, tr) {//txtTenLoai txtBarCode txtUrlImage
+            listBarCode.push($(tr).find('td .txtBarCode').val());
+            var id = $(tr).attr("id").replace('row_', '');
+            ids.push(id);
+        });
+        console.log(listBarCode);
+        $.post("/maVach/CheckBarCode", {
+                data: listBarCode.join(','),
+                ids: ids.join(',')
+            }, function (data) {
+                if (!data.ok) {
+                    //du lieu khong dung
+                    alert("Dòng" + data.message);
+                    //Dòng1mã vạch không tồn tại
+                } else {
+                    //du lieu chinh xac --> sua
+                    updateData();
+
+                }
+            });
+    }
+
+    function updateData() {
+
+
+        var listTr = $("#table_menu tbody tr");
+        var listDataUpdate = [];
+        var listDataNew = [];
+        var pathArray = window.location.pathname.split('/admin/sanpham/EditMaVach/');
+        var newPathname = "";
+        for (var i = 0; i < pathArray.length; i++) {
+            newPathname += "";
+            newPathname += pathArray[i];//idmenu
+        }
+        $(listTr).each(function (index, tr) {//txtTenLoai txtBarCode txtUrlImage
+            var id = $(tr).attr("id").replace('row_', '');
+            var colorpicker = $(tr).find('td #picker').val();
+            //alert(colorpicker);
+            var obj = {
+                Id: parseInt(id),
+                IdMenu: parseInt(newPathname),
+                Barcode: $(tr).find('td .txtBarCode').val(),
+                Flag: parseInt($('input[name=flag]:checked').val()),
+                TenLoai: $(tr).find('td .txtTenLoai').val(),
+                //Hinh: $(tr).find('td .txtUrlImage').val()
+                Hinh: colorpicker
+            };
+         
+            if (id == 0) {
+                //neu id bang khong thi them moi
+                listDataNew.push(obj);
+            } else {
+                //neu id khac khong thi update
+                listDataUpdate.push(obj);
+            }
+        });
+        console.log(listDataUpdate);
+        var dataParam = JSON.stringify({ 'listDataUpdate': listDataUpdate, 'listDataNew': listDataNew });
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: '/maVach/UpdateData',
+            data: dataParam,
+            success: function (rs) {
+                alert(rs.message);
+            },
+            failure: function (response) {
+                $('#result').html(response);
+            }
+        });
+
+    }
+
+</script>

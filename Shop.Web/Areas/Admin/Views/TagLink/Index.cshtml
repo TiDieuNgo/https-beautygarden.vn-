@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList.Mvc
+@model PagedList.IPagedList<Shop.Model.TagMapping>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Tags</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: red;">
+                   <a href="/admin/taglink/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button></a>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th >Tên sản phẩm</th>
+                                            <th >Tên tag</th>
+                                            <th >Link</th>
+                                            <th >Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null )
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+                                                <td>@tag.TenSanPham</td>
+                                              
+                                                <td class="center">@tag.TenTags</td>
+                                                  <td class="center">@tag.Link</td>
+                                                <td class="actions">
+                                                    @*<a title="Sửa" href="/admin/taglink/edit/@tag.id_" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>*@
+                                                    <a title="Xóa"  onclick="return xoa(@tag.id_)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-sm-6">
+
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+                            </div>
+                        </div>
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+ </div>
+    <script>
+        function xoa(f) {
+            var r = confirm("Bạn có muốn xóa không?");
+            if (r) {
+                location.href = "/admin/taglink/Delete/" + f;
+            }
+        }
+    </script>

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Thêm tag mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Areas.Admin.Models.TaglinkModel
+@using (Html.BeginForm("Addnew", "TagLink", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Tags</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <style>
+             .col-sm-2 {
+                             color: #337ab7 !important;
+                       }
+        </style>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: red;">
+                        Thêm tag mới
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                     <div class="form-group">
+                                        <label class="col-sm-2 ">Chọn sản phẩm</label>
+                                        <div class="col-sm-10">
+                                              @Html.DropDownListFor(o=>o.IdMenu,Model.DanhMucs,new{@class="chosen-select",multiple="multiple",style="width:727px"})
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tên tag</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.TenTags, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Link</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="margin-left: 151px;">Lưu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

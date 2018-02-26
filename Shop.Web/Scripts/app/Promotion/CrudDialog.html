@@ -1,0 +1,99 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Quản lý khuyến mãi</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Từ ngày</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                               ng-model="vm.form.StartDay"
+                               datepicker-options="vm.dateOptions"
+                               is-open="vm.open1"
+                               on-open-focus="true"
+                               ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" style="padding:9px 10px" class="btn btn-default"
+                                    ng-click="vm.toggleDatepikerStart()">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Đến ngày</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                               ng-model="vm.form.EndDay"
+                               datepicker-options="vm.dateOptions"
+                               is-open="vm.open2"
+                               on-open-focus="true"
+                               ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" style="padding:9px 10px" class="btn btn-default"
+                                    ng-click="vm.toggleDatepikerEnd()">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Khu vực</label>
+                    <select class="form-control" ng-model="vm.form.Region">
+                        <option value="All">Toàn bộ khu vực,</option>
+                        <option value="Bac">Miền Bắc</option>
+                        <option value="Trung">Miền Trung</option>
+                        <option value="Name">Miền Nam</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Giảm giá</label>
+                    <div class="input-group">
+                        <input type="number" min="0" max="100" class="form-control" data-ng-model="vm.form.Discount">
+                        <div class="input-group-addon">%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <select class="form-control" ng-model="vm.form.Active">
+                        <option ng-repeat="option in vm.statusList" ng-value="option.value">{{option.text}}</option>
+                    </select>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Danh mục</label>
+            <cp-product-category-tree></cp-product-category-tree>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> kích hoạt
+            </label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="save()">Lưu lại</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Đóng</button>
+</div>

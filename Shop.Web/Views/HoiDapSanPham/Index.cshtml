@@ -1,0 +1,97 @@
+﻿@using Shop.Web.Core.Helper
+@model Shop.Web.Model.CommentModel
+@{
+    string cookie = "";
+
+    if(HttpContext.Current.Request.Cookies["UserLogin"] != null)
+    {
+        cookie = HttpContext.Current.Request.Cookies["UserLogin"].Value;
+    }
+}
+<div class="question-answer-content">
+    @if (Model.Comments.Any())
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <div class="item">
+                <div class="item-col-1">
+                    <div class="group">
+                        <p class="number" id="countlikecomment-@comment.CommentId">
+                           0                         
+                        </p>
+                        <p class="text">Thích</p>
+                    </div>
+                </div>
+                <div class="item-col-2">
+                    <div class="group">
+                        <p class="name">@comment.NoiDungCmt</p>
+                        @*<p class="tiki-support-ans">Được hỏi ngày @comment.NgayCmt.ToShortDateString()</p>*@
+                         @Html.Action("TraLoiCauHoiShowHome","HoiDapSanPham",new{idcomment=comment.CommentId})
+                        <p class="tiki-support-ans">Beautygarden trả lời vào @comment.NgayCmt.ToShortDateString()</p>
+                        <p class="action">
+                            <a href="javascript:addtoLike(@comment.CommentId);" class="js-like-question" id="@comment.CommentId">Thích</a>
+                            <a href="@Url.RouteUrl("HoiDapSanPham",new{seo="hoi-dap",id=comment.CommentId})" class="js-reply-question">Trả lời</a>
+                            <a href="@Url.RouteUrl("HoiDapSanPham",new{seo="hoi-dap",id=comment.CommentId})">Xem tất cả @Shop.Web.Model.CommentModel.GetSlCautraloi(comment.CommentId) câu trả lời</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    }
+    }
+</div>
+<script>
+    function SaveComment(idsp) {
+        //check: nếu chưa đăng nhập thì không cho gửi câu hỏi
+        var cookie = '@cookie';
+        if (cookie.length != 0) {
+            var noidungcmt = $("#NoiDungCmt").val();
+            if (noidungcmt.length == 0) {
+                swal("Bạn vui lòng nhập câu hỏi");
+            } else {
+                $.post("/HoiDapSanPham/AddComment", {
+                    idsanPham: idsp,
+                    noidung_cmt: noidungcmt,
+                }, function (data) {
+                    $(".thongbao_cmt").text("Chúng tôi đã nhận được câu hỏi của bạn. cám ơn bạn đã quan tâm đến sản phẩm!");
+                    $(".thongbao_cmt").addClass("border_mess");
+                    location.reload();
+                });
+            }
+        } else {
+            swal("Bạn cần đăng nhập để thực hiện chức năng này");
+        }
+    }
+
+
+    var likeComments = JSON.parse(localStorage.getItem('likeComments')) || [];
+    var countlikecomment = 0;
+
+    likeComments.forEach(function (CommentId) {
+        //chay lan luot tung li da co class liked
+        $("#" + CommentId).text('Đã thích');
+        $("#" + CommentId).addClass("liked");
+        var soluong = $("#" + CommentId).length;
+        var idlike = "countlikecomment-" + CommentId;
+        $("#" + idlike).text(soluong);
+    });
+
+    function addtoLike(CommentId) {
+        var index = likeComments.indexOf(CommentId);
+        if (!CommentId) return;
+        if (index == -1) {
+            //khi click thi day id cua thang click vao like Comment
+            likeComments.push(CommentId);
+            $("#" + CommentId).text('Đã thích');
+            $("#" + CommentId).addClass("liked");
+        } else {
+            swal("Bạn đã nhấn thích cho câu hỏi này trước đó.");
+        }
+        localStorage.setItem('likeComments', JSON.stringify(likeComments));
+        var idlike = "countlikecomment-" + CommentId;
+        //alert(idlike);
+        likeComments.forEach(function (CommentId) {
+            var soluong = $("#" + CommentId).length;
+            $("#" + idlike).text(soluong);
+        });
+    }
+</script>

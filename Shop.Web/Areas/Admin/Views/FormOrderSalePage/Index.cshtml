@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Form đặt hàng salepage";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Model.IframeSalepage
+@using (Html.BeginForm("Addnew", "FormOrderSalePage", FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header" style="margin: 20px 0 5px;">Form đặt hàng salepage</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: red;">
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-1">
+                                        Mã vạch
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="Barcode" required=""/>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="submit" class="btn btn-success">Tạo iframe</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản trị</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/Content/css/glyphicons.all.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/Content/css/xemChiTiet.css" />
+    <link rel="stylesheet" href="/Content/css/jquery.treeview.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/Content/css/chosen.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/metisMenu.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/cssBG/sweetalert.css">
+    <link href="~/Content/css/admin.autocomplete.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <style>
+        #images_other
+        {
+            list-style: none;
+        }
+
+            #images_other li
+            {
+                float: left;
+                width: 65px;
+                height: 65px;
+                margin-right: 5px;
+                position: relative;
+            }
+
+                #images_other li img
+                {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                #images_other li .remove
+                {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    background-color: red;
+                    width: 17px;
+                    height: 15px;
+                    border-radius: 50%;
+                    text-align: center;
+                }
+        .export {
+            margin-top: 8px;
+            margin-left: 8px;
+        }
+    </style>
+
+    <link href="~/Content/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Scripts/ui-bootrap/ui-bootstrap-custom-2.5.0-csp.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.min.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+
+    <script src="~/Scripts/ui-bootrap/ui-bootstrap-custom-tpls-2.5.0.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/angular-file-upload.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.min.js"></script>
+    <script src="~/Scripts/blockUI.js"></script>
+    <script src="~/Scripts/admin.autocomplete.js"></script>
+    <script src="~/Scripts/ng-infinite-scroll.js"></script>
+
+    <script src="~/Scripts/app/app.js"></script>
+
+    <script src="~/Scripts/app/Promotion/PromotionController.js"></script>
+
+
+    <script src="~/Scripts/app/Components/product-category-tree/component.js"></script>
+    <script src="~/Scripts/app/Components/product-autocomplete/component.js"></script>
+
+    <script type="text/javascript" src='@Url.Content("~/Content/ckeditor/ckeditor.js")'></script>
+    <script type="text/javascript" src='@Url.Content("~/Content/ckfinder/ckfinder.js")'></script>
+
+    <script type="text/javascript">
+        var elementId;
+        var editor;
+        var elementForEditorInstance;
+        var editor1;
+        var elementForEditorInstance1;
+        var editor2;
+        var elementForEditorInstance2;
+        var editor3;
+        var elementForEditorInstance3;
+        var editor4;
+        var elementForEditorInstance4;
+        function BrowseImages(id) {
+            elementId = id;
+            var finder = new CKFinder();
+            finder.basePath = '/Content/ckfinder/';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $("#" + elementId).val(fileUrl.replace("/Upload", ""));
+        }
+
+        var ckoptions = {
+            langCode: 'en',
+            skin: 'kama',
+            width: 750,
+            height: 200,
+           
+            filebrowserBrowseUrl: '/content/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/content/ckfinder/ckfinder.html?type=Images',
+            filebrowserFlashBrowseUrl: '/content/ckfinder/ckfinder.html?type=Flash',
+            filebrowserUploadUrl:
+                '/content/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files&currentFolder=/images/',
+            filebrowserImageUploadUrl:
+                '/content/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/content/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+        };
+        function InstanceCkeditor() {
+            try {
+                var dt = $('#' + elementForEditorInstance).val();
+                editor = CKEDITOR.replace(elementForEditorInstance, ckoptions);
+                editor.setData(dt);
+
+                //
+                var dt1 = $('#' + elementForEditorInstance1).val();
+                editor1 = CKEDITOR.replace(elementForEditorInstance1, ckoptions);
+                editor1.setData(dt1);
+                //
+                var dt2 = $('#' + elementForEditorInstance2).val();
+                editor2 = CKEDITOR.replace(elementForEditorInstance2, ckoptions);
+                editor2.setData(dt2);
+                //
+                var dt3 = $('#' + elementForEditorInstance3).val();
+                editor3 = CKEDITOR.replace(elementForEditorInstance3, ckoptions);
+                editor3.setData(dt3);
+                //
+                //
+                var dt4 = $('#' + elementForEditorInstance4).val();
+                editor4 = CKEDITOR.replace(elementForEditorInstance4, ckoptions);
+                editor4.setData(dt4);
+            } catch (e) {
+            }
+        }
+
+        function validateNumber(event) {
+
+            var key = window.event ? event.keyCode : event.which;
+            if (event.keyCode == 8
+             || event.keyCode == 37 || event.keyCode == 39) {
+                return true;
+            }
+            else if (key < 48 || key > 57) {
+                return false;
+            }
+            else return true;
+        };
+    </script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top hidden-xs" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin" style="color: green;">Admin BeautyGarden</a>
+                <button type="button" class="btn btn-primary export" onclick="return GetDataSitemap()">Export sitemap</button>
+                <button type="button" class="btn btn-success export" onclick="return exportDatafeed()">Export datafeed</button>
+                <button type="button" class="btn btn-danger export" onclick="return GetDatashoppingAds()">Export shoppingAds</button>
+                <button type="button" class="btn btn-info export" onclick="location.href='/admin/thongkedonhang'">Thống kê đơn hàng</button>
+                 @using (Html.BeginForm("ExportExcel", "HoTroNhapLieu",  FormMethod.Post))
+                {
+                    <input type="submit" value="Export CSV" class="btn btn-warning export" style="margin-left: 600px;margin-top: -35px;"/>
+                    <input type="text" class="form-control" name="Content" style="width: 100px;margin-top: -35px;margin-left: 907px;" placeholder="Nhập tác vụ..."/>
+                }
+
+                @using (Html.BeginForm("ExportClientsListToCSV", "HoTroNhapLieu",  FormMethod.Post))
+                {
+                    <input type="submit" value="Export Refacebook" class="btn btn-danger export" style="margin-left: 1050px;margin-top: -42px;"/>
+                }
+            </div>
+            <!-- /.navbar-header -->
+            <script>
+                //export sitemap.xml
+                function GetDataSitemap() {
+                    var url = '/admin/dangnhap/Exportsitemap';
+                    $.post(url, {
+                    }, function (data) {
+                        location.reload();
+                        alert("Đã xuất file!");
+                    });
+                }
+                //export datafeed
+                function exportDatafeed() {
+                    var url = '/admin/dangnhap/exportDatafeed';
+                    $.post(url, {
+                    }, function (data) {
+                        location.reload();
+                        alert("Đã xuất file!");
+                    });
+                }
+                //export shoppingAds.xml
+                function GetDatashoppingAds() {
+                    var url = '/admin/dangnhap/ExportShopinAdsCocCoc';
+                    $.post(url, {
+                    }, function (data) {
+                        location.reload();
+                        alert("Đã xuất file!");
+                    });
+                }
+                //export CSV
+                function ExportToCSVAdsDynamicGoogle() {
+                    var tacvu = $("#txt_tacvu").val();
+                    var url = '/admin/dangnhap/ExportToCSVAdsDynamicGoogle';
+                    $.post(url, {
+                        tacvu:tacvu
+                    }, function (data) {
+                        location.reload();
+                        alert("Đã xuất file!");
+                    });
+                }
+            </script>
+            <ul class="nav navbar-top-links navbar-right">
+               
+             @Html.Action("GetUser", "DangNhap")
+               
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="/admin/accountbg/"><i class="fa fa-user fa-fw"></i>Quản lý User</a>
+                        </li>
+                       
+                        <li class="divider"></li>
+                         <li><a href="/admin/accountbg/Doimatkhau/"><i class="fa fa-key"></i> Đổi mật khẩu</a>
+                        </li>
+                       
+                        <li class="divider"></li>
+                        <li><a href="/admin/DangNhap/LogOff/"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <form action="/admin/sanpham/TimKiem" method="get">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" name="keyword" id="keySearch" class="form-control" placeholder="Mã vạch or tên SP...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" style="height: 34px;">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/admin/danhmucsanpham/ViewDanhMuc"><i class="fa fa-th-list"></i> Danh mục sản phẩm</a>
+                        </li>
+                      
+                        <li>
+                            <a href="/admin/sanpham/add"><i class="fa fa-plus-square"></i> Thêm mới sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/sanpham/"><i class="fa fa-file-text-o"></i> Danh Sách Sản Phẩm</a>
+                        </li>
+                     
+                        <li>
+                            <a href="/admin/Promotion/"><i class="fa fa-sort-amount-desc"></i> Khuyến mãi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/KhoQuaTang/"><i class="fa fa-gift"></i> Kho quà tặng</a>
+                        </li>
+                        <li>
+                            <a href="/admin/BannerKhuyenMai/"><i class="fa fa-image"></i> Banner khuyến mãi</a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/banner"><i class="fa fa-image"></i> Banner<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/bannertrangchu">Banner trang chủ</a>
+                                </li>
+                                 <li>
+                                    <a href="/admin/BannerQuangCaoTrangChu">Banner QC trang chủ</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/bannertrangdanhsach">Banner trang danh sách</a>
+                                </li>
+                               <li>
+                                    <a href="/admin/BannerQuangCaoDanhSach">Banner QC trang danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/BannerQuangCaoChiTiet">Banner QC trang chi tiết</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/PopUpBannerKM">Banner popup khuyến mãi</a>
+                                </li>
+                            </ul>
+                        <!-- /.nav-second-level -->
+                            </li>
+                        <li>
+                            
+                            <a href="/admin/tintuc/"><i class="fa fa-list-alt"></i> Tin Tức<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="/admin/SuKienKhuyenMai/">Sự kiện khuyến mãi</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/BiQuyetLamDep/">Bí quyết làm đẹp</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/tintuc/tinbaochi/">Tin báo chí</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/review/">Review</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu/"><i class="fa fa-certificate"></i> Thương hiệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/Donhang/"><i class="fa fa-money"></i> Thông tin đơn hàng</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhanglienhe/"><i class="fa fa-user"></i> Thành viên Beautygarden</a>
+                        </li>
+                        <li>
+                            <a href="/admin/DangKyMailKhuyenMai/"><i class="fa fa-envelope"></i> Mail khách hàng</a>
+                        </li>
+                        <li>
+                            <a href="/admin/VeChungToi/"><i class="fa fa-group"></i> Về chúng tôi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/HoTro/"><i class="fa fa-question-circle"></i> Hỗ trợ</a>
+                        </li>
+                        <li>
+                            <a href="/admin/LyDoMuaBG/"><i class="fa fa-shopping-cart"></i> Tại sao nên mua tại BG?</a>
+                        </li>
+                        <li>
+                            <a href="/admin/YKienKhachHang/"><i class="fa fa-comments-o"></i> Ý kiến khách hàng</a>
+                        </li>
+                        <li>
+                            <a href="/admin/GioiThieuFooter/"><i class="fa fa-key"></i> Giới thiệu SEO(Footer)</a>
+                        </li>
+                        <li>
+                            <a href="/admin/PhanQuyen/"><i class="fa fa-user"></i> Phân quyền User</a>
+                        </li>
+                        <li>
+                            <a href="/admin/Comment/"><i class="fa fa-comment"></i> Quản lý Comment</a>
+                        </li>
+                        <li>
+                            <a href="/admin/RedirectLink/"><i class="fa fa-refresh"></i> Tool Redirect 301</a>
+                        </li>
+                        <li>
+                            <a href="/admin/HoTroNhapLieu/"><i class="fa fa-keyboard-o"></i> Hỗ trợ nhập liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/HeThongCuaHang/"><i class="fa fa-map-marker"></i> Hệ thống cửa hàng</a>
+                        </li>
+                      
+                        <li>
+                            <a href="#"><i class="fa fa-file-text-o"></i> SalePage<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/SalePage/">Salepage</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/FormOrderSalePage/">Tạo IFrame</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/FrameSalePage/">Form đặt hàng</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-tag"></i> Quản lý Tags<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/TagSanPham/">Tag sản phẩm</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/TagTinTuc/">Tag tin tức</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/admin/ThongBaoKhiCoHang/"><i class="fa fa-database"></i> Thông báo khi có hàng</a>
+                        </li>
+                        <li>
+                            <a href="/admin/SEOFooter/"><i class="fa fa-paper-plane"></i> SEO Footer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Content -->
+        @RenderBody()
+        <!-- /#page-wrapper -->
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/metisMenu.min.js"></script>
+    <script src="~/Scripts/sb-admin-2.js"></script>
+    <script type="text/javascript" src="/Scripts/chosen.jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".chosen-select").chosen();
+        });
+    </script>
+    @*<script src="~/Scripts/autocompleteMasterpage.js"></script>*@
+    <script src="/Content/cssBG/sweetalert.min.js"></script>
+    <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+</body>
+</html>

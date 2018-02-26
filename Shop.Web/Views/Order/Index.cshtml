@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Thanh toán đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@model Shop.Web.ViewModels.CartViewModel.OrderModel
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ </a></li>
+        <li class="active">Thanh toán đơn hàng</li>
+    </ol>
+    <div class="order">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-xs-12">
+                @Html.Partial("Form", Model.CartForm)
+            </div>
+            <div class="col-lg-5 col-md-5 col-xs-12">
+                <div id="cart-info" class="cart-info">
+                    <h2 class="title">Giỏ Hàng</h2>
+                    <ul class="list-unstyled">
+                        @if (Model.CartItems.Any())
+                        {
+                            foreach (var item in Model.CartItems)
+                            {
+                                <li>
+                                    <figure>
+                                        <a class="cart_list_product_img" href="@Url.RouteUrl("ChiTietSanPham", new { splink=item.Link })" title="@item.Name">
+                                            <img src="@string.Format("/Upload/Files/{0}?width=350&height=391", item.Image.Replace("/Upload/files/", ""))" alt="@item.Name">
+                                        </a>
+                                    </figure>
+                                    <div class="list_content">
+                                        <h5>
+                                            <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=item.Link })" title="@item.Name">
+                                                <span>@item.Name</span>
+                                                @if (item.AttributeFlag != 0)
+                                                {
+                                                    <span class="variant_title"> - @item.AttributeName</span>
+                                                }
+                                            </a>
+                                        </h5>
+                                        <div class="quantity">
+                                            @item.Quantity x
+                                            <span class="amount">
+                                                <span class="money" style="color: #199427;">
+                                                    @item.PricePromotion.ToString("#,###,###,###")
+                                                </span>
+                                                @if (item.HasPromotion)
+                                                {
+                                                    <span style="text-decoration: line-through; font-size: 12px">
+                                                        @item.Price.ToString("#,###,###,###")
+                                                    </span>
+                                                }
+                                            </span>
+                                        </div>
+                                        @Html.Action("QuaTangInGioHang","KhoQuaTang",new {productId = item.ProductId})
+                                    </div>
+                                </li>
+                              
+                            }
+                        }
+                    </ul>
+                    <!--Tổng số tiền-->
+                    <div class="subtotal">
+                        Tổng Cộng:
+                        <span>
+                            <span class="amount">
+                                <strong class="money" style="color: #199427;"> @Model.Total.ToString("#,###,###,###") </strong>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

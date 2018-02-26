@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+    ViewBag.canonical = "https://beautygarden.vn/dang-ky.html";
+}
+@model Shop.Web.Models.KhachHangModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li><a href="@Url.RouteUrl("DangKy")" title="tạo tài khoản">Đăng ký</a></li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <h2 class="page-heading" style="text-align: center;">
+        <span class="page-heading-title2 dangky">Đăng ký tài khoản  </span>
+    </h2>
+    <div class="page-content">
+        <div class="row">
+            <p style="text-align: center; font-size: 12px;"><i class="fa fa-sign-in"></i> Bạn đã có tài khoản?<a href="@Url.RouteUrl("DangNhap")" style="color: #00b7f1;" title="đăng nhập"> Đăng nhập</a> </p>
+            <p style="text-align: center; font-size: 12px;color: red;"><i class="fa fancybox-error"></i>  @ViewData["Message"] </p>
+            <div class="col-sm-12">
+
+                @using (Html.BeginForm("Submit", "DangKy", FormMethod.Post, new { @Class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label" style="color: green;">Điện thoại</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="inputEmail3" name="Phone" placeholder="Nhập điện thoại" value="@Model.Phone">
+                            @Html.ValidationMessageFor(o => o.Phone, "", new { @class = "erro" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label" style="color: green;">Email<span style="color: red;"> (*)</span></label>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control" id="inputEmail3" name="Email" placeholder="Nhập email" value="@Model.Email">
+                            @Html.ValidationMessageFor(o => o.Email, "", new { @class = "erro" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-form-password" class="col-sm-3 control-label" style="color: green;">Mật khẩu<span style="color: red;"> (*)</span></label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="register-form-password" name="Password" placeholder="Nhập mật khẩu" value="">
+                            @Html.ValidationMessageFor(o => o.Password, "", new { @class = "erro" })
+                        </div>
+                    </div>
+                            <div class="form-group">
+                                <label for="register-form-repassword" class="col-sm-3 control-label" style="color: green;">Nhập lại mật khẩu<span style="color: red;"> (*)</span></label>
+                                <div class="col-sm-6">
+                                    <input required="" type="password" class="form-control" id="register-form-repassword" name="Password" placeholder="Nhập lại mật khẩu" value="">
+                                    <span class="require_symbol repassword_warning erro">Mật khẩu chưa khớp</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <button type="submit" class="btn btn-success" id="register-form-submit">Đăng ký</button>
+                                </div>
+                            </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- check password confirm -->
+<script>
+    $(document).ready(function () {
+        $('.repassword_warning').hide();
+    });
+    $('#register-form-password, #register-form-repassword').on('keyup', function () {
+        if (($('#register-form-password').val() !== '') && ($('#register-form-password').val() !== $('#register-form-repassword').val())) {
+            $('.repassword_warning').show();
+            $('#register-form-submit').prop('disabled', true);
+        } else {
+            $('.repassword_warning').hide();
+            $('#register-form-submit').prop('disabled', false);
+        }
+    });
+
+</script>
+<!-- end check password confirm -->

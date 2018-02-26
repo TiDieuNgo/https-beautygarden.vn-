@@ -1,0 +1,75 @@
+﻿@using System.Globalization
+@model Shop.Web.ViewModels.SanPhamViewModel.BoxSanPhamKhuyenMaiViewModel
+
+@if (Model.HasPromotion)
+{
+    <!-- Block deals of -->
+    <div class="container ">
+        <div class="block-deals-of-opt2">
+            <div class="block-title">
+                <span class="title"><a href="https://beautygarden.vn/san-pham-khuyen-mai.html" style="color: #333;">Sản phẩm khuyến mãi</a></span>
+                <div class="deals-of-countdown">
+                    <span class="title">Kết thúc</span>
+                    <div class="count-down-time" data-countdown="@Model.End.ToString("MM/dd/yyyy HH:mm:ss")"></div>
+                </div>
+            </div>
+            <div class="block-content">
+                <div class="owl-carousel"
+                     data-nav="true"
+                     data-dots="false"
+                     data-margin="8"
+                     data-slide-by="3"
+                     data-smart-speed="10"
+                     data-responsive='{
+                            "0":{"items":2},
+                            "480":{"items":2},
+                            "640":{"items":3},
+                            "992":{"items":6},
+                            "1200":{"items":6}
+                            }'>
+                    @if (Model.Products.Any())
+                    {
+                        foreach (var menu in Model.Products)
+                        {
+                            <div class="product-item product-item-opt-2 promotion_product">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" title="@menu.NameProduct">
+                                            <img alt="@menu.NameProduct" src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)">
+                                        </a>
+                                        <div class="product-item-actions">
+                                            <a class="btn btn-wishlist" href="javascript:addtofavorites(@menu.id_);" id="@menu.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                        </div>
+
+                                        @if (menu.HasPromotion)
+                                        {
+                                            <span class="product-item-label label-price">@menu.Discount% <span>off</span></span>
+                                        }
+                                        <button type="button" class="btn btn-cart" onclick="location.href = '/cart/QuickAdd?productId=@menu.id_';return false;"><span>Thêm giỏ hàng</span></button>
+                                    </div>
+                                    <div class="product-item-detail">
+                                        <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                                        <div class="clearfix">
+                                            <div class="product-item-price">
+                                                @if (menu.HasPromotion)
+                                                {
+                                                    <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                                    <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Block deals of -->
+}

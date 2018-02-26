@@ -1,0 +1,88 @@
+﻿@using Shop.Web.Core.Helper
+@model Shop.Web.ViewModels.SanPhamViewModel.ProductBoxViewmodel
+
+@foreach (var menu in Model.Categories.FirstOrDefault().Childs)
+{
+    <div class="tab-pane fade in" id="floor1-@(menu.Id)">
+        @if (menu.Products.Any())
+        {
+            foreach (var sanpham in menu.Products)
+            {
+                DateTime date = DateTime.Now;
+                DateTime startdate = date;
+                DateTime enddate = sanpham.NgayHetHang;
+                var subenddate = startdate.Subtract(enddate).Days;
+                if (subenddate <= 30)
+                {
+                    <div class="col-lg-2-4 col-xs-6 ">
+                        <div class="product-item product-item-opt-2 product_home">
+                            <div class="product-item-info">
+                                <div class="product-item-photo">
+                                    <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new {splink = sanpham.Link})" title="@sanpham.NameProduct">
+                                        <img alt="@sanpham.NameProduct" class="lazy-loaded" data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", sanpham.Img)" style="max-width: 173px; max-height: 193px;">
+                                    </a>
+                                    <div class="product-item-actions">
+                                        <a class="btn btn-wishlist" href="javascript:addtofavorites(@sanpham.ProductId);" id="@sanpham.ProductId" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                    </div>
+                                    @if (sanpham.HasPromotion)
+                                    {
+                                        <span class="product-item-label label-price">@sanpham.Discount% <span>off</span></span>
+                                    }
+                                    @{
+                                            int giatru = ((sanpham.Price * 2) * 10)/100;
+                                            int gia =(sanpham.Price * 2) - giatru;
+                                        }
+                                        @if (sanpham.Price < 80000 && !sanpham.HasPromotion)
+                                        {
+                                            if (gia > 100000)
+                                            {
+                                                <span class="label-price-combo">@gia.ToString().Substring(0,3)K/2</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label-price-combo">@gia.ToString().Substring(0,2)K/2</span>
+                                            }
+                                        }
+                                    @*<button type="button" class="btn btn-cart" onclick="location.href = '/cart/QuickAdd?productId=@sanpham.ProductId';return false;"><span>Thêm giỏ hàng</span></button>*@
+                                </div>
+                                <div class="product-item-detail">
+                                    @if (sanpham.Price < 80000 && !sanpham.HasPromotion)
+                                        {
+                                            if (gia > 100000)
+                                            {
+                                                <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua 2 SP</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP</div>
+                                            }
+                                        }
+                                    <h3 class="product-item-name" style="font-size: 14px !important; margin-top: 0px;">
+                                        <a href="@Url.RouteUrl("ChiTietSanPham", new {splink = sanpham.Link})" title="@sanpham.NameProduct">@WeBUrlHelper.Cat_Chuoi(47, @sanpham.NameProduct)</a>
+                                    </h3>
+                                    <div class="clearfix">
+                                        <div class="product-item-price">
+                                            @if (sanpham.HasPromotion)
+                                            {
+                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePromotion)₫</span>
+
+                                                <span class="old-price">@string.Format("{0:#,#.##}", sanpham.Price)₫</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.Price)₫</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+}
+<script>
+    $("img.lazy-loaded").show().lazyLoadXT();
+</script>

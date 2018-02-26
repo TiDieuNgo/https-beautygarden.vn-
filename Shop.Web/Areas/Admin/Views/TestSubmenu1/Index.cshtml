@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Danh mục con";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+@model Shop.Web.Areas.Admin.Models.DanhMucConModel
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Danh mục con </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: red;">
+                    <ol class="breadcrumb">
+                        <li><a href="/admin/danhmucsanpham/ViewDanhMuc/">Danh mục</a></li>
+                        <li><a href="/admin/danhmucsanpham/ViewDanhMuc/">@ViewData["DuongDanDanhMuc"] </a></li>
+                    </ol>
+                    @Html.HiddenFor(o=>o.Menu.id_)
+                   @*@Html.Action("Add","TestSubmenu1")*@
+                     @Html.Action("Add", "TestSubmenu1")
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Tên danh mục</th>
+                                            <th style="width: 100px;">Menu sub top 
+                                                <br/>
+                                                (hiển thị/ẩn?)
+                                            </th>
+                                            <th style="width: 150px;">Menu sub Home 
+                                                <br/>
+                                                 (hiển thị/ẩn?)
+                                            </th>
+                                            <th style="width: 50px;">Sắp xếp</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.DanhMucs != null)
+                                        {
+                                            foreach (var tag in Model.DanhMucs)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+
+                                                <td>@tag.NameProduct
+                                                    <br />
+                                                    <a href="/admin/SubMenu2/index/@tag.id_" target="_blank" class="fa fa-folder-open" style="margin-top: 10px;color: red;font-weight: bold;float: right;">Sub menu</a>
+                                                </td>
+                                                  <td>
+                                                    @if(tag.ShowMenuTop==true)
+                                                    {
+                                                        <span style="color: red;font-weight: bold;">hiển thị</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>ẩn</span>
+                                                    }
+                                                </td>
+                                                <td >
+                                                    @if(tag.ShowMenuHome==true)
+                                                    {
+                                                        <span style="color: red;font-weight: bold;">hiển thị</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>ẩn</span>
+                                                    }
+                                                </td>
+                                                <td>@tag.SapxepDanhMuc</td>
+                                                <td class="actions">
+                                                    <a title="Sửa" href="/admin/SubMenu1/edit/@tag.id_" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a title="Xóa"  onclick="return xoa(@tag.id_)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                @Html.PagedListPager(Model.DanhMucs, page => Url.Action("Index", new { page }))
+
+                            </div>
+                        </div>
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+</div>
+<script>
+    function xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        if (r) {
+            location.href = "/admin/SubMenu1/Delete/" + f;
+        }
+    }
+</script>

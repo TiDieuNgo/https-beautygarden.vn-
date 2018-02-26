@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Danh sách top 100 sản phẩm bán chạy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@using PagedList.Mvc
+@model Shop.Web.Model.DanhSachBestSeller
+@{
+    int stt = (Model.page * 24) - 24;
+}
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+        <li class="active">top 100 sản phẩm bán chạy thuộc danh mục @Model.DanhMuc.NameProduct</li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-md-push-3  col-main">
+            <!-- link categori -->
+            <ul class="category-links">
+                <li class="hover_sort_tuan current-cate">
+                    @Html.ActionLink("Tuần này", "DanhSach", new {sortOrder = ViewBag.TuannaySort})
+                </li>
+                <li class="hover_sort_thang">
+                    @Html.ActionLink("Tháng này", "DanhSach", new {sortOrder = ViewBag.ThangnaySort})
+                </li>
+                <li class="hover_sort_nam">
+                    @Html.ActionLink("Bestseller 2016", "DanhSach", new {sortOrder = ViewBag.Best2016Sort })
+                </li>
+            </ul>
+            <div class="toolbar-products toolbar-top">
+                <h1 class="cate-title">@Model.DanhMuc.NameProduct</h1>
+                <!-- View as -->
+            </div><!-- Toolbar -->
+            <!-- List Products -->
+            <div class="products products-list">
+            @if (Model.SanPhamTheoDanhMucs.Any())
+            {
+                foreach (var menu in Model.SanPhamTheoDanhMucs)
+                {
+                    DateTime date = DateTime.Now;
+                    DateTime startdate = date;
+                    DateTime enddate = menu.NgayHetHang;
+                    var subenddate = startdate.Subtract(enddate).Days;
+                    stt++;
+                    if (subenddate <= 30)
+                    {
+                        <div class="bestseller-cat-item">
+                            <div class="product-col-0 hidden-xs">
+                                
+                                <div class="logo">
+                                    <span class="number @(stt>10?"style-2":"")">@stt</span>
+                                </div>
+                            </div>
+                            <div class="product-col-1">
+                                <p class="image">
+                                    <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct"><img src="@string.Format("/Upload/Files/{0}?width=350&height=391",menu.Img)" width="130" alt="@menu.NameProduct"></a>
+                                </p>
+                            </div>
+                            <div class="product-col-2">
+                                <div class="infomation">
+                                    <p class="title">
+                                        <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })">
+                                            @menu.NameProduct <img src="https://vcdn.tikicdn.com/assets/img/icon-svg/icon-24h.svg" class="img24h" alt="Hỗ trợ giao hàng trong 24h tại TPHCM" title="Hỗ trợ giao hàng trong 24h tại TPHCM">
+                                        </a>
+                                    </p>
+                                    @{
+                                        int giatru = ((menu.Price * 2) * 10)/100;
+                                        int gia =(menu.Price * 2) - giatru;
+                                    }
+                                    @if (menu.HasPromotion)
+                                    {
+                                        <p class="price-sale">
+                                            @string.Format("{0:#,#.##}", menu.PricePromotion)₫
+                                            <span class="sale-tag-square">
+                                                @menu.Discount%
+                                            </span>
+                                            <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="price-sale">
+                                            @string.Format("{0:#,#.##}", menu.Price)₫
+                                        </p>
+                                        if (enddate < startdate && menu.HasOnHand == false)
+                                        {
+                                            <div class="txt_combo_bestseller">Hết hàng</div>
+                                        }
+                                        if (menu.Price < 80000)
+                                        {
+                                            if (gia > 100000)
+                                            {
+                                                <div class="txt_combo_bestseller" title="Chỉ @gia.ToString().Substring(0,3)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="txt_combo_bestseller" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP</div>
+                                            }
+                                        }
+                                    }
+                                    <div class="description">
+                                        <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })">Xem chi tiết <i class="fa fa-caret-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .txt_combo {
+                                font-size: 11px !important;
+                            }
+                        </style>
+                    }
+                    
+                    }
+                }
+            </div>
+            <!-- List Products -->
+            <!-- Toolbar -->
+            <div class="toolbar-products toolbar-bottom">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model.SanPhamTheoDanhMucs, page => Url.Action("DanhSach", new { page, id = Model.DanhMuc.id_, sortOrder = ViewBag.CurrentSort}))
+                </ul>
+            </div><!-- Toolbar -->
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class="col-md-3 col-md-pull-9  col-sidebar">
+            <!-- Block  bestseller products-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  bestseller products-->
+            <!-- block slide top -->
+            @Html.Action("BannerQCChiTiet", "Banner")
+            <!-- block slide top -->
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<h2 style="display: none;">Danh sách các sản phẩm thuộc danh mục</h2>
+<h3 style="display: none;">Trang điểm</h3>
+<h3 style="display: none;">Chăm sóc da</h3>
+<h3 style="display: none;">Chăm sóc tóc</h3>
+<h3 style="display: none;">Nước hoa</h3>
+<h3 style="display: none;">Phụ kiện</h3>
+<h3 style="display: none;">Thực phẩm chức năng</h3>
+<!-- end MAIN -->
+<script>
+    $(document).ready(function () {
+        var sortOrder = '@HttpContext.Current.Request.QueryString["sortOrder"]';
+       if (sortOrder == "thangnay") {
+           $(".hover_sort_thang").addClass("current-cate");
+           $(".hover_sort_tuan").removeClass("current-cate");
+        } else if (sortOrder == "Best2016") {
+            $(".hover_sort_nam").addClass("current-cate");
+           $(".hover_sort_tuan").removeClass("current-cate");
+        } 
+    });
+</script>

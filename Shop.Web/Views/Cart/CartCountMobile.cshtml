@@ -1,0 +1,38 @@
+﻿@model int
+
+<!--giỏ hàng-->
+<div class="box_cart_mobile" title="Giỏ hàng" onclick="return showCart()" role="button" style="margin-top: 7px;">
+    <div class="icon-cart">
+        <i class="fa fa-shopping-cart shop_cart"></i>
+    </div>
+    <span class="cart-count">@Model</span>
+</div>
+<!--giỏ hàng-->
+@*<!--thông tin đơn hàng-->
+<div class="box-notify" title="Thông tin đơn hàng" style="margin-top: 7px;">
+    <div class="icon-earth">
+        <i class="fa fa-globe globe_new"></i>
+    </div>
+  <div class="love_like">Đơn hàng</div>
+</div>
+<!--thông tin đơn hàng-->*@
+
+
+<!--yêu thích-->
+<div class="box_favorite" onclick="clickviewFavorites()" title="Sản phẩm yêu thích" style="margin-top: 7px; float: left !important;">
+    <div class="icon-favorite">
+        <i class="fa fa-heart-o heart_new"></i>
+    </div>
+ <span class="love_like"></span>
+    <span id="countfavorite">0</span>
+</div>
+<!--yêu thích-->
+
+<!--CSKH-->
+<div class="box_favorite" title="Sản phẩm yêu thích" style="margin-top: 7px; float: left !important;">
+    <div class="icon-favorite">
+        <i class="fa fa-phone" style="color: #199427;"></i>
+    </div>
+    <span class="love_like" style="font-weight: bold; color: #199427;"><span>CSKH:</span> 1900 7013</span>
+</div>
+<!--CSKH-->

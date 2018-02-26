@@ -1,0 +1,86 @@
+﻿@model Shop.Web.Model.SanPhamMoiVeModel
+@if (Model.Products.Any())
+{
+    <div class="block-upsell" style="margin-top: 50px;">
+        <div class="block-title">
+            <strong class="title">Sản phẩm đã xem</strong>
+        </div>
+        <div class="block-content ">
+            <ol class="product-items owl-carousel " data-nav="true" data-dots="false" data-margin="30" data-slide-by="4" data-responsive='{"0":{"items":2},"480":{"items":2},"600":{"items":4},"992":{"items":4}}'>
+                @foreach (var product in Model.Products)
+                {
+                    DateTime date = DateTime.Now;
+                    DateTime startdate = date;
+
+                    DateTime enddate = product.NgayHetHang;
+                    var subenddate = startdate.Subtract(enddate).Days;
+                    if (subenddate <= 15)
+                    {
+                        <li class="product-item product-item-opt-2">
+                            <div class="product-item-info">
+                                <div class="product-item-photo" style="height: 213px;">
+                                    <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=product.Link })" class="product-item-img" title="@product.NameProduct ">
+                                        <img data-src="@string.Format("/Upload/Files/{0}?width=350&height=391",product.Img)" alt="@product.NameProduct" style="max-width: 173px;max-height: 193px;">
+                                    </a>
+                                    <div class="product-item-actions">
+                                        <a class="btn btn-wishlist" href="javascript:addtofavorites(@product.id_);" id="@product.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                    </div>
+                                    @if (product.HasPromotion)
+                                    {
+                                        <span class="product-item-label label-price">@product.Discount% <span>off</span></span>
+                                    }
+                                    @if (enddate < startdate && product.HasOnHand == false)
+                                    {
+                                        <span class="label-price-combo"><img src="/images/hethang.png" style="width: 45px; height: 45px;"/></span>
+                                    }
+                                @{
+                                    int giatru = ((product.Price * 2) * 10)/100;
+                                    int gia =(product.Price * 2) - giatru;
+                                }
+                                @if (product.Price < 80000 && !product.HasPromotion)
+                                {
+                                    if (gia > 100000)
+                                    {
+                                        <span class="label-price-combo2">@gia.ToString().Substring(0,3)K/2</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label-price-combo2">@gia.ToString().Substring(0,2)K/2</span>
+                                    }
+                                }
+                        </div>
+                                <div class="product-item-detail">
+                                    @if (product.Price < 80000 && !product.HasPromotion)
+                                {
+                                    if (gia > 100000)
+                                    {
+                                        <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua 2 SP</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP</div>
+                                    }
+                                }
+                                    <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new {splink = product.Link})" title="@product.NameProduct">@product.NameProduct</a></strong>
+                                    <div class="clearfix">
+                                        <div class="product-item-price">
+                                            @if (product.HasPromotion)
+                                            {
+                                                <span class="price">@string.Format("{0:#,#.##}", product.PricePromotion)₫</span>
+                                                <span class="old-price">@string.Format("{0:#,#.##}", product.Price)₫</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price">@string.Format("{0:#,#.##}", product.Price)₫</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ol>
+        </div>
+    </div>
+}

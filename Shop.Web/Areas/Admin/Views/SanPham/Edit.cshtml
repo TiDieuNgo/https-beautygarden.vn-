@@ -1,0 +1,346 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    elementForEditorInstance = "Content";
+    elementForEditorInstance1 = "Content1";
+    elementForEditorInstance2 = "Content2";
+    elementForEditorInstance3 = "Content3";
+    elementForEditorInstance4 = "Content4";
+    ckoptions.width = "90%";
+    $(function () {
+        InstanceCkeditor();
+    });
+</script>
+@model Shop.Model.Menu
+@using (Html.BeginForm("SaveEdit", "SanPham", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(o => o.id_)
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Sản Phẩm</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <style>
+            #cke_Content {
+                width: 820px !important;
+            }
+
+            #cke_Content1 {
+                width: 820px !important;
+            }
+
+            #cke_Content2 {
+                width: 820px !important;
+            }
+
+            #cke_Content3 {
+                width: 820px !important;
+            }
+
+            #cke_Content4 {
+                width: 820px !important;
+            }
+
+            #cke_ContentTaiSao {
+                width: 820px !important;
+            }
+
+            #cke_ContentTheoSp {
+                width: 820px !important;
+            }
+
+            .col-sm-2 {
+                color: #337ab7 !important;
+                font-weight: normal;
+            }
+
+            #cke_Note {
+                width: 820px !important;
+            }
+        </style>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Sửa sản phẩm
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Tên sản phẩm<span style="color: red;">(*)</span> <span style="color: green;">(tối đa 47 kí tự)</span> </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.NameProduct, new { @class = "form-control", type = "text", required = "nhap ten san pham", @maxlength = "47", })
+                                            @*  <input class="form-control" type="text"  required="" name="NameProduct" oninvalid="this.setCustomValidity('Vui lòng nhập tên sản ph')"></input>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Tên sản phẩm<span style="color: red;">(*)</span> <span style="color: green;">(dài)</span> </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.NameProductLong, new { @class = "form-control", type = "text", required = "nhap ten san pham" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Link<span style="color: red;">(*)</span> </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control", type = "text", required = "nhap ten san pham" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">
+                                            Title (SEO)<span style="color: red;">(*)</span><br />
+                                            <span style="color: green;">(tối đa 60 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEOtitle, new { @class = "form-control", type = "text", required = "nhap ten san pham", @maxlength = "60" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">
+                                            Description (SEO)<span style="color: red;">(*)</span> <br />
+                                            <span style="color: green;">(Tối đa 160 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEODescription, new { @class = "form-control", type = "text", required = "nhap ten san pham" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Mô tả <span style="color: red;">(*)</span>
+                                            <br />
+                                            <span style="color: green;">(Tối đa 160 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @*  @Html.TextAreaFor(o => o.Note, new { @class = "form-control", type = "text", required = "nhap ten san pham" })
+                                                @Html.ValidationMessageFor(o => o.Note, "", new { @class = "redText" })*@
+                                            @Html.TextAreaFor(o => o.Note, new { @class = "ckeditor" })
+                                        </div>
+                                        <style>
+                                            textarea.form-control {
+                                                height: 100px !important;
+                                            }
+                                        </style>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Hình ảnh
+                                            <br />
+                                            <span style="color: green;">((900 x 1006 px))</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            @Html.TextBoxFor(o => o.Img, new { @class = "form-control" })
+
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button onclick="return BrowseImages('Img');" type="button" class="btn btn-primary">Upload ảnh</button>
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span style="color: red;">
+                                                (*)Nên sử dụng tool để nén
+                                                <br />
+                                                <a href="https://compressor.io/" target="_blank">Click để sử dụng tool nén</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Hình ảnh khác
+                                            <br />
+                                            <span style="color: green;">((900 x 1006 px))</span>
+                                        </label>
+
+                                        <div class="col-sm-3">
+                                            @Html.Action("GetImages", "SanPham", new { productId = Model.id_ })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Vị trí</label>
+                                        <div class="col-sm-2">
+                                            @Html.TextBoxFor(o => o.SapXepSanPham, new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Nhà cung cấp</label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(o => o.IdNhaCungCap, ViewData["nhacungcap"] as List<SelectListItem>, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    @*danh muc san pham tree view*@
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Danh mục</label>
+                                        <div class="col-sm-10">
+                                            @Html.Action("GetCategoryTree", "DanhMucSanPham", new { productId = Model.id_ })
+                                        </div>
+                                    </div>
+
+                                    <!-- add noi dung chua co du lieu-->
+                                    <div class="noidungchitiet">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Tiêu đề</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(o => o.ContentLabel, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Thông tin sản phẩm</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(o => o.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--tai sao nen mua tai BG-->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tiêu đề</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="text" name="ContentLabelTaiSao" value="Lý do nên mua tại Beauty Garden" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Lý do</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(o => o.ContentTheoSp, new { @class = "ckeditor" })
+                                        </div>
+                                    </div>
+                                    <!--end tai sao nen mua BG-->
+                                    <div class="noidungchitiet1">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Tiêu đề</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(o => o.ContentLabel1, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Nội dung 2</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(o => o.Content1)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 "></label>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-primary" id="show1"><i class="fa fa-plus-square"> Thêm nội dung tiếp theo</i></button>
+                                        </div>
+                                    </div>
+                                    <div class="noidungchitiet2">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Tiêu đề</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(o => o.ContentLabel2, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Nội dung 3</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(o => o.Content2)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 "></label>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-primary" id="show2"><i class="fa fa-plus-square"> Thêm nội dung tiếp theo</i></button>
+                                        </div>
+                                    </div>
+                                    <div class="noidungchitiet3">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Tiêu đề</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(o => o.ContentLabel3, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Nội dung 4</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(o => o.Content3)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 "></label>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-primary" id="show3"><i class="fa fa-plus-square"> Thêm nội dung tiếp theo</i></button>
+                                        </div>
+                                    </div>
+                                    <div class="noidungchitiet4">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Tiêu đề</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextBoxFor(o => o.ContentLabel4, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Nội dung 5</label>
+                                            <div class="col-sm-10">
+                                                @Html.TextAreaFor(o => o.Content4)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*tao nut them nhung noi dung tiep theo*@
+                                    <div class="form-group">
+                                        <label class="col-sm-2 "></label>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-primary" id="show4"><i class="fa fa-plus-square"> Thêm nội dung tiếp theo</i></button>
+                                        </div>
+                                    </div>
+                                    @Html.Action("Edit", "KhoQuaTang", new { productId = Model.id_ })
+                                    @Html.Action("TagSanPham", "DanhSachTag", new { productId = Model.id_ })
+                                    <!-- end add noi dung chua co du lieu-->
+                                    <script>
+                                        $(document).ready(function () {
+                                            //an 4 noi dung duoi
+                                            $(".noidungchitiet1").hide();
+                                            $(".noidungchitiet2").hide();
+                                            $(".noidungchitiet3").hide();
+                                            $(".noidungchitiet4").hide();
+                                            //an 4 button duoi
+                                            $("#show2").hide();
+                                            $("#show3").hide();
+                                            $("#show4").hide();
+                                            //show theo tung muc
+                                            $("#show1").click(function () {
+                                                $(".noidungchitiet1").show();
+                                                $("#show1").hide();
+                                                $("#show2").show();
+                                            });
+                                            $("#show2").click(function () {
+                                                $(".noidungchitiet2").show();
+                                                $("#show2").hide();
+                                                $("#show3").show();
+                                            });
+                                            $("#show3").click(function () {
+                                                $(".noidungchitiet3").show();
+                                                $("#show3").hide();
+                                                $("#show4").show();
+                                            });
+                                            $("#show4").click(function () {
+                                                $(".noidungchitiet4").show();
+                                                $("#show4").hide();
+                                            });
+                                        });
+                                    </script>
+                                    <button type="submit" class="btn btn-success" style="margin-left: 150px;">Cập nhật</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

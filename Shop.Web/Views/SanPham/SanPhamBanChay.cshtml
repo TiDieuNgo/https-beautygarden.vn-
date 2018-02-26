@@ -1,0 +1,85 @@
+﻿<!-- Block  bestseller products-->
+@model Shop.Web.Model.BanChayModel
+<div class="block-sidebar block-sidebar-products">
+  
+    @*<div class="block-content">
+        <div class="owl-carousel"
+             data-nav="false"
+             data-dots="true"
+             data-margin="0"
+             data-autoplaytimeout="700"
+             data-autoplay="true"
+             data-loop="true"
+             data-responsive='{
+                                "0":{"items":1},
+                                "420":{"items":1},
+                                "480":{"items":2},
+                                "600":{"items":2},
+                                "992":{"items":1}
+                                }'>
+          @if(Model.ProductSlishows.Any())
+          {
+              foreach (var productBox in Model.ProductSlishows)
+              {
+                  <div class="item">
+                      
+
+                        @foreach(var sp in productBox.Products)
+                        {
+                            <div class="product-item product-item-opt-2" style="border: none!important;">
+                          <div class="product-item-info">
+                              <div class="product-item-photo">
+                                  <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink=sp.Link })">
+                                      <img alt="@sp.NameProduct" src="@string.Format("/Upload/Files/{0}?width=350&height=391",sp.Img)" style="max-width: 80px;max-height: 90px;"></a>
+                              </div>
+                              <div class="product-item-detail">
+                                  <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink=sp.Link })">@sp.NameProduct</a></strong>
+                                  <div class="clearfix">
+                                      <div class="product-item-price giamoi">
+                                          @if (Model.KhuyenMai != null && Model.KhuyenMai.ProductIdsList.Contains(sp.id_))
+                                        {
+                                            int price = (sp.Price - (sp.Price*Model.KhuyenMai.Discount/100));
+                                            <span class="price">@string.Format("{0:#,#.##}", price)₫</span>
+
+                                            <span class="old-price">@string.Format("{0:#,#.##}", sp.Price)₫</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price">@string.Format("{0:#,#.##}", sp.Price)₫</span>
+                                        }
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        }
+                      
+                  
+                  </div>
+              }
+          }
+           
+          
+
+        </div>
+    </div>*@
+    <div class="block_content">
+        <img src="/Upload/files/chinh-sach2-02.png" alt="Chính sách Beauty Garden"/>
+    </div>
+</div>
+<!-- Block  bestseller products-->
+<style>
+   
+
+    .product-item-img img
+    {
+        width: 80px;
+        height: 89px;
+    }
+.giamoi {
+    font-size: 13px!important;
+    color: black!important;
+    font-weight: bold!important;
+}
+</style>

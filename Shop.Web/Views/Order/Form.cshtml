@@ -1,0 +1,80 @@
+﻿@model Shop.Web.ViewModels.CartViewModel.CartForm
+@using (Html.BeginForm("Save", "Order", FormMethod.Post))
+{
+    <h2 class="title">Thông tin khách hàng</h2>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="form-group">
+                @Html.TextBoxFor(o => o.Email, new { @class = "form-control", placeholder = "Email (nếu có)" })
+            </div>
+        </div>
+    </div>
+
+    <h2 class="title">Địa chỉ nhận hàng</h2>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="form-group">
+
+                @Html.TextBoxFor(o => o.Name, new { @class = "form-control", placeholder = "Họ tên (*)" })
+                @Html.ValidationMessageFor(o => o.Name)
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="form-group">
+                @Html.TextBoxFor(o => o.Phone, new { @class = "form-control", placeholder = "Số điện thoại (*)" })
+                @Html.ValidationMessageFor(o => o.Phone)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="form-group">
+                @Html.TextBoxFor(o => o.Address, new { @class = "form-control", placeholder = "Địa chỉ (*)" })
+                @Html.ValidationMessageFor(o => o.Address)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="form-group">
+                <select class="form-control" name="BrandId" id="BrandId" data-val="true" data-val-number="Chưa chọn shop"
+                        data-val-range="Chưa chọn shop"
+                        data-val-range-max="2147483647"
+                        data-val-range-min="1"
+                        data-val-required="Chưa chọn shop">
+                    <option value="0">Chọn shop gần bạn nhất...</option>
+                    <optgroup label="TP. Hồ Chí Minh">
+                        @*<option value="14364">71 Đường số 3, Cư Xá Đô Thành, P.4, Q.3</option>*@
+                        <option value="48611">98B Phan Đăng Lưu, P.3, Q. Phú Nhuận</option>
+                    </optgroup>
+                    <optgroup label="Hà nội">
+                        <option value="48609">152 Phố Chùa Bộc, Q. Đống Đa, Hà Nội</option>
+                    </optgroup>
+                    <optgroup label="Đà Nẵng">
+                        <option value="48610">268 Trưng Nữ Vương, Q. Hải Châu, Đà Nẵng</option>
+                    </optgroup>
+                </select>
+                @Html.ValidationMessageFor(o => o.BrandId)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="form-group">
+                @Html.TextAreaFor(o => o.Note, new { @class = "form-control", placeholder = "Ghi chú" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 5px 0">
+        <div class="col-md-6 col-xs-6">
+            <a class="btn prev-btn" href="@Url.RouteUrl("Cart")" title="quay lại giỏ hàng">Quay lại giỏ hàng</a>
+        </div>
+        <div class="col-md-6 text-right col-xs-6">
+            <button type="submit" class="btn btn-success">Tiếp tục</button>
+        </div>
+    </div>
+}

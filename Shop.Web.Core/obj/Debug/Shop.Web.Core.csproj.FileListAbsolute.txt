@@ -1,0 +1,195 @@
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Core.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Model.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\System.Web.Http.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Core.pdb
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\Shop.Model.pdb
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\System.Web.Http.xml
+D:\DoAnTotNghiep\EFMVC.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\DoAnTotNghiep\EFMVC.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\DoAnTotNghiep\EFMVC.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\DoAnTotNghiep\EFMVC.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Model.dll
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+E:\DoAnTotNghiep\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+E:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+E:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+E:\DoAnTotNghiep\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+E:\web chuan\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+E:\web chuan\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+E:\web chuan\Shop.Web.Core\bin\Debug\Shop.Model.dll
+E:\web chuan\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+E:\web chuan\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+E:\web chuan\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+E:\web chuan\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+E:\web chuan\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+E:\web chuan\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+E:\web chuan\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+E:\web chuan\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\web\Market\market\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\web\Market\market\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\web\Market\market\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\web\Market\market\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\web\Market\market\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\web\Market\market\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\web\Market\market\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\web\Market\market\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\web\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\web\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\web\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\Du An\Market\market\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\Du An\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\Du An\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\Du An\Market\market\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\Bachhoaviet24h\Bachhoaviet24h\Bachhoaviet24h\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\Cuktymart.com\Cuktymart.com\Cuktymart.com\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\BoSiLinhKien\BoSiLinhKien\BoSiLinhKien\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+D:\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Model.dll
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Web.Http.dll
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Web.Http.xml
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+C:\Users\dev\Dropbox\SourceSon\AdminBeautygarden.vn\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\Shop.Model.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+C:\Users\quang_quy\Documents\Projects\Beautygaden\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\Shop.Model.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+C:\Users\quang_quy\Documents\Projects\BEAUTY\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\Shop.Model.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+C:\Users\dev\Documents\beauty\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+C:\Users\dev\Documents\beauty\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+C:\Users\dev\Documents\beauty\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+C:\Users\dev\Documents\beauty\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Model.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+D:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Model.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+E:\Dự Án\beauty_fixgiaodien\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\Shop.Web.Core.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\Shop.Web.Core.pdb
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\Shop.Model.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\System.Web.Helpers.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\System.Web.Mvc.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\Shop.Model.pdb
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\System.Web.Helpers.xml
+E:\Dự Án\beautygarden_new\Shop.Web.Core\bin\Debug\System.Web.Mvc.xml
+E:\Dự Án\beautygarden_new\Shop.Web.Core\obj\Debug\Shop.Web.Core.csprojResolveAssemblyReference.cache
+E:\Dự Án\beautygarden_new\Shop.Web.Core\obj\Debug\Shop.Web.Core.dll
+E:\Dự Án\beautygarden_new\Shop.Web.Core\obj\Debug\Shop.Web.Core.pdb

@@ -1,0 +1,44 @@
+﻿@model Shop.Web.Model.SanPhamMoiVeThuocDanhMuc
+<div class="block-sidebar block-sidebar-products">
+    <div class="block-title">
+        <strong>SẢN PHẨM MỚI VỀ</strong>
+    </div>
+    <div class="block-content" id="sonpro">
+        @if (Model.Products.Any())
+        {
+            foreach (var menu in Model.Products)
+            {
+                <div class="product-item product-item-opt-1 moive_sanpham" id="cuoi">
+                    <div class="product-item-info" style="padding-bottom: 15px;">
+                        <div class="product-item-photo" style="height: auto;">
+                            <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct">
+                                <img alt="@menu.NameProductLong" data-src="@string.Format("/Upload/Files/{0}?width=350&height=391",menu.Img)" style="height: 90px;max-width: 80px;">
+                            </a>
+                        </div>
+                        <div class="product-item-detail">
+                            <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                            <div class="clearfix">
+                                <div class="product-item-price" style="line-height: 40px;">
+                                    @if (menu.HasPromotion)
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                        <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <style>
+            .highlight {
+                border-bottom: none !important;
+            }
+        </style>
+    </div>
+</div>

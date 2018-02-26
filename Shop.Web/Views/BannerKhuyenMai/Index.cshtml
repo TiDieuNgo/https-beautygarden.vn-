@@ -1,0 +1,34 @@
+﻿@model Shop.Web.Model.BannerKhuyenMaiModel
+<div class="category-view">
+    <div class="owl-carousel "
+         data-nav="true"
+         data-dots="false"
+         data-margin="0"
+         data-items='1'
+         data-autoplaytimeout="700"
+         data-autoplay="true"
+         data-loop="true">
+        @if (Model.BannerKhuyenMais.Any())
+        {
+            foreach (var banner in Model.BannerKhuyenMais)
+            {
+                <div class="item ">
+                    <a href="#" target="_blank" title="@banner.Ten">
+                        <img src="@string.Format("/Upload/Files/{0}",banner.HinhAnh)" alt="@banner.Ten">
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+<!-- Toolbar -->
+@if (Model.BannerKhuyenMais.Any())
+{
+    <div class="toolbar-products toolbar-top khuyenmai_div">
+        <h1 class="cate-title">Khuyến mãi</h1>
+    </div>
+    <div class="motadanhmuc">
+        <p>@Html.Raw(Model.Banner.MoTa)</p>
+    </div>
+}
+

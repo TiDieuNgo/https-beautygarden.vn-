@@ -1,0 +1,25 @@
+﻿@model IList<Shop.Model.BannerDanhSach>
+<div class="block-sidebar block-banner-sidebar">
+    <div class="owl-carousel"
+         data-nav="false"
+         data-dots="true"
+         data-margin="0"
+         data-items='1'
+         data-autoplaytimeout="700"
+         data-autoplay="true"
+         data-loop="true">
+        @if (Model.Any())
+        {
+            int i = 0;
+            foreach (var bannerDanhSach in Model)
+            {
+                i++;
+                string tangdan = "";
+                tangdan = "item" + @i;
+                <div class="item @tangdan">
+                    <a href="@bannerDanhSach.LinkHttp1" target="_blank" title="@bannerDanhSach.TenBanner"><img data-src="@string.Format("/Upload/Files/{0}",bannerDanhSach.HinhAnh)" alt="@bannerDanhSach.TenBanner"></a>
+                </div>
+            }
+        }
+    </div>
+</div>

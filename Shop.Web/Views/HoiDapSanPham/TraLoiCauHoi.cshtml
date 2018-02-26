@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Beautygarden trả lời";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    string cookie = "";
+
+    if (HttpContext.Current.Request.Cookies["UserLogin"] != null)
+    {
+        cookie = HttpContext.Current.Request.Cookies["UserLogin"].Value;
+    }
+}
+@model Shop.Web.Model.TraLoiCommentModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+        <li class="active">@ViewData["tenSP"]</li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-main">
+            <!-- List Products -->
+            <div class="products  products-grid beauty_review">
+                <h1>@Model.Comment.NoiDungCmt</h1>
+                <div class="question-answer-form">
+                    <p class="form form_custome">
+                        <input type="text" name="content" id="traloi_cmt" class="form-control" value="" placeholder="Nhập vào nội dung câu trả lời của bạn">
+                        <button type="button" class="btn btn-primary" onclick="return TraLoiComment(@Model.Comment.CommentId)">Gửi câu trả lời</button>
+                    </p>
+                </div>
+                <div class="question-answer-box">
+                    <div class="question-answer-title">
+                        <h2>Các câu trả lời</h2>
+                    </div>
+                    <div class="question-answer-content">
+                        <!-- ANSWER -->
+                        @if(Model.TraLoiComments.Any())
+                        {
+                            foreach (var traLoiComment in Model.TraLoiComments)
+                            {
+                                <div class="item">
+                                    <div class="item-col-1">
+                                        <div class="group">
+                                            <p class="number" id="demlike-@traLoiComment.TraLoiCommentId">0</p>
+                                            <p class="text">Thích</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-col-2">
+                                        <div class="group">
+                                            <p class="name">Beautygarden</p>
+                                            <div class="text">
+                                              @Html.Raw(traLoiComment.NoiDungCmt)                                        
+                                            </div>
+                                            <p class="action">
+                                                <a href="javascript:addtoLike(@traLoiComment.TraLoiCommentId);" class="js-like-answer" id="@traLoiComment.TraLoiCommentId">Thích</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                                <span>Câu hỏi này chưa có câu trả lời nào. Hãy là người đầu tiên tham gia!</span>
+                        }
+                        <!-- ENDING ANSWER -->
+                    </div>
+                </div>
+                <div class="question-other-box">
+                    <div class="question-other-title">
+                        <h2>Câu hỏi khác</h2>
+                    </div>
+                    <div class="question-other-content">
+                        @if(Model.CauHoiKhacs.Any())
+                        {
+                            foreach (var cauHoiKhac in Model.CauHoiKhacs)
+                            {
+                                <p class="item"><a href="@Url.RouteUrl("HoiDapSanPham",new{seo="hoi-dap",id=cauHoiKhac.CommentId})">@cauHoiKhac.NoiDungCmt</a></p>
+
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class="col-md-3 col-sidebar">
+
+            <!-- Block  bestseller products-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  bestseller products-->
+            <!-- block slide top -->
+            @Html.Action("BannerQCChiTiet","Banner")
+            <!-- block slide top -->
+
+            @Html.Action("SanPhamMoiVeInChiTiet","TinTuc")
+        </div>
+        <!-- Sidebar -->
+
+    </div>
+</div>
+<h2 style="display: none;">Danh sách các sản phẩm thuộc danh mục</h2>
+<h3 style="display: none;">Trang điểm</h3>
+<h3 style="display: none;">Chăm sóc da</h3>
+<h3 style="display: none;">Chăm sóc tóc</h3>
+<h3 style="display: none;">Nước hoa</h3>
+<h3 style="display: none;">Phụ kiện</h3>
+<h3 style="display: none;">Thực phẩm chức năng</h3>
+<!-- end MAIN -->
+<script>
+    function TraLoiComment(idcomment) {
+        //check: nếu chưa đăng nhập thì không cho gửi câu tra loi
+        var cookie = '@cookie';
+        if (cookie.length!=0) {
+            var noidung_cmt = $("#traloi_cmt").val();
+            if (noidung_cmt.length == 0) {
+                swal("Bạn vui lòng nhập câu trả lời");
+            } else  {
+                $.post("/HoiDapSanPham/SaveTraLoiComment", {
+                    comemntid: idcomment,
+                    noidung_cmt: noidung_cmt,
+                }, function (data) {
+                    location.reload();
+                });
+            }
+        }
+        else {
+            swal("Bạn cần đăng nhập để thực hiện chức năng này");
+            }
+      
+       
+    }
+    
+    var likeComments = JSON.parse(localStorage.getItem('likeComments')) || [];
+    var countlikecomment = 0;
+    likeComments.forEach(function (CommentId) {
+        //chay lan luot tung li da co class liked
+        //chay lan luot tung li da co class liked
+        $("#" + CommentId).text('Đã thích');
+        $("#" + CommentId).addClass("liked");
+        var soluong = $("#" + CommentId).length;
+        var idlike = "demlike-" + CommentId;
+        $("#" + idlike).text(soluong);
+    });
+   
+
+    function addtoLike(CommentId) {
+        var index = likeComments.indexOf(CommentId);
+        if (!CommentId) return;
+        if (index == -1) {
+            //khi click thi day id cua thang click vao like Comment
+            likeComments.push(CommentId);
+            $("#" + CommentId).text('Đã thích');
+            $("#" + CommentId).addClass("liked");
+        } else {
+            swal("Bạn đã nhấn thích cho câu hỏi này trước đó.");
+        }
+        localStorage.setItem('likeComments', JSON.stringify(likeComments));
+        var idlike = "demlike-" + CommentId;
+        likeComments.forEach(function (CommentId) {
+            var soluong = $("#" + CommentId).length;
+            $("#" + idlike).text(soluong);
+        });
+    }
+</script>

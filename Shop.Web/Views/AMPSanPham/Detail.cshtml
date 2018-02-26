@@ -1,0 +1,2058 @@
+﻿<!DOCTYPE html>
+@using System.Data.SqlClient
+@using System.Text.RegularExpressions
+@using Shop.Data
+@using Shop.Model
+@using Shop.Web.Core.Helper
+@model Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel
+<html ⚡>
+<head>
+    @{
+
+        ViewBag.Title = @Model.Product.NameProduct;
+        ViewBag.Keyword = @Model.Product.Note == null ? "✅" + @Model.Product.Note : Regex.Replace("✅" + Model.Product.Note, @"<[^>]*>", string.Empty);
+        ViewBag.Description = @Model.Product.Note == null ? "✅" + Model.Product.Note : Regex.Replace("✅" + Model.Product.Note, @"<[^>]*>", String.Empty);
+        ViewBag.image = "https://beautygarden.vn/Upload/Files/" + @Model.Product.Img;
+        ViewBag.canonical = "https://beautygarden.vn/" + @Model.Product.Link + ".html";
+    }
+
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@Html.Raw(ViewBag.Keyword)">
+    <meta name="description" content="@Html.Raw(ViewBag.Description)">
+
+    <meta property="og:title" content="@Model.Product.NameProductLong" />
+    <meta property="og:type" content="website" />
+    <meta name="google-site-verification" content="QxFxkiJEk9ZuvRzsJFbjOVPJc-9D4RkwQ3xTHsZPQgc" />
+    <meta property="og:site_name" content="beautygarden.vn | Beauty Garden - Mỹ phẩm chính hãng" />
+    <meta property="og:description" content="@Html.Raw(ViewBag.Description)" />
+    <meta property="og:image" content="https://beautygarden.vn/@Model.Product.Img" />
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico" />
+    <!-- Style CSS -->
+    <link href="~/Content/cssBG/amp.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Style.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Style1.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cssmoi.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/colcss.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/rateit.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/cssBG/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cart.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/jquery.elevator.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cssphone.min.css" rel="stylesheet" media="only screen and (max-width: 640px)" />
+    <meta property="fb:app_id" content="1071737652879858" />
+    <meta property="fb:admins" content="100003298980591" />
+    <meta property="fb:admins" content="100000138045258" />
+    <link rel="canonical" href="@ViewBag.canonical">
+    <!-- jQuery -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+
+    <noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none;
+            }
+        </style>
+    </noscript>
+
+   
+    <style amp-custom>
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="wrapper_content_page">
+        <header class="site-header header-opt-5">
+            <!-- header-top -->
+            <div class="header-top">
+                <div class="container">
+                    <!-- nav-left -->
+                    <ul class="nav-left hidden-xs">
+                        <div class="block-content">
+                            <div class="owl-carousel owl-loaded owl-drag owl-hidden" data-nav="true" data-dots="false" data-margin="8" data-slide-by="3" data-smart-speed="10" data-responsive="{
+                                &quot;0&quot;:{&quot;items&quot;:2},
+                                &quot;480&quot;:{&quot;items&quot;:2},
+                                &quot;640&quot;:{&quot;items&quot;:3},
+                                &quot;992&quot;:{&quot;items&quot;:6},
+                                &quot;1200&quot;:{&quot;items&quot;:6}
+                                }" style amp-custom="margin-top: -15px;">
+
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage" style amp-custom="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 1490px;">
+                                        <div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/kem-duong-da-innisfree-green-tea-fresh-cream.html">
+                                                            <amp-img alt="Kem dưỡng da Innisfree Green Tea Fresh Cream" src="/Upload/Files/kem-duong-da-Innisfree-Green-Tea-Fresh-Cream-Beauty-Garden.jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;"></amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/kem-chong-nang-innisfree-perfect-uv-protection-spf50-pa.html">
+                                                            <amp-img alt="Kem chống nắng Innisfree Perfect UV Protection" src="/Upload/Files/kem-chong-nang-Innisfree-Perfect-UV-Protection-Cream-Long-Lasting-dry_skin-beauty-garden-1(1).jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;"></amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/son-tint-phien-ban-keo-the-saem-water-candy-tint.html">
+                                                            <amp-img alt="Son Tint Kẹo The Saem Water Candy Tint " src="/Upload/Files/son-tint-keo-The-Saem-Water-Candy-Tint.png?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;"></amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/ke-mat-nuoc-lau-troi-mistine-super-black-fixed-liner.html">
+                                                            <amp-img alt="Kẻ mắt nước Mistine Super Black Fixed Liner" src="/Upload/Files/ke-mat-nuoc-Mistine-Super-Black-Fixed-Liner.png?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;"></amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/kem-nen-hieu-chinh-tone-da-missha-signature-complexion-coordinating-bb-cream-beige-tone-da-tu-nhien.html">
+                                                            <amp-img alt="Kem nền Missha Signature Complexion Coordinating BB" src="/Upload/Files/kem-nen-MISSHA_Signature_Complexion_Coordinating_B_B_Cream_white_20g_ml-beauty-garden-1(1).jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;"></amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item active" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/kem-chong-nang-missha-all-around-safe-block-waterproof-sun-spf50pa-50ml.html">
+                                                            <amp-img alt="Kem chống nắng Missha All-around Safe Block " src="/Upload/Files/kem-chong-nang-Missha-All-around-Safe-Block-Waterproof-Sun-SPF50-PA-50ml-beauty-garden-1.jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/gel-ke-mat-tonymoly-backstage-gel-eyeliner.html">
+                                                            <amp-img alt="Gel kẻ mắt Tonymoly Backstage Gel Eyeliner" src="/Upload/Files/gel-ke-mat-TONYMOLY-Backstage-Gel-Eyeliner-beauty-garden-1.jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;">
+                                                            </amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-item" style amp-custom="width: 178.167px; margin-right: 8px;">
+                                            <div class="product-item product-item-opt-1 sp_daxem_box">
+                                                <div class="product-item-info">
+                                                    <div class="product-item-photo">
+                                                        <a class="product-item-img" href="/kem-tri-nam-achromin.html">
+                                                            <amp-img alt="Kem trị nám Achromin" src="/Upload/Files/kem-tri-nam-Achromin-Skin-Whitening-Cream-UV-Filters-beauty-garden-1.jpg?width=173&amp;height=193" style amp-custom="max-width: 91px!important;max-height: 91px!important;">
+                                                            </amp-img>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="owl-nav"><div class="owl-prev disabled"></div><div class="owl-next"></div></div><div class="owl-dots disabled"></div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+                </li>
+                <!--end sản phẩm đã xem-->
+                </ul>
+                <!-- nav-left -->
+                <!-- nav-right -->
+                <div class="hidden-lg hidden-md hidden-sm hidden-desktop" style amp-custom="text-align: center;">
+                    <span style amp-custom="font-size: 14px;font-family: Arial,serif;color: #1f601f;line-height: 40px;font-weight: bold;"><a href="tel:0911384114" style amp-custom="color: #1f601f;">Hotline: 0911 384 114</a></span>
+                </div>
+                <!--nav-right -->
+            </div>
+    </div> <!-- header-top -->
+    <!-- header-content -->
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-push-4 nav-left hidden-xs">
+                    <!-- logo -->
+                    <strong class="logo">
+                        <a href="https://beautygarden.vn">
+                            <amp-img src="/images/logomoi-compressor.png" alt="Beautygarden"></amp-img>
+                        </a>
+                    </strong><!-- logo -->
+                </div>
+                <div class="col-md-4 col-md-push-4 nav-left hidden-sm hidden-desktop hidden-lg hidden-md">
+                    <!-- logo -->
+                    <strong class="logo">
+                        <a href="/"><amp-img src="/images/Logo-Beauty-Garden-05-compressor.png" alt="Beautygarden"></amp-img></a>
+                    </strong><!-- logo -->
+                </div>
+                <div class="col-md-4 col-md-pull-4 nav-mind">
+                    <!-- block search -->
+                    <div class="block-search " id="keySearchClick">
+                        <div class="block-title">
+                            <span>Search</span>`
+                        </div>
+                        <div class="block-content">
+                            <div class="form-search hidden-md hidden-desktop hidden-lg">
+                                <form action="/tim-kiem.html" method="GET">
+                                    <div class="box-group">
+                                        <input type="text" name="keyword" id="keySearch" class="form-control  ui-autocomplete-input" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                                        <button class="btn btn-search" type="submit"><span>search</span></button>
+                                    </div>
+                                    <div class="box-group" style amp-custom="display: block">
+                                        <ul id="ui-top-search" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style amp-custom="top: 40px;display: none;"></ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- block search -->
+                </div>
+                <div class="col-md-4 nav-right hidden-xs">
+                    <!-- block mini cart -->
+                    <div class="block-minicart dropdown hidden-lg hidden-desktop hidden-md">
+                        <a class="dropdown-toggle">
+                            <span class="cart-icon"></span>
+                            <span class="cart-text">cart</span>
+                            <span class="counter qty">
+                                <span class="counter-number">1</span>
+                            </span>
+                        </a>
+                    </div><!-- block mini cart -->
+                </div>
+            </div>
+        </div>
+    </div><!-- header-content -->
+    <div id="sticky-wrapper" class="sticky-wrapper" style amp-custom="height: 50px;">
+        <div class="header-nav mid-header">
+            <div class="container">
+                <div id="stick_nav-sticky-wrapper" class="sticky-wrapper hidden-md hidden-lg hidden-desktop" style amp-custom="height: 50px;">
+                    <div class="box-header-nav" id="stick_nav">
+                        <span data-action="toggle-nav-cat" class="nav-toggle-menu nav-toggle-cat">
+                            <span>Categories</span>
+                            <i aria-hidden="true" class="fa fa-bars"></i>
+                        </span>
+                        <span class="hotline_mobile hidden-md hidden-lg hidden-desktop">
+                            <i class="fa fa-phone"></i> <span class="sdt_mobile">0911 384 114</span>
+                            <i class="fa fa-shopping-cart cart_custom">
+                                <span class="counter qty">
+                                    <span class="counter-number counter-number-custom">1</span>
+                                </span>
+                            </i>
+                        </span>
+                        <div class="block-nav-categori hidden-xs">
+                            <div class="block-title">
+                                <span>Categories</span>
+                            </div>
+                            <div class="block-content" id="hidecatagory">
+                                <div class="clearfix"><span data-action="close-cat" class="close-cate"><span>Categories</span></span></div>
+                                <ul class="ui-categori">
+                                    <li class="parent">
+                                        <a href="#">
+                                            <span class="icon"><amp-img src="/Upload/files/thongtin.png" alt="Thông tin" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                            Thông tin
+                                        </a>
+                                        <span class="toggle-submenu"></span>
+                                        <div class="submenu hidden-phone hidden-xs" id="fixkhung" style amp-custom="left: 280px; width: 104px;">
+                                            <ul class="categori-list">
+                                                <li class="col-sm-12">
+                                                    <ul>
+                                                        <li><a href="/su-kien-khuyen-mai.html">Sự kiện - Khuyến mãi</a></li>
+                                                        <li><a href="/bi-quyet-lam-dep.html">Bí quyết làm đẹp</a></li>
+                                                        <li><a href="/bao-chi-noi-gi-ve-chung-toi.html">Tin báo chí</a></li>
+                                                        <li><a href="/review-san-pham">Review sản phẩm</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="parent">
+                                        <a href="#">
+                                            <span class="icon"><amp-img src="/Upload/files/WebDevelopmentV2_AboutUs-128.png" alt="Về chúng tôi" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                            Về chúng tôi
+                                        </a>
+                                        <span class="toggle-submenu"></span>
+                                        <div class="submenu hidden-phone hidden-xs" id="fixkhung" style amp-custom="left: 280px; width: 104px;">
+                                            <ul class="categori-list">
+                                                <li class="col-sm-12">
+                                                    <ul>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/gioi-thieu-beautygarden.html">Giới thiệu Beautygarden</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/he-thong-cua-hang.html">Hệ thống cửa hàng</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/chuong-trinh-tich-diem.html">Chương trình tích điểm</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/bao-mat-thong-tin.html">Bảo mật thông tin</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/dieu-khoan-su-dung.html">Điều khoản sử dụng</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="parent">
+                                        <a href="#">
+                                            <span class="icon"><amp-img src="/Upload/files/supportpng.png" alt="Hỗ trợ" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                            Hỗ trợ
+                                        </a>
+                                        <span class="toggle-submenu"></span>
+                                        <div class="submenu hidden-phone hidden-xs" id="fixkhung" style amp-custom="left: 280px; width: 104px;">
+                                            <ul class="categori-list">
+                                                <li class="col-sm-12">
+                                                    <ul>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/huong-dan-mua-hang.html">Hướng dẫn mua hàng</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/thanh-toan-van-chuyen.html">Thanh toán vận chuyển</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/chinh-sach-doi-tra-hang.html">Chính sách đổi trả</a></li>
+                                                        <li><a href="https://beautygarden.vn/noi-dung/giai-dap-thac-mac.html">Giải đáp thắc mắc</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="/lien-he.html">
+                                            <span class="icon"><amp-img src="/Upload/files/address_book-128.png" alt="Liên Hệ" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                            Liên Hệ
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--click an menu catagories-->
+                        <!-- menu -->
+                        <div class="block-nav-menu hidden-xs">
+                            <div class="clearfix"><span data-action="close-nav" class="close-nav"><span>close</span></span></div>
+                            <ul class="ui-menu">
+                                <li class="parent">
+                                    <a href="/danh-muc/trang-diem.html">Trang Điểm</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/khuon-mat.html"><span>Khuôn Mặt </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/cushion.html">Cushion</a></li>
+                                                            <li><a href="/danh-muc/kem-bb-cc-dd.html">Kem BB - CC - DD</a></li>
+                                                            <li><a href="/danh-muc/kem-nen.html">Kem nền</a></li>
+                                                            <li><a href="/danh-muc/kem-che-khuyet-diem.html">Kem che khuyết điểm</a></li>
+                                                            <li><a href="/danh-muc/kem-lot.html">Primer - Kem Lót</a></li>
+                                                            <li><a href="/danh-muc/phan-phu-phan-nen.html">Phấn phủ - Phấn nền</a></li>
+                                                            <li><a href="/danh-muc/ma-hong.html">Phấn má hồng</a></li>
+                                                            <li><a href="/danh-muc/tao-khoi-highlighter.html">Tạo khối - Highlighter</a></li>
+                                                            <li><a href="/danh-muc/xit-khoang-nen.html">Xịt khoáng nền</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/mat.html"><span>Mắt </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/mascara.html">Mascara</a></li>
+                                                            <li><a href="/danh-muc/ke-mat.html">Eyeliner – Kẻ Mắt</a></li>
+                                                            <li><a href="/danh-muc/phan-mat-lot-mat.html">Eye Primer – Kem Lót Mắt</a></li>
+                                                            <li><a href="/danh-muc/ke-chan-may.html">Kẻ Mày</a></li>
+                                                            <li><a href="/danh-muc/phan-mat.html">Phấn Mắt</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/moi.html"><span>Môi </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/son-high-end.html">Son high-end</a></li>
+                                                            <li><a href="/danh-muc/son-moi.html">Son môi</a></li>
+                                                            <li><a href="/danh-muc/son-duong.html">Son dưỡng </a></li>
+                                                            <li><a href="/danh-muc/lot-moi-khoa-moi.html">Lót môi – Khóa môi</a></li>
+                                                            <li><a href="/danh-muc/che-khuyet-diem-moi.html">Che khuyết điểm môi</a></li>
+                                                            <li><a href="/danh-muc/mat-na-moi.html">Lips Mask – Mặt nạ môi</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <div class="img-categori ">
+                                                    <a href="#" class="">
+                                                        <amp-img alt="Trang Điểm" src="/Upload/Files/banner-danhmuc-sp-trang-diem.png" class="" id=""></amp-img>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="/danh-muc/cham-soc-da.html">Chăm Sóc Da</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/duong-da.html"><span>Dưỡng da </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/duong-da-mat.html">Dưỡng da mặt</a></li>
+                                                            <li><a href="/danh-muc/dac-tri.html">Đặc trị</a></li>
+                                                            <li><a href="/danh-muc/nuoc-hoa-hong.html">Toner - Nước hoa hồng</a></li>
+                                                            <li><a href="/danh-muc/serum-essence.html">Essence - Serum - Ampoule</a></li>
+                                                            <li><a href="/danh-muc/chong-nang.html">Kem chống nắng</a></li>
+                                                            <li><a href="/danh-muc/lotion-sua-duong.html">Lotion - Sữa dưỡng</a></li>
+                                                            <li><a href="/danh-muc/kem-duong-da.html">Kem dưỡng da</a></li>
+                                                            <li><a href="/danh-muc/duong-mat.html">Dưỡng vùng mắt</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/lam-sach.html"><span>Làm sạch da </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/sua-rua-mat.html">Sữa rửa mặt</a></li>
+                                                            <li><a href="/danh-muc/tay-trang.html">Tẩy trang </a></li>
+                                                            <li><a href="/danh-muc/tay-te-bao-chet-mat.html">Tẩy tế bào chết</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <strong class="title"><a href="/danh-muc/mask-mat-na.html"><span>Mask - Mặt nạ </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/mat-na-lot-mun.html">Mặt nạ lột mụn</a></li>
+                                                            <li><a href="/danh-muc/mask-dat-set.html">Mask Đất Sét</a></li>
+                                                            <li><a href="/danh-muc/mask-giay.html">Mask Giấy</a></li>
+                                                            <li><a href="/danh-muc/mask-dap-rua.html">Mask Đắp - Rửa </a></li>
+                                                            <li><a href="/danh-muc/mask-ngu.html">Mask Ngủ</a></li>
+                                                            <li><a href="/danh-muc/mask-thien-nhien.html">Mask Thiên Nhiên</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <div class="img-categori ">
+                                                    <a href="#" class="">
+                                                        <amp-img alt="Chăm Sóc Da" src="/Upload/Files/banner-danhmuc-sp-02.png" class="" id=""></amp-img>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="/danh-muc/tam-duong-the.html">Chăm Sóc Toàn Thân</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/sua-tam.html"><span class="">Sữa tắm </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/lotion-kem-duong-toan-than.html"><span class="">Kem dưỡng toàn thân - Body Cream </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/duong-the-body-lotion.html"><span class="">Dưỡng thể - Body Lotion </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/duong-da-tay.html"><span class="">Dưỡng da tay </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/tay-te-bao-chet.html"><span class="">Tẩy tế bào chết </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/tay-long.html"><span class="">Tẩy lông </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/khu-mui.html"><span class="">Khử mùi </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/tri-seo-tri-tham-tri-ran-da.html"><span class="">Trị sẹo – Trị thâm – Trị nám </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dac-tri-viem-nang-long.html"><span class="">Đặc trị viêm nang lông </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/cham-soc-rang-mieng.html"><span class="">Chăm sóc răng miệng </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/xit-thom-mieng.html"><span class="">Xịt thơm miệng </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/san-pham-trang-rang.html"><span class="">Sản phẩm trắng răng </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="/danh-muc/cham-soc-toc.html">Chăm Sóc Tóc</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dau-goi.html"><span class="">Dầu gội </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dau-xa.html"><span class="">Dầu xả </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dau-goi-kho.html"><span class="">Dầu gội khô </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/set-goi-dau.html"><span class="">Set dầu gội </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/serum-duong-toc.html"><span class="">Serum dưỡng tóc </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/kem-u-toc.html"><span class="">Kem ủ tóc </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-4">
+                                                <ul class="list-submenu">
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/set-duong-toc.html"><span class="">Set dưỡng tóc </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/gel-tao-kieu-toc.html"><span class="">Gel tạo kiểu tóc </span></a></span>
+                                                    </li>
+                                                    <li class="">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/thuoc-nhuom-toc.html"><span class="">Màu nhuộm tóc </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="/danh-muc/nuoc-hoa.html">Nước Hoa</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu menu-small">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/nuoc-hoa-nam.html"><span class="menu-small-img">Nước hoa nam </span></a></span>
+                                                    </li>
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/nuoc-hoa-nu.html"><span class="menu-small-img">Nước hoa nữ </span></a></span>
+                                                    </li>
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/xit-thom-toan-than.html"><span class="menu-small-img">Xịt thơm body </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="/danh-muc/phu-kien.html">Phụ Kiện</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu menu-small">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dung-cu-ca-nhan.html"><span class="menu-small-img">Phụ kiện làm đẹp </span></a></span>
+                                                    </li>
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/dung-cu-trang-diem.html"><span class="menu-small-img">Dụng cụ trang điểm </span></a></span>
+                                                    </li>
+                                                    <li class="limenusmall">
+                                                        <span style amp-custom="color: #888;"><a href="/danh-muc/son-mong-rua-mong.html"><span class="menu-small-img">Sơn móng - Rửa móng </span></a></span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <a href="/danh-muc/thuc-pham-chuc-nang.html">T.P chức năng</a>
+                                    <span class="toggle-submenu"></span>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="#">Thương Hiệu</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/3ce.html">3CE</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/3wc.html">3WC</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/apieu.html">A'PIEU</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/aritaum.html">Aritaum</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/avene.html">Avene</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/bath-amp-body-works.html">Bath amp body works</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/bioderma.html">Bioderma</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/careline.html">Careline</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/cocoon.html">Cocoon</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/etude-house.html">Etude House</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/evoluderm.html">Evoluderm</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/hada-labo.html">Hada Labo</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/holika.html">Holika</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/Innisfree.html">innisfree</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/kose.html">Kose</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/laneige-korea.html">LANEIGE KOREA</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/lanopearl.html">Lanopearl</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/loreal.html">L'oreal</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/mac.html">MAC</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/mamonde.html">Mamonde</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/maybeline.html">Maybeline</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/missha.html">Missha</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/nature-republic.html">Nature Republic</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/Neutrogena.html">Neutrogena</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/nyx.html">NYX</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/paulas-choice.html">Paula's Choice</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/physician-formula.html">Physician Formula</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/play-boy.html">Play Boy</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/pony.html">Pony</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/rebirth.html">Rebirth</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/revlon-korea.html">Revlon Korea</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/secret-key.html">Secret Key</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/shiseido.html">Shiseido</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/simple.html">Simple</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/sivanna-colors.html">Sivanna Colors</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/sk-ii.html">sk-ii</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/skinfood.html">Skinfood</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/stives.html">StIves</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/the-body-shop.html">The Body Shop</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/the-face-shop.html">The Face Shop</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/thuong-hieu-khac.html">Thương Hiệu Khác</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/tonymoly.html">Tonymoly</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/vacosi.html">Vacosi</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/vichy.html">Vichy</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/victorias-secret.html">Victoria's Secret</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/w7.html">W7</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- menu -->
+                        <!-- menu mobile -->
+                        <div class="block-nav-menu hidden-sm hidden-md hidden-lg hidden-desktop">
+                            <div class="clearfix"><span data-action="close-nav" class="close-nav"><span>close</span></span></div>
+                            <ul class="ui-menu">
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/trang-diem.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/trangdiem.png" style amp-custom="width: 16px;" alt="Trang Điểm"></amp-img>
+                                        </span> Trang Điểm
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/khuon-mat.html"><span>Khuôn Mặt </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/cushion.html">Cushion</a></li>
+                                                            <li><a href="/danh-muc/kem-bb-cc-dd.html">Kem BB - CC - DD</a></li>
+                                                            <li><a href="/danh-muc/kem-nen.html">Kem nền</a></li>
+                                                            <li><a href="/danh-muc/kem-che-khuyet-diem.html">Kem che khuyết điểm</a></li>
+                                                            <li><a href="/danh-muc/kem-lot.html">Primer - Kem Lót</a></li>
+                                                            <li><a href="/danh-muc/phan-phu-phan-nen.html">Phấn phủ - Phấn nền</a></li>
+                                                            <li><a href="/danh-muc/ma-hong.html">Phấn má hồng</a></li>
+                                                            <li><a href="/danh-muc/tao-khoi-highlighter.html">Tạo khối - Highlighter</a></li>
+                                                            <li><a href="/danh-muc/xit-khoang-nen.html">Xịt khoáng nền</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/mat.html"><span>Mắt </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/mascara.html">Mascara</a></li>
+                                                            <li><a href="/danh-muc/ke-mat.html">Eyeliner – Kẻ Mắt</a></li>
+                                                            <li><a href="/danh-muc/phan-mat-lot-mat.html">Eye Primer – Kem Lót Mắt</a></li>
+                                                            <li><a href="/danh-muc/ke-chan-may.html">Kẻ Mày</a></li>
+                                                            <li><a href="/danh-muc/phan-mat.html">Phấn Mắt</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/moi.html"><span>Môi </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/son-high-end.html">Son high-end</a></li>
+                                                            <li><a href="/danh-muc/son-moi.html">Son môi</a></li>
+                                                            <li><a href="/danh-muc/son-duong.html">Son dưỡng </a></li>
+                                                            <li><a href="/danh-muc/lot-moi-khoa-moi.html">Lót môi – Khóa môi</a></li>
+                                                            <li><a href="/danh-muc/che-khuyet-diem-moi.html">Che khuyết điểm môi</a></li>
+                                                            <li><a href="/danh-muc/mat-na-moi.html">Lips Mask – Mặt nạ môi</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/cham-soc-da.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/chamsocda.png" style amp-custom="width: 16px;" alt="Chăm Sóc Da"></amp-img>
+                                        </span> Chăm Sóc Da
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/duong-da.html"><span>Dưỡng da </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/duong-da-mat.html">Dưỡng da mặt</a></li>
+                                                            <li><a href="/danh-muc/dac-tri.html">Đặc trị</a></li>
+                                                            <li><a href="/danh-muc/nuoc-hoa-hong.html">Toner - Nước hoa hồng</a></li>
+                                                            <li><a href="/danh-muc/serum-essence.html">Essence - Serum - Ampoule</a></li>
+                                                            <li><a href="/danh-muc/chong-nang.html">Kem chống nắng</a></li>
+                                                            <li><a href="/danh-muc/lotion-sua-duong.html">Lotion - Sữa dưỡng</a></li>
+                                                            <li><a href="/danh-muc/kem-duong-da.html">Kem dưỡng da</a></li>
+                                                            <li><a href="/danh-muc/duong-mat.html">Dưỡng vùng mắt</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/lam-sach.html"><span>Làm sạch da </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/sua-rua-mat.html">Sữa rửa mặt</a></li>
+                                                            <li><a href="/danh-muc/tay-trang.html">Tẩy trang </a></li>
+                                                            <li><a href="/danh-muc/tay-te-bao-chet-mat.html">Tẩy tế bào chết</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <strong class="title"><a href="/danh-muc/mask-mat-na.html"><span>Mask - Mặt nạ </span></a></strong>
+                                                        <ul class="list-submenu">
+                                                            <li><a href="/danh-muc/mat-na-lot-mun.html">Mặt nạ lột mụn</a></li>
+                                                            <li><a href="/danh-muc/mask-dat-set.html">Mask Đất Sét</a></li>
+                                                            <li><a href="/danh-muc/mask-giay.html">Mask Giấy</a></li>
+                                                            <li><a href="/danh-muc/mask-dap-rua.html">Mask Đắp - Rửa </a></li>
+                                                            <li><a href="/danh-muc/mask-ngu.html">Mask Ngủ</a></li>
+                                                            <li><a href="/danh-muc/mask-thien-nhien.html">Mask Thiên Nhiên</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/tam-duong-the.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/tamduongthe.png" style amp-custom="width: 16px;" alt="Chăm Sóc Toàn Thân"></amp-img>
+                                        </span> Chăm Sóc Toàn Thân
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/sua-tam.html"><span>Sữa tắm </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/lotion-kem-duong-toan-than.html"><span>Kem dưỡng toàn thân - Body Cream </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/duong-the-body-lotion.html"><span>Dưỡng thể - Body Lotion </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/duong-da-tay.html"><span>Dưỡng da tay </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/tay-te-bao-chet.html"><span>Tẩy tế bào chết </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/tay-long.html"><span>Tẩy lông </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/khu-mui.html"><span>Khử mùi </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/tri-seo-tri-tham-tri-ran-da.html"><span>Trị sẹo – Trị thâm – Trị nám </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dac-tri-viem-nang-long.html"><span>Đặc trị viêm nang lông </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/cham-soc-rang-mieng.html"><span>Chăm sóc răng miệng </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/xit-thom-mieng.html"><span>Xịt thơm miệng </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/san-pham-trang-rang.html"><span>Sản phẩm trắng răng </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/cham-soc-toc.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/chamsoctoc.png" style amp-custom="width: 16px;" alt="Chăm Sóc Tóc"></amp-img>
+                                        </span> Chăm Sóc Tóc
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dau-goi.html"><span>Dầu gội </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dau-xa.html"><span>Dầu xả </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dau-goi-kho.html"><span>Dầu gội khô </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/set-goi-dau.html"><span>Set dầu gội </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/serum-duong-toc.html"><span>Serum dưỡng tóc </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/kem-u-toc.html"><span>Kem ủ tóc </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/set-duong-toc.html"><span>Set dưỡng tóc </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/gel-tao-kieu-toc.html"><span>Gel tạo kiểu tóc </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/thuoc-nhuom-toc.html"><span>Màu nhuộm tóc </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/nuoc-hoa.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/14-128.png" style amp-custom="width: 16px;" alt="Nước Hoa"></amp-img>
+                                        </span> Nước Hoa
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu menu-small">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/nuoc-hoa-nam.html"><span>Nước hoa nam </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/nuoc-hoa-nu.html"><span>Nước hoa nữ </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/xit-thom-toan-than.html"><span>Xịt thơm body </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/phu-kien.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/phukien.png" style amp-custom="width: 16px;" alt="Phụ Kiện"></amp-img>
+                                        </span> Phụ Kiện
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu menu-small">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dung-cu-ca-nhan.html"><span>Phụ kiện làm đẹp </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/dung-cu-trang-diem.html"><span>Dụng cụ trang điểm </span></a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p style amp-custom="color: #888;"><a href="/danh-muc/son-mong-rua-mong.html"><span>Sơn móng - Rửa móng </span></a></p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="/danh-muc/thuc-pham-chuc-nang.html">
+                                        <span class="icon">
+                                            <amp-img src="/Upload/Files/chamsocda.png" style amp-custom="width: 16px;" alt="T.P chức năng"></amp-img>
+                                        </span> T.P chức năng
+                                    </a>
+                                    <span class=""></span>
+                                    <div class="megamenu drop-menu ">
+                                        <ul></ul>
+                                    </div>
+                                </li>
+                                <li class="parent parent-megamenu">
+                                    <a href="#">Thương Hiệu</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="megamenu drop-menu">
+                                        <ul>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/3ce.html">3CE</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/3wc.html">3WC</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/apieu.html">A'PIEU</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/aritaum.html">Aritaum</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/avene.html">Avene</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/bath-amp-body-works.html">Bath amp body works</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/bioderma.html">Bioderma</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/careline.html">Careline</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/cocoon.html">Cocoon</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/etude-house.html">Etude House</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/evoluderm.html">Evoluderm</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/hada-labo.html">Hada Labo</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/holika.html">Holika</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/Innisfree.html">innisfree</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/kose.html">Kose</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/laneige-korea.html">LANEIGE KOREA</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/lanopearl.html">Lanopearl</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/loreal.html">L'oreal</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/mac.html">MAC</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/mamonde.html">Mamonde</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/maybeline.html">Maybeline</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/missha.html">Missha</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/nature-republic.html">Nature Republic</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/Neutrogena.html">Neutrogena</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/nyx.html">NYX</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/paulas-choice.html">Paula's Choice</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/physician-formula.html">Physician Formula</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/play-boy.html">Play Boy</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/pony.html">Pony</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/rebirth.html">Rebirth</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/revlon-korea.html">Revlon Korea</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/secret-key.html">Secret Key</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/shiseido.html">Shiseido</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/simple.html">Simple</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/sivanna-colors.html">Sivanna Colors</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/sk-ii.html">sk-ii</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/skinfood.html">Skinfood</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/stives.html">StIves</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/the-body-shop.html">The Body Shop</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/the-face-shop.html">The Face Shop</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/thuong-hieu-khac.html">Thương Hiệu Khác</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/tonymoly.html">Tonymoly</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/vacosi.html">Vacosi</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/vichy.html">Vichy</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/victorias-secret.html">Victoria's Secret</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <ul class="list-submenu">
+                                                    <li><a href="/thuong-hieu/w7.html">W7</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <style amp-custom>
+                                    .categori-list .col-sm-12 ul li a {
+                                        color: #888;
+                                    }
+                                </style>
+                                <li class="parent">
+                                    <a href="#">
+                                        <span class="icon"><amp-img src="/Upload/files/thongtin.png" alt="nav-cat" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                        Thông tin
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="submenu hidden-sm hidden-md hidden-lg hidden-desktop">
+                                        <ul class="categori-list">
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li><a href="/su-kien-khuyen-mai.html">Sự kiện - Khuyến mãi</a></li>
+                                                    <li><a href="/bi-quyet-lam-dep.html">Bí quyết làm đẹp</a></li>
+                                                    <li><a href="/bao-chi-noi-gi-ve-chung-toi.html">Tin báo chí</a></li>
+                                                    <li><a>Review sản phẩm</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="#">
+                                        <span class="icon"><amp-img src="/Upload/files/WebDevelopmentV2_AboutUs-128.png" alt="nav-cat" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                        Về chúng tôi
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <!-- phiên bản mobile-->
+                                    <div class="submenu hidden-sm hidden-md hidden-lg hidden-desktop">
+                                        <ul class="categori-list">
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/gioi-thieu-beautygarden.html">Giới thiệu Beautygarden</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/he-thong-cua-hang.html">Hệ thống cửa hàng</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/chuong-trinh-tich-diem.html">Chương trình tích điểm</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/bao-mat-thong-tin.html">Bảo mật thông tin</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/dieu-khoan-su-dung.html">Điều khoản sử dụng</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="parent">
+                                    <a href="#">
+                                        <span class="icon"><amp-img src="/Upload/files/supportpng.png" alt="nav-cat" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                        Hỗ trợ
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <!-- phiên bản mobile-->
+                                    <div class="submenu hidden-sm hidden-md hidden-lg hidden-desktop">
+                                        <ul class="categori-list">
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/huong-dan-mua-hang.html">Hướng dẫn mua hàng</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/thanh-toan-van-chuyen.html">Thanh toán vận chuyển</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/chinh-sach-doi-tra-hang.html">Chính sách đổi trả</a></li>
+                                                    <li><a href="https://beautygarden.vn/noi-dung/giai-dap-thac-mac.html">Giải đáp thắc mắc</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/lien-he.html">
+                                        <span class="icon"><amp-img src="/Upload/files/address_book-128.png" alt="nav-cat" style amp-custom="width: 20px;height: 20px;"></amp-img></span>
+                                        Liên Hệ
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- menu -->
+                        <span data-action="toggle-nav" class="nav-toggle-menu"><span>Menu</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+                        <div class="block-minicart dropdown ">
+                            <a class="dropdown-toggle" href="/gio-hang.html" role="button">
+                                <span class="cart-icon"></span>
+                                <span class="counter qty">
+                                    <span class="counter-number counter-number-custom">1</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="block-search">
+                            <div class="block-title">
+                                <span>Search</span>
+                            </div>
+                            <div class="block-content" id="keySearchClick_down">
+                                <div class="form-search">
+                                    <form action-xhr="/tim-kiem.html" method="GET" target="_blank">
+                                        <div class="box-group">
+                                            <input type="text" name="keyword" id="keySearchdown" class="form-control border_searchdown ui-autocomplete-input" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                                            <button class="btn btn-search" type="submit"><span>search</span></button>
+                                        </div>
+                                        <div class="box-group" style amp-custom="display: block">
+                                            <ul id="search_down" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-front" style amp-custom="width: 340px;left: 933.5px;display: none;"></ul>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+    </div>
+    <div class="columns container">
+        <!-- Block  Breadcrumb-->
+        <ol class="breadcrumb no-hide">
+            <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+            <li><a href="#">sản phẩm</a></li>
+            <li class="active hidden-xs">@Model.Product.NameProductLong</li>
+        </ol>
+        <!-- Block  Breadcrumb-->
+
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-12 col-main">
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <span class="page-title hidden-sm hidden-desktop hidden-lg hidden-md" style amp-custom="font-size: 16px;">@Model.Product.NameProductLong</span>
+
+                        <div class="product-media media-horizontal">
+
+                            <div class="image_preview_container images-large">
+                                @{
+                                    string urlImages = "", images = "";
+                                    images = Model.Product.Img;
+                                    urlImages = images.Replace("/Upload/files/", "");
+
+                                }
+
+                                <amp-img id="img_zoom" style amp-custom="width: 328px;height: 366px;" src="@string.Format("/Upload/Files/{0}", @urlImages)" alt="@Model.Product.NameProduct"></amp-img>
+
+                            </div>
+
+                            @Html.Action("HinhAnhKhac", "SanPham")
+                            <!--/ .product_preview-->
+
+                        </div>
+                        <!-- image product -->
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 product_detail">
+                        <div class="product-info-main">
+                            <h1 class="page-title hidden-xs">
+                                @Model.Product.NameProductLong
+                            </h1>
+                            <!--danh gia san pham-->
+
+                            <div class="product-reviews-summary">
+                                <div class="rating-summary">
+                                    <div class="rateit" id="rateit11" data-rateit-value="@ViewData["sao"]" data-rateit-mode="font" data-rateit-resetable="false"></div>
+                                </div>
+                                @if (Model.LuotDanhGia < 200)
+                                {
+                                    int danhgiaao = 200, danhgiamoi = 0, danhgiathucte = 0;
+                                    danhgiathucte = @Model.LuotDanhGia;
+                                    danhgiamoi = danhgiaao + danhgiathucte;
+                                }
+                                <div class="reviews-actions">
+                                    <a href="#" class="action view" style amp-custom="font-size: 13px;margin-top: 5px;">@ViewData["sao"] sao - @Model.LuotDanhGia lượt đánh giá</a>
+                                </div>
+                                <div class="fb-save" data-uri="" data-size="small"></div>
+                            </div>
+                            <script>
+                                $("#rateit11").bind('rated', function (event, value) {
+                                    var star = $('#rateit11').rateit('value');
+                                    var idsp = $("#current_product_id").val();
+                                    $.post("/Home/SaveRating", {
+                                        diem: star,
+                                        IdSanPham: idsp,
+                                    }, function (data) {
+
+                                    });
+                                });
+                            </script>
+
+                            <!--end danh gia san pham-->
+                            <div class="product-info-price">
+                                <div class="price-box">
+                                    @if (Model.Product.HasPromotion)
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", Model.Product.PricePromotion)₫</span>
+                                            <span class="old-price">@string.Format("{0:#,#.##}", Model.Product.Price)₫</span>
+                                            <span class="label-sale">-@Model.Product.Discount%</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", Model.Product.Price)₫</span>
+
+                                    }
+                                    @{
+                                        int giatietkiem = 0, giathitruong = 0, price = 0;
+                                        giathitruong = Model.Product.GiaThiTruong;
+                                        price = Model.Product.Price;
+                                        giatietkiem = giathitruong - price;
+                                    }
+                                    <div class='fb-like' data-action='like' data-href='' data-layout='button_count' data-width='520' data-show-faces='false' data-share='true' style amp-custom="float: right;"></div>
+                                    <div class="g-plusone" data-size="medium" data-href='' data-align="right"></div>
+
+
+                                    <div class="product-condition product-condition-custom">
+                                        Giá thị trường: <span>
+                                            @string.Format("{0:#,#.##}", Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetGiaThiTruong(string.Format("{0:#,#.##}", Model.Product.GiaThiTruong))) ₫
+                                        - Tiết kiệm: @string.Format("{0:#,#.##}", Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetGiaThiTruong(string.Format("{0:#,#.##}", giatietkiem))) ₫(<span class="phantramgiathitruong">-@Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetPhanTram(Model.Product.GiaThiTruong, Model.Product.Price)%</span>)
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @Html.Action("ThuongHieuInChiTietSP", "ThuongHieu")
+
+
+                        <!--CHI NHANH VA TON KHO--->
+                        <div class="product-info-stock" id="brand_quantity_wrapper">
+                            <div class="stock available">
+
+                                <span class="diachi">
+                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+                                    <br />
+                                    @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+                                    {
+                                        <span style amp-custom="margin-left: 13px;">
+                                            @b.Name -
+                                            @if (b.Quantity > 0)
+                                            {
+                                                <span style="color: #199427 !important;">
+                                                    Còn hàng @if (Model.IsAdmin)
+                                                    {
+                                                        <span>(@b.Quantity.ToString("#,###,###,###"))</span>
+                                                    }
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: red !important;">Cháy hàng</span>
+                                            }
+                                        </span>
+                                                <br />
+                                    }
+                                </span>
+                                @{
+                                    var hn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("HN"));
+                                    var dn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("ĐN"));
+                                }
+                                <span class="diachi">
+                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                                    @if (hn.Quantity > 0)
+                                    {
+                                        <span>
+                                            152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">
+                                                Còn hàng @if (Model.IsAdmin)
+                                                {
+                                                    <span>(@hn.Quantity.ToString("#,###,###,###"))</span>
+                                                }
+                                            </span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+                                        </span>
+                                    }
+                                </span>
+                                <br />
+                                <span class="diachi">
+                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+                                    @if (dn.Quantity > 0)
+                                    {
+                                        <span>
+                                            268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">
+                                                Còn hàng @if (Model.IsAdmin)
+                                                {
+                                                    <span>(@dn.Quantity.ToString("#,###,###,###"))</span>
+                                                }
+                                            </span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -
+                                            <span style amp-custom="color: red !important;">Cháy hàng</span>
+                                        </span>
+                                    }
+                                </span>
+
+                            </div>
+                        </div>
+                        <!--END CHI NHANH VA TON KHO--->
+                        <!--end tinh trang san pham-->
+
+                        <div class="product-overview">
+                            <div class="overview-content Notnew">
+                                @Html.Raw(Model.Product.Note)
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="current_barcode" class="current_barcode" value="@Model.CurrentBarcode" />
+                        <input type="hidden" id="current_product_id" class="current_product_id" value="@Model.Product.ProductId" />
+
+                        <!--ATTRIBUTE-->
+                        <div class="product-add-form">
+
+                            <div class="product-options-wrapper">
+
+                                <div class="swatch-opt">
+                                    <div class="swatch-attribute color">
+
+                                        @if (Model.Attributes.Any(o => o.Flag == 1))
+                                        {
+                                            <span class="swatch-attribute-label">Chọn màu: </span>
+                                        }
+                                        @if (Model.Attributes.Any(o => o.Flag == 2))
+                                        {
+                                            <span class="swatch-attribute-label">Chọn mùi: </span>
+                                        }
+                                        @if (Model.Attributes.All(o => o.Flag != 0))
+                                        {
+                                            <div class="swatch-attribute-options clearfix">
+                                                @if (Model.Attributes.Any())
+                                                {
+                                                    foreach (var menuOption in Model.Attributes)
+                                                    {
+                                                        string cl = "";
+                                                        if (menuOption.Selected)
+                                                        {
+                                                            cl = "selected";
+                                                        }
+                                                        if ((menuOption.Img.IndexOf("#") != -1) || (menuOption.Img.IndexOf("rgba") != -1) || (menuOption.Img.IndexOf("rgb") != -1))
+                                                        {
+                                                            <div class="swatch-option color @cl" data-toggle="tooltip" data-placement="top"
+                                                                 title="@menuOption.Name"
+                                                                 style amp-custom="background-color: @menuOption.Img"
+                                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <div class="swatch-option color @cl" data-toggle="tooltip"
+                                                                 data-placement="top" title="@menuOption.Name"
+                                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+                                                                <amp-img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" title="@menuOption.Name"
+                                                                         alt="@menuOption.Name" title="@menuOption.Name" id="@menuOption.Barcode"></amp-img>
+                                                            </div>
+                                                        }
+
+                                                    }
+                                                }
+
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--END ATTRIBUTE-->
+
+                        <div class="product-add-form">
+                            <div class="product-options-wrapper">
+                                <div class="form-qty">
+                                    <label class="label">Số lượng: </label>
+                                    <div class="control">
+                                        <input type="text" class="form-control input-qty form-qty-custom" value='1' id="qty1" name="qty1" max="100" min="1" data-product-id="@Model.Product.ProductId">
+                                        <button class="btn-number  qtyminus" data-type="minus" data-field="qty1"><span>-</span></button>
+                                        <button class="btn-number  qtyplus" data-type="plus" data-field="qty1"><span>+</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-add-form ">
+                            @{
+                                string hideBtn = "";
+                                if (!Model.ProductAvailable)
+                                {
+                                    hideBtn = "style amp-custom=display:none";
+                                }
+                                <div class="product-options-wrapper ">
+                                    <div id="btn_add_to_card" @hideBtn class="product-options-bottom clearfix">
+                                        <!--mobile-->
+                                        @{
+                                            string link = @Model.Product.Link;
+                                            string linkhttp = link + ".html";
+                                        }
+                                        <div class="actions hidden-sm hidden-desktop hidden-lg hidden-md actionMobile">
+                                            <button type="submit" onclick="location.href='https://beautygarden.vn/@linkhttp'" title="Thêm giỏ hàng" class="action btn-cart">
+                                                <span>Thêm giỏ hàng</span>
+                                            </button>
+                                            <button type="submit" onclick="location.href='https://beautygarden.vn/@linkhttp'" title="Mua nhanh" class="muanhanh">
+                                                <span>Mua nhanh</span>
+                                            </button>
+
+                                        </div>
+                                        <!--end mobile-->
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- detail- product -->
+                </div>
+                <!-- Main detail -->
+            </div>
+
+
+            <!-- dung cho ban mobile -->
+            <div class="product-info-detailed1 hidden-md hidden-lg hidden-desktop">
+                <!-- Tab panes -->
+
+                <div role="tabpanel" class="tab-pane active" id="description">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel</span></div>
+                    </div>
+
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tags">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel1</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content1)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="reviews">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel2</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content2)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="additional">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel3</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content3)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="additional">
+
+                    <div class="kengang">
+                        <div class="block-title1 tieude_lydo"><span class="theH2_mobile">@Model.ThietLap.TieuDe</span></div>
+                    </div>
+
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.ThietLap.NoiDung)</p>
+                        <p>@Html.Raw(Model.Product.ContentTheoSp)</p>
+                    </div>
+                </div>
+
+
+            </div>
+            
+
+            <div class="single-box" id="single-box-height-scroll">
+                <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="100%"></div>
+            </div>
+            <div class="row hidden-md hidden-lg hidden-desktop hidden-sm">
+                @Html.Action("ChuongTrinhTichDiem", "SanPham")
+            </div>
+
+            @Html.Action("SanPhamMuaCung", "SanPham", new { idsanpham = Model.Product.ProductId, idnhacungcap = Model.Product.BrandId })
+
+            @Html.Action("SanPhamCungLoai", "SanPham", new { iddanhmuc = Model.Product.IdDanhMuc })
+            <div class="footer_icon">
+                <div class="icon_datmua hidden-lg hidden-md hidden-sm">
+                    <a onclick="return addToCart()">
+                        <div class="fixedbutton_right"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class="col-md-3 col-sidebar">
+
+
+            <div class="hidden-xs">
+                @Html.Action("ChuongTrinhTichDiem", "SanPham")
+            </div>
+
+            <!-- Block  bestseller products-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  bestseller products-->
+            <!-- block slide top -->
+            @Html.Action("BannerQCChiTiet", "Banner")
+            <!-- block slide top -->
+
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+        <!-- Sidebar -->
+        <script>
+            var firstClick = 0;
+            function SubmitDatHangNhanh() {
+                firstClick++;
+                if (firstClick == 1) {
+                    $.post("/Cart/AddToCart", {
+                        Barcode: $("#current_barcode").val(),
+                        ProductId: '@Model.Product.ProductId',
+                        Quantity: 1
+                    }, function (data) {
+
+                        $("#FormSubmitDatHangNhanh").submit();
+                    });
+                } else {
+                    $("#FormSubmitDatHangNhanh").submit();
+                }
+            }
+
+            $(document).ready(function () {
+                $("#qty1").on("change paste keyup", function () {
+                    var quantity = $(this).val();
+                    var code = $("#current_barcode").val();
+                    var productId = $("#current_product_id").val();
+                    onQuantityChange(quantity, code, productId);
+                });
+            });
+
+            function checkQuantityByBarcode(barcode, id, el) {
+                var $el = $(el);
+                $("#current_barcode").val(barcode);
+                $("#qty1").val(1);
+
+                $("input#Barcode").val(barcode);
+
+                $.post("/SanPham/KiemTraTonKhoTheoMaVach", {
+                    Barcode: barcode,
+                    ProductId: id
+                }, function (data) {
+                    $("#brand_quantity_wrapper").html(data.html);
+                    $("#brand_quantity_wrapperDatHangNhanh").html(data.html);
+                    $("#brand_quantity_wrapperDatHangNhanh_desktop").html(data.html);
+                    $el.siblings().removeClass("selected");
+                    $el.addClass("selected");
+
+                    if (data.available) {
+                        $("#btn_add_to_card").show();
+                    } else {
+                        $("#btn_add_to_card").hide();
+                    }
+                });
+            }
+            function onQuantityChange(quantity, code, productId) {
+                $.post("/SanPham/KiemTraTonKhoTheoSoLuong", {
+                    Barcode: code,
+                    ProductId: productId,
+                    Quantity: quantity
+                }, function (data) {
+                    // console.log("data", data);
+                    if (data.available) {
+                        $("#btn_add_to_card").show();
+
+                    } else {
+                        $("#btn_add_to_card").hide();
+                        swal({ title: "Sản phẩm không đủ số lượng", timer: 1500, type: "warning" });
+                    }
+                });
+            }
+
+            function addToCart() {
+                var code = $("#current_barcode").val();
+                var productId = $("#current_product_id").val();
+                var quantity = $("#qty1").val();
+                addProductToCart(productId, code, quantity, "Cart");
+            }
+
+            function addToCartFast() {
+                var code = $("#current_barcode").val();
+                var productId = $("#current_product_id").val();
+                var quantity = $("#qty1").val();
+                addProductToCart(productId, code, quantity, "Fast");
+            }
+        </script>
+    </div>
+    @Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailHenry(Model.Product.Link))
+    @Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailProduct(Model.Product.Link))
+    @Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailEvent(Model.Product.Link))
+    <style amp-custom>
+        .footer_icon {
+            width: 100%;
+        }
+
+        .fixedbutton_right {
+            position: fixed;
+            bottom: 0;
+            height: 44px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            background-color: #e53935;
+            width: 90%;
+            z-index: 999;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            margin-left: 5px;
+            margin-bottom: 12px;
+        }
+
+        .icon_datmua {
+            position: fixed;
+            height: 68px;
+            padding: 12px 16px;
+            background: white;
+            z-index: 999;
+            width: 100%;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -1px 20px 0 rgba(0, 0, 0, .12);
+        }
+
+        iframe {
+            width: 100%;
+        }
+    </style>
+</div>
+</body>
+<!-- sticky -->
+<script src="~/Scripts/JsBgcompressor/jquery.sticky.min.js"></script>
+<!-- OWL CAROUSEL Slider -->
+<script src="~/Scripts/JsBgcompressor/owl.carousel.min.js"></script>
+<link href="~/Content/csscompressor/ykienkhachhang.min.css" rel="stylesheet" />
+<!-- Boostrap -->
+<script src="~/Scripts/JsBg/bootstrap.min.js"></script>
+<!-- Countdown -->
+<script src="~/Scripts/JsBgcompressor/jquery.countdown.min.js"></script>
+<!--jquery Bxslider  -->
+<script src="~/Scripts/JsBg/jquery.bxslider.min.js"></script>
+<!-- actual -->
+<script src="~/Scripts/JsBg/jquery.actual.min.js"></script>
+<!-- Chosen jquery-->
+<script src="~/Scripts/JsBg/chosen.jquery.min.js"></script>
+<!-- parallax jquery-->
+<script src="~/Scripts/JsBgcompressor/jquery.parallax-1.1.3.min.js"></script>
+<!-- elevatezoom -->
+<script src="~/Scripts/JsBg/jquery.elevateZoom.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.rateit.min.js"></script>
+<!-- fancybox -->
+<script src="~/Scripts/JsBg/jquery.fancybox.pack.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.fancybox-media.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.fancybox-thumbs.min.js"></script>
+<!-- arcticmodal -->
+<script src="~/Scripts/JsBgcompressor/jquery.arcticmodal.min.js"></script>
+<!-- Main -->
+<script src="~/Scripts/JsBgcompressor/main.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery-ui.min.js"></script>
+
+<script src="~/Scripts/sweetalert2.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.elevator.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/SearchSmartDown.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/lazyloadtx.min.js"></script>
+</html>

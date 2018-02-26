@@ -1,0 +1,1137 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@using System.Text.RegularExpressions
+@using Shop.Model
+@model Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel
+@{
+    ViewBag.Title = string.IsNullOrEmpty(Model.Product.SEOtitle) ? Model.Product.NameProduct : Model.Product.SEOtitle;
+    ViewBag.Keyword = Model.Product.Note == null ? "✅" + Model.Product.Note : Regex.Replace("✅" + Model.Product.Note, @"<[^>]*>", string.Empty);
+    ViewBag.Description = string.IsNullOrEmpty(Model.Product.SEODescription) ? Regex.Replace("✅" + Model.Product.Note, @"<[^>]*>", string.Empty) : Model.Product.SEODescription;
+    ViewBag.image = "https://beautygarden.vn/Upload/Files/" + Model.Product.Img;
+    ViewBag.canonical = "https://beautygarden.vn/" + Model.Product.Link + ".html";
+    string tempId = "BG" + Model.Product.ProductId;
+    DateTime date = DateTime.Now;
+    DateTime startdate = date;
+    DateTime enddate = Model.Product.NgayHetHang;
+    var subenddate = startdate.Subtract(enddate).Days;
+}
+<!-- Google Code dành cho Thẻ tiếp thị lại -->
+<!--------------------------------------------------
+Không thể liên kết thẻ tiếp thị lại với thông tin nhận dạng cá nhân hay đặt thẻ tiếp thị lại trên các trang có liên quan đến danh mục nhạy cảm. Xem thêm thông tin và hướng dẫn về cách thiết lập thẻ trên: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+    var google_tag_params = {
+        dynx_itemid: '@tempId',
+        dynx_itemid2: '',
+        dynx_pagetype: 'Detail',
+        dynx_totalvalue: '@Model.Product.PricePro VND'
+    };
+</script>
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 869708714;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/869708714/?guid=ON&amp;script=0" />
+    </div>
+</noscript>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="~/Scripts/JsBg/jquery.rateit.js"></script>
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        @{
+            string link = Model.Linkbreadcrumb + ".html";
+        }
+        <li><a href="/danh-muc/@link" title="@Model.TenDMbreadcrumb">@Model.TenDMbreadcrumb</a></li>
+        <li class="active hidden-xs"><a href="" title="@Model.Product.NameProductLong">@Model.Product.NameProductLong</a></li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9  col-main">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <span class="page-title hidden-sm hidden-desktop hidden-lg hidden-md" style="font-size: 16px;">@Model.Product.NameProductLong</span>
+                    <div class="product-media media-horizontal">
+                        <div class="image_preview_container images-large">
+                            @{
+                                string urlImages = "", images = "";
+                                images = Model.Product.Img;
+                                urlImages = images.Replace("/Upload/files/", "");
+                                bool Hasbestseller = false;
+                                string c = "";
+                                Hasbestseller = Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.CheckSPBestSeller(Model.Product.ProductId);
+                            }
+                            <img id="img_zoom" style="width: 328px;height: 366px;" src="@string.Format("/Upload/Files/{0}", @urlImages)" alt="@Model.Product.NameProduct">
+                        </div>
+                        @Html.Action("HinhAnhKhac", "SanPham")
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 product_detail">
+                <div class="product-info-main">
+                <h1 class="page-title hidden-xs">
+                    @if (Hasbestseller == true)
+                    {
+                        c = "(Bestseller)";
+                    }
+                    @Model.Product.NameProductLong @c
+                </h1>
+                <!--show top bán chạy bao nhiêu-->
+                @*<p class="item-bestseller">
+                                <strong>Đứng thứ 4</strong> trong <a href="/BestSeller/danhsach/2">Top 10 Bách Hóa Online bán chạy tuần này</a>
+                            </p>*@
+                <!--show top bán chạy bao nhiêu-->
+                <!--danh gia san pham-->
+                <div class="product-reviews-summary">
+                    <div class="rating-summary">
+                        <div class="rateit" id="rateit11" data-rateit-value="@ViewData["sao"]" data-rateit-mode="font" data-rateit-resetable="false"></div>
+                    </div>
+                    @if (Model.LuotDanhGia < 200)
+                    {
+                        int danhgiaao = 200, danhgiamoi = 0, danhgiathucte = 0;
+                        danhgiathucte = @Model.LuotDanhGia;
+                        danhgiamoi = danhgiaao + danhgiathucte;
+                    }
+                    <div class="reviews-actions">
+                        <a href="#" class="action view" style="font-size: 13px; margin-top: 5px;">@ViewData["sao"] sao - @Model.LuotDanhGia lượt đánh giá</a>
+                    </div>
+                    <div class="fb-save" data-uri="" data-size="small"></div>
+                </div>
+                <script>
+                    $("#rateit11").bind('rated',
+                        function(event, value) {
+                            var star = $('#rateit11').rateit('value');
+                            var idsp = $("#current_product_id").val();
+                            $.post("/Home/SaveRating",
+                                {
+                                    diem: star,
+                                    IdSanPham: idsp,
+                                },
+                                function(data) {
+                                });
+                        });
+                </script>
+                <!--end danh gia san pham-->
+                <div class="product-info-price">
+                    <div class="price-box">
+                        @if (Model.Product.HasPromotion)
+                        {
+                            <span class="price">@string.Format("{0:#,#.##}", Model.Product.PricePromotion)₫</span>
+                            <span class="old-price">@string.Format("{0:#,#.##}", Model.Product.Price)₫</span>
+                            <span class="label-sale">-@Model.Product.Discount%</span>
+                        }
+                        else
+                        {
+                            <span class="price">@string.Format("{0:#,#.##}", Model.Product.Price)₫</span>
+                        }
+                        @{
+                            int giatietkiem = 0, giathitruong = 0, price = 0;
+                            giathitruong = Model.Product.GiaThiTruong;
+                            price = Model.Product.Price;
+                            giatietkiem = giathitruong - price;
+                            int giatru = ((Model.Product.Price * 2) * 10) / 100;
+                            int gia = (Model.Product.Price * 2) - giatru;
+                        }
+                        <div class='fb-like' data-action='like' data-href='' data-layout='button_count' data-width='520' data-show-faces='false' data-share='true' style="float: right;"></div>
+                        <div class="g-plusone" data-size="medium" data-href='' data-align="right"></div>
+                        @if (Model.Product.Price < 80000 && Model.Product.Price != 0 && !Model.Product.HasPromotion)
+                        {
+                            if (gia > 100000)
+                            {
+                                <div class="txt_combo_custom" title="Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP</div>
+                            }
+                            else
+                            {
+                                <div class="txt_combo_custom" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP</div>
+                            }
+                        }
+                        <div class="product-condition product-condition-custom">
+                            Giá thị trường: <span>
+                                @string.Format("{0:#,#.##}", Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetGiaThiTruong(string.Format("{0:#,#.##}", Model.Product.GiaThiTruong))) ₫
+                                - Tiết kiệm: @string.Format("{0:#,#.##}", Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetGiaThiTruong(string.Format("{0:#,#.##}", giatietkiem))) ₫(<span class="phantramgiathitruong">-@Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetPhanTram(Model.Product.GiaThiTruong, Model.Product.Price)%</span>)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @Html.Action("ThuongHieuInChiTietSP", "ThuongHieu")
+                <!--CHI NHANH VA TON KHO--->
+                <div class="product-info-stock" id="brand_quantity_wrapper">
+                    <div class="stock available">
+                        <span class="diachi">
+                            <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+                            <br/>
+                            @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+                            {
+                                //if (b.Id != 14364)
+                                //{
+                                <span style="margin-left: 13px;">
+                                    @*<span>*@
+                                    @b.Name -
+                                    @if (b.Quantity > 0)
+                                    {
+                                        <span style="color: #199427 !important;">
+                                            Còn hàng @if (Model.IsAdmin)
+                                                     {
+                                                         <span>(@b.Quantity.ToString("#,###,###,###"))</span>
+                                                     }
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color: red !important;">Cháy hàng</span>
+                                    }
+                                </span>
+                                <br/>
+                                // }
+                            }
+                        </span>
+                        @{
+                            var hn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("HN"));
+                            var dn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("ĐN"));
+                        }
+                        <span class="diachi">
+                            <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                            @if (hn.Quantity > 0)
+                            {
+                                <span>
+                                    152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427 !important;">
+                                        Còn hàng @if (Model.IsAdmin)
+                                                 {
+                                                     <span>(@hn.Quantity.ToString("#,###,###,###"))</span>
+                                                 }
+                                    </span>
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+                                </span>
+                            }
+                        </span>
+                        <br/>
+                        <span class="diachi">
+                            <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+                            @if (dn.Quantity > 0)
+                            {
+                                <span>
+                                    268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427 !important;">
+                                        Còn hàng @if (Model.IsAdmin)
+                                                 {
+                                                     <span>(@dn.Quantity.ToString("#,###,###,###"))</span>
+                                                 }
+                                    </span>
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -
+                                    <span style="color: red !important;">Cháy hàng</span>
+                                </span>
+                            }
+                        </span>
+                    </div>
+                </div>
+                <!--END CHI NHANH VA TON KHO--->
+                <!--end tinh trang san pham-->
+                <div class="product-overview">
+                    <div class="overview-content Notnew">
+                        @Html.Raw(Model.Product.Note)
+                    </div>
+                </div>
+                <style>
+                    .txt_combo_custom {
+                        font-size: 11px !important;
+                    }
+                </style>
+                <input type="hidden" id="current_barcode" class="current_barcode" value="@Model.CurrentBarcode"/>
+                <input type="hidden" id="current_product_id" class="current_product_id" value="@Model.Product.ProductId"/>
+                <!--ATTRIBUTE-->
+                <div class="product-add-form">
+                    <div class="product-options-wrapper">
+                        <div class="swatch-opt">
+                            <div class="swatch-attribute color">
+                                @if (Model.Attributes.Any(o => o.Flag == 1))
+                                {
+                                    <span class="swatch-attribute-label">Chọn màu: </span>
+                                }
+                                @if (Model.Attributes.Any(o => o.Flag == 2))
+                                {
+                                    <span class="swatch-attribute-label">Chọn mùi: </span>
+                                }
+                                @if (Model.Attributes.All(o => o.Flag != 0))
+                                {
+                                    <div class="swatch-attribute-options clearfix">
+                                        @if (Model.Attributes.Any())
+                                        {
+                                            foreach (var menuOption in Model.Attributes)
+                                            {
+                                                string cl = "";
+                                                if (menuOption.Selected)
+                                                {
+                                                    cl = "selected";
+                                                }
+                                                if ((menuOption.Img.IndexOf("#") != -1) || (menuOption.Img.IndexOf("rgba") != -1) || (menuOption.Img.IndexOf("rgb") != -1))
+                                                {
+                                                    <div class="swatch-option color @cl" data-toggle="tooltip" data-placement="top"
+                                                         title="@menuOption.Name"
+                                                         style="background-color: @menuOption.Img"
+                                                         onclick="return checkQuantityByBarcode('@menuOption.Barcode', @Model.Product.ProductId, this)">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="swatch-option color @cl" data-toggle="tooltip"
+                                                         data-placement="top" title="@menuOption.Name"
+                                                         onclick="return checkQuantityByBarcode('@menuOption.Barcode', @Model.Product.ProductId, this)">
+                                                        <img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" title="@menuOption.Name"
+                                                             alt="@menuOption.Name" title="@menuOption.Name" id="@menuOption.Barcode"/>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END ATTRIBUTE-->
+                <div class="product-add-form">
+                    <div class="product-options-wrapper">
+                        <div class="form-qty">
+                            <label class="label">Số lượng: </label>
+                            <div class="control">
+                                <input type="text" class="form-control input-qty form-qty-custom" value='1' id="qty1" name="qty1" max="100" min="1" data-product-id="@Model.Product.ProductId">
+                                <button class="btn-number  qtyminus" data-type="minus" data-field="qty1"><span>-</span></button>
+                                <button class="btn-number  qtyplus" data-type="plus" data-field="qty1"><span>+</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-add-form ">
+                    @{
+                        string hideBtn = "";
+                        if (!Model.ProductAvailable)
+                        {
+                            hideBtn = "style=display:none";
+                        }
+
+                        <div class="product-options-wrapper">
+                            <div id="btn_add_to_card" @hideBtn class="product-options-bottom clearfix">
+                                <!--desktop-->
+                                <div class="actions hidden-xs sonpro_chitiet">
+                                    <button type="submit" onclick="return addToCart()" title="Thêm giỏ hàng" class="action btn-cart">
+                                        <span>Thêm giỏ hàng</span>
+                                    </button>
+                                    <button type="submit" onclick="return addToCartFast()" title="Mua nhanh" class="muanhanh">
+                                        <span>Mua nhanh</span>
+                                    </button>
+                                    <span class="product-item-actions">
+                                        @{ string fav_ = "fav_" + Model.Product.ProductId;}
+                                        <a class="wishlist-yeuthich" href="javascript:addtofavoritesDetail(@Model.Product.ProductId);">
+                                            <img alt="sản phẩm yêu thích" id="tooltip" src="/images/heart.png" class="@fav_" style="width: 30px; height: 30px;"/>
+                                            <span class="tooltiptext">Thêm vào yêu thích</span>
+                                        </a>
+                                    </span>
+                                </div>
+                                <!--end desktop-->
+                                <!--mobile-->
+                                <div class="actions hidden-sm hidden-desktop hidden-lg hidden-md actionMobile">
+                                    <button type="submit" onclick="return addToCart()" title="Thêm giỏ hàng" class="action btn-cart">
+                                        <span>Thêm giỏ hàng</span>
+                                    </button>
+                                    <button type="submit" onclick="return addToCartFast()" title="Mua nhanh" class="muanhanh">
+                                        <span>Mua nhanh</span>
+                                    </button>
+                                    <span class="product-item-actions">
+                                        <a class="wishlist-yeuthich" href="javascript:addtofavoritesDetail(@Model.Product.ProductId);" title="sản phẩm yêu thích ">
+                                            <img alt="sản phẩm yêu thích" src="/images/heart.png" class="@fav_" title="Thêm Vào Yêu Thích" style="width: 30px; height: 30px;"/>
+                                        </a>
+                                    </span>
+                                </div>
+                                <!--end mobile-->
+                            </div>
+                            <!--neu het hang show form thong bao khi het hang-->
+                            @if (subenddate <= 30)
+                            {
+                                if (enddate < startdate && Model.Product.HasOnHand == false)
+                                {
+                                    <div id="btn_het_hang" class="product-options-bottom clearfix">
+                                        <div class="actions hidden-xs sonpro_chitiet">
+                                            <button type="submit" onclick="return Thongbaohethang()" title="Thông báo khi có hàng" class="action btn btn-info" style="background: #199427 !important;">
+                                                <span>Thông báo khi có hàng</span>
+                                            </button>
+                                            <span class="product-item-actions">
+                                                <a class="wishlist-yeuthich" href="javascript:addtofavoritesDetail(@Model.Product.ProductId);">
+                                                    <img alt="sản phẩm yêu thích" id="tooltip" src="/images/heart.png" class="@fav_" style="width: 30px; height: 30px;"/>
+                                                    <span class="tooltiptext">Thêm vào yêu thích</span>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <!--neu het hang show form thong bao khi het hang-->
+                        <div id="abc" class="popupthongbaohethang">
+                            <!-- Popup Div Starts Here -->
+                            <div id="popupContact">
+                                <!-- Contact Us Form -->
+                                <form action="#" id="form" method="post" name="form">
+                                    <img id="close" src="/images/close.png" onclick="div_hide()">
+                                    <h4>Thông báo khi có hàng</h4>
+                                    <hr>
+                                    <input id="name" name="name" placeholder="Tên của bạn (*)" type="text" class="form-control">
+                                    <input id="phone" name="email" placeholder="Số điện thoại (*)" type="text" class="form-control">
+                                    <input id="email" name="email" placeholder="Email" type="text" class="form-control">
+                                    <a href="javascript:check_empty(@Model.Product.ProductId)" id="submit">Gửi</a>
+                                </form>
+                            </div>
+                            <!-- Popup Div Ends Here -->
+                        </div>
+
+                        <script>
+                            function check_empty(ProductId) {
+                                var name = $("#name").val();
+                                var phone = $("#phone").val();
+                                var email = $("#email").val();
+                                if (name == '' || phone == '') {
+                                    alert("Vui lòng nhập đầy đủ thông tin");
+                                } else {
+                                    $.post("/SanPham/AddKhiCoHang",
+                                        {
+                                            ProductId: ProductId,
+                                            name: name,
+                                            phone: phone,
+                                            email: email
+                                        },
+                                        function(data) {
+                                            swal("Thông báo", "Gửi yêu cầu thành công!", "success");
+                                            document.getElementById('abc').style.display = "none";
+                                        });
+                                }
+                            }
+
+                            //Function To Display Popup
+                            function Thongbaohethang() {
+                                document.getElementById('abc').style.display = "block";
+                            }
+
+                            //Function to Hide Popup
+                            function div_hide() {
+                                document.getElementById('abc').style.display = "none";
+                            }
+                        </script>
+                    }
+                </div>
+                <!--Sản phẩm quà tặng-->
+                @if (ViewBag.check != null)
+                {
+                    @Html.Action("QuaTangInDetail", "KhoQuaTang", new {productId = Model.Product.ProductId})
+                }
+                <!--Sản phẩm quà tặng-->
+                </div>
+                </div>
+            </div>
+            <!--sản phẩm cùng xem dùng thuật toán-->
+            @Html.Action("Index", "SanPhamXemCung")
+            <!--sản phẩm cùng xem dùng thuật toán-->
+            <!--sản phẩm bạn đã xem -->
+            @*@Html.Action("SanPhamDaXemDetail", "SanPhamDaXem")*@
+            <!--sản phẩm bạn đã xem -->
+            <!-- dung cho ban desktop -->
+            <div class="product-info-detailed hidden-xs hidden-sm">
+                @if (!string.IsNullOrEmpty(Model.Product.Content))
+                {
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="tab"><h2 class="theH2">@Model.Product.ContentLabel</h2></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.Product.Content.Replace("src=\"/", " data-src=\"/").Replace("http:", "https:"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Product.Content1))
+                {
+                    <ul class="nav nav-pills" role="tablist" style="border-right: 1px solid #eee;">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="@Model.Product.ContentLabel1"><h2 class="theH2">@Model.Product.ContentLabel1</h2></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.Product.Content1.Replace("src=\"/", " data-src=\"/").Replace("http:", "https:"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Product.Content2))
+                {
+                    <ul class="nav nav-pills" role="tablist" style="border-right: 1px solid #eee;">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="@Model.Product.ContentLabel2"><h2 class="theH2">@Model.Product.ContentLabel2</h2></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.Product.Content2.Replace("src=\"/", " data-src=\"/").Replace("http:", "https:"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                @if (!string.IsNullOrEmpty(Model.Product.Content3))
+                {
+                    <ul class="nav nav-pills" role="tablist" style="border-right: 1px solid #eee;">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="@Model.Product.ContentLabel3"><h2 class="theH2">@Model.Product.ContentLabel3</h2></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.Product.Content3.Replace("src=\"/", " data-src=\"/").Replace("http:", "https:"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Product.Content4))
+                {
+                    <ul class="nav nav-pills" role="tablist" style="border-right: 1px solid #eee;">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="@Model.Product.ContentLabel4"><h2 class="theH2">@Model.Product.ContentLabel4</h2></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.Product.Content4.Replace("src=\"/", " data-src=\"/").Replace("http:", "https:"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <ul class="nav nav-pills" role="tablist" style="border-right: 1px solid #eee;">
+                    <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="@Model.ThietLap.TieuDe"><h2 class="theH2">@Model.ThietLap.TieuDe</h2></a></li>
+                </ul>
+                <div class="tab-content" id="sanphamquatang">
+                    <div role="tabpanel" class="tab-pane active" id="description">
+                        <div class="block-content">
+                            <p>@Html.Raw(Model.ThietLap.NoiDung)</p>
+                            <p>@Html.Raw(Model.Product.ContentTheoSp)</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav " role="tablist" style="border-right: 1px solid #eee;">
+                    <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab" title="tab"></a></li>
+                </ul>
+                @if (subenddate <= 30)
+            {
+                if (enddate > startdate && Model.Product.HasOnHand == true)
+                {
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="description">
+                                <div class="block-content">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-xs-2"></div>
+                                        <div class="col-lg-8 col-md-8 col-xs-8">
+                                            <h3 class="title titledathangnhanh">Đặt hàng nhanh</h3><hr />
+                                            <span class="title" style="text-align: center;display: block;"> Hệ thống Shop Mỹ Phẩm Chính Hãng BeautyGarden </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 hidden-xs"></div>
+                                        <div class="col-lg-8 col-md-8 col-xs-12">
+
+                                            <!--CHI NHANH VA TON KHO--->
+                                            <div class="product-info-stock" id="brand_quantity_wrapperDatHangNhanh_desktop">
+                                                <div class="stock available">
+                                                    <span class="diachi">
+                                                        <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+                                                        <br />
+                                                        @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+                                                    {
+                                                    <span style="margin-left: 13px;">
+                                                        @b.Name -
+                                                        @if (b.Quantity > 0)
+                                                            {
+                                                            <span style="color: #199427 !important;">
+                                                                Còn hàng @if (Model.IsAdmin)
+                                                                             {
+                                                                    <span>(@b.Quantity.ToString("#,###,###,###"))</span>
+                                                                             }
+                                                            </span>
+                                                            }
+                                                            else
+                                                            {
+                                                            <span style="color: red !important;">Cháy hàng</span>
+                                                            }
+                                                    </span>
+                                                    <br />
+                                                    }
+                                                    </span>
+
+                                                    <span class="diachi">
+                                                        <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                                                        @if (hn.Quantity > 0)
+                                                    {
+                                                    <span>
+                                                        152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">
+                                                            Còn hàng @if (Model.IsAdmin)
+                                                                         {
+                                                            <span>(@hn.Quantity.ToString("#,###,###,###"))</span>
+                                                                         }
+                                                        </span>
+                                                    </span>
+                                                    }
+                                                    else
+                                                    {
+                                                    <span>
+                                                        152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+                                                    </span>
+                                                    }
+                                                    </span>
+                                                    <br />
+                                                    <span class="diachi">
+                                                        <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+                                                        @if (dn.Quantity > 0)
+                                                    {
+                                                    <span>
+                                                        268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">
+                                                            Còn hàng @if (Model.IsAdmin)
+                                                                         {
+                                                            <span>(@dn.Quantity.ToString("#,###,###,###"))</span>
+                                                                         }
+                                                        </span>
+                                                    </span>
+                                                    }
+                                                    else
+                                                    {
+                                                    <span>
+                                                        268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -
+                                                        <span style="color: red !important;">Cháy hàng</span>
+                                                    </span>
+                                                    }
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!--ATTRIBUTE-->
+                                            <div class="product-add-form">
+                                                <div class="product-options-wrapper">
+                                                    <div class="swatch-opt">
+                                                        <div class="swatch-attribute color">
+                                                            @if (Model.Attributes.Any(o => o.Flag == 1))
+                                                        {
+                                                        <span class="swatch-attribute-label">Chọn màu: </span>
+                                                        }
+                                                            @if (Model.Attributes.Any(o => o.Flag == 2))
+                                                        {
+                                                        <span class="swatch-attribute-label">Chọn mùi: </span>
+                                                        }
+                                                            @if (Model.Attributes.All(o => o.Flag != 0))
+                                                        {
+                                                        <div class="swatch-attribute-options clearfix">
+                                                            @if (Model.Attributes.Any())
+                                                                {
+                                                                    foreach (var menuOption in Model.Attributes)
+                                                                    {
+                                                                        string cl = "";
+                                                                        if (menuOption.Selected)
+                                                                        {
+                                                                            cl = "selected";
+                                                                        }
+                                                                        if ((menuOption.Img.IndexOf("#") != -1) || (menuOption.Img.IndexOf("rgba") != -1) || (menuOption.Img.IndexOf("rgb") != -1))
+                                                                        {
+                                                                <div class="swatch-option color @cl" data-toggle="tooltip" data-placement="top"
+                                                                     title="@menuOption.Name"
+                                                                     style="background-color: @menuOption.Img"
+                                                                     onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+
+                                                                </div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                <div class="swatch-option color @cl" data-toggle="tooltip"
+                                                                     data-placement="top" title="@menuOption.Name"
+                                                                     onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+                                                                    <img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" title="@menuOption.Name"
+                                                                         alt="@menuOption.Name" title="@menuOption.Name" id="@menuOption.Barcode" />
+                                                                </div>
+                                                                        }
+
+                                                                    }
+                                                                }
+                                                        </div>
+                                                        }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.Partial("_FormDatHangNhanh", new Shop.Web.ViewModels.CartViewModel.CartForm()
+                           {
+                               ProductId = Model.Product.ProductId,
+                               Barcode = Model.CurrentBarcode
+                           })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+            <!-- dung cho ban mobile -->
+            <div class="product-info-detailed1 hidden-md hidden-lg hidden-desktop">
+                <!-- Tab panes -->
+                <div role="tabpanel" class="tab-pane active" id="description">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tags">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel1</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content1)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="reviews">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel2</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content2)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="additional">
+                    <div class="kengang">
+                        <div class="block-title1"><span class="theH2_mobile">@Model.Product.ContentLabel3</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.Product.Content3)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="additional">
+                    <div class="kengang">
+                        <div class="block-title1 tieude_lydo"><span class="theH2_mobile">@Model.ThietLap.TieuDe</span></div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.ThietLap.NoiDung)</p>
+                        <p>@Html.Raw(Model.Product.ContentTheoSp)</p>
+                    </div>
+                </div>
+                @if (subenddate <= 30)
+            {
+                if (enddate > startdate && Model.Product.HasOnHand == true)
+                {
+                        <div role="tabpanel" class="tab-pane" id="additional">
+                            <div class="block-content">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <h3 class="title titledathangnhanh">Đặt hàng nhanh</h3><hr />
+                                        <span class="title" style="text-align: center;display: block;"> Hệ thống Shop Mỹ Phẩm Chính Hãng BeautyGarden </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 hidden-xs"></div>
+                                    <div class="col-lg-8 col-md-8 col-xs-12">
+
+                                        <!--CHI NHANH VA TON KHO--->
+                                        <div class="product-info-stock" id="brand_quantity_wrapperDatHangNhanh">
+                                            <div class="stock available">
+                                                <span class="diachi">
+                                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+                                                    <br />
+                                                    @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+                                                {
+                                                <span style="margin-left: 13px;">
+                                                    @b.Name -
+                                                    @if (b.Quantity > 0)
+                                                        {
+                                                        <span style="color: #199427 !important;">
+                                                            Còn hàng @if (Model.IsAdmin)
+                                                                         {
+                                                                <span>(@b.Quantity.ToString("#,###,###,###"))</span>
+                                                                         }
+                                                        </span>
+                                                        }
+                                                        else
+                                                        {
+                                                        <span style="color: red !important;">Cháy hàng</span>
+                                                        }
+                                                </span>
+                                                <br />
+                                                }
+                                                </span>
+
+                                                <span class="diachi">
+                                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                                                    @if (hn.Quantity > 0)
+                                                {
+                                                <span>
+                                                    152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">
+                                                        Còn hàng @if (Model.IsAdmin)
+                                                                     {
+                                                        <span>(@hn.Quantity.ToString("#,###,###,###"))</span>
+                                                                     }
+                                                    </span>
+                                                </span>
+                                                }
+                                                else
+                                                {
+                                                <span>
+                                                    152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+                                                </span>
+                                                }
+                                                </span>
+                                                <br />
+                                                <span class="diachi">
+                                                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+                                                    @if (dn.Quantity > 0)
+                                                {
+                                                <span>
+                                                    268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">
+                                                        Còn hàng @if (Model.IsAdmin)
+                                                                     {
+                                                        <span>(@dn.Quantity.ToString("#,###,###,###"))</span>
+                                                                     }
+                                                    </span>
+                                                </span>
+                                                }
+                                                else
+                                                {
+                                                <span>
+                                                    268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -
+                                                    <span style="color: red !important;">Cháy hàng</span>
+                                                </span>
+                                                }
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                        <!--ATTRIBUTE Son-->
+                                        <div class="product-add-form">
+                                            <div class="product-options-wrapper">
+                                                <div class="swatch-opt">
+                                                    <div class="swatch-attribute color">
+
+                                                        @if (Model.Attributes.Any(o => o.Flag == 1))
+                                                    {
+                                                    <span class="swatch-attribute-label">Chọn màu: </span>
+                                                    }
+                                                        @if (Model.Attributes.Any(o => o.Flag == 2))
+                                                    {
+                                                    <span class="swatch-attribute-label">Chọn mùi: </span>
+                                                    }
+                                                        @if (Model.Attributes.All(o => o.Flag != 0))
+                                                    {
+                                                    <div class="swatch-attribute-options clearfix">
+                                                        @if (Model.Attributes.Any())
+                                                            {
+                                                                foreach (var menuOption in Model.Attributes)
+                                                                {
+                                                                    string cl = "";
+                                                                    if (menuOption.Selected)
+                                                                    {
+                                                                        cl = "selected";
+                                                                    }
+                                                                    if ((menuOption.Img.IndexOf("#") != -1) || (menuOption.Img.IndexOf("rgba") != -1) || (menuOption.Img.IndexOf("rgb") != -1))
+                                                                    {
+                                                            <div class="swatch-option color @cl" data-toggle="tooltip" data-placement="top"
+                                                                 title="@menuOption.Name"
+                                                                 style="background-color: @menuOption.Img"
+                                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+
+                                                            </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                            <div class="swatch-option color @cl" data-toggle="tooltip"
+                                                                 data-placement="top" title="@menuOption.Name"
+                                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+                                                                <img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" title="@menuOption.Name"
+                                                                     alt="@menuOption.Name" title="@menuOption.Name" id="@menuOption.Barcode" />
+                                                            </div>
+                                                                    }
+                                                                }
+                                                            }
+                                                    </div>
+                                                    }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.Partial("_FormDatHangNhanh", new Shop.Web.ViewModels.CartViewModel.CartForm()
+                                                               {
+                                                                   ProductId = Model.Product.ProductId,
+                                                                   Barcode = Model.CurrentBarcode
+                                                               })
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <!--danh sach tag-->
+            <div class="tabpanel taglist">
+                <span>
+                    Tags:
+                    <ul class="tags">
+                        @if (Model.DanhSachTags.Any())
+                        {
+                            <!--neu san pham do co tag thi load duoi db len-->
+                            foreach (var tag in Model.DanhSachTags)
+                            {
+                        <li><a href="@Url.RouteUrl("Tag", new { tentag = tag.TenTag.ToString().Replace(" ", "-") })" class="tag" target="_blank" title="@tag.TenTag">@tag.TenTag</a></li>
+                            }
+                        }
+                        else
+                        {
+                        <!--ngược lại nếu sản phẩm đó không có tag thì lấy tag từ danh mục sâu nhất-->
+                        <!--IList<Menu> dstag = GetDsTagsFromDanhMuc(Model.Product.ProductId);-->
+                            IList<Menu> dstag = Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel.GetDsTagsFromDanhMuc(Model.Product.ProductId);
+                            foreach (var tag in dstag)
+                            {
+                        <li><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = tag.Link })" class="tag" title="@tag.NameProduct">@tag.NameProduct</a></li>
+                            }
+                        }
+                    </ul>
+                </span>
+            </div>
+            <!--danh sach tag-->
+            <!--hoi dap san pham-->
+            <div class="block-related" style="margin-top: 30px;">
+                <div class="block-title">
+                    <strong class="title">Hỏi, đáp về sản phẩm</strong>
+                </div>
+                @Html.Action("Index", "HoiDapSanPham", new { idsanpham = Model.Product.ProductId })
+                <p class="thongbao_cmt"></p>
+                <div class="question-answer-form">
+                    <p class="all"><a href="@Url.RouteUrl("CauHoiDaCoTraLoi",new{seo="tat-ca",id=Model.Product.ProductId})" title="xem tất cả câu hỏi đã trả lời">Xem tất cả các câu hỏi đã được trả lời</a></p>
+                    <p class="form" id="qaForm">
+                        <input type="text" name="NoiDungCmt" id="NoiDungCmt" class="form-control" value="" placeholder="Hãy đặt câu hỏi liên quan đến sản phẩm..." style="font-size: 13px;">
+                        <button type="button" class="btn btn-primary btn-add-question" onclick="return SaveComment(@Model.Product.ProductId)">Gửi câu hỏi</button>
+                    </p>
+                </div>
+            </div>
+            <!--hoi dap san pham-->
+            <div class="single-box" id="single-box-height-scroll">
+                <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="100%" style="z-index: 999;"></div>
+            </div>
+            <div class="row hidden-md hidden-lg hidden-desktop hidden-sm">
+                @Html.Action("ChuongTrinhTichDiem", "SanPham")
+            </div>
+
+            @Html.Action("SanPhamMuaCung", "SanPham", new { idsanpham = Model.Product.ProductId, idnhacungcap = Model.Product.BrandId })
+            @Html.Action("SanPhamCungLoai", "SanPham", new { iddanhmuc = Model.Product.IdDanhMuc })
+
+            @if (subenddate <= 30)
+            {
+                if (enddate < startdate && Model.Product.HasOnHand == false)
+                {
+                    <div class="footer_icon">
+                        <div class="icon_datmua hidden-lg hidden-md hidden-sm">
+                            <a onclick="return Thongbaohethang()" title="thêm giỏ hàng">
+                                <div class="fixedbutton_right">Thông báo khi có hàng</div>
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="footer_icon">
+                        <div class="icon_datmua hidden-lg hidden-md hidden-sm">
+                            <a onclick="return addToCart()" title="thêm giỏ hàng">
+                                <div class="fixedbutton_right"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class="col-md-3 col-sidebar">
+            <div class="hidden-xs">
+                @Html.Action("ChuongTrinhTichDiem", "SanPham")
+            </div>
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            @Html.Action("BannerQCChiTiet", "Banner")
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+
+<script>
+    var firstClick = 0;
+    function SubmitDatHangNhanh() {
+        firstClick++;
+        if (firstClick == 1) {
+            $.post("/Cart/AddToCart", {
+                Barcode: $("#current_barcode").val(),
+                ProductId: '@Model.Product.ProductId',
+                Quantity: 1
+            }, function (data) {
+                $("#FormSubmitDatHangNhanh").submit();
+            });
+        } else {
+            $("#FormSubmitDatHangNhanh").submit();
+        }
+    }
+
+    $(document).ready(function () {
+        $("#qty1").on("change paste keyup", function () {
+            var quantity = $(this).val();
+            var code = $("#current_barcode").val();
+            var productId = $("#current_product_id").val();
+            onQuantityChange(quantity, code, productId);
+        });
+    });
+
+    function checkQuantityByBarcode(barcode, id, el) {
+        var $el = $(el);
+        $("#current_barcode").val(barcode);
+        $("#qty1").val(1);
+
+        $("input#Barcode").val(barcode);
+
+        $.post("/SanPham/KiemTraTonKhoTheoMaVach", {
+            Barcode: barcode,
+            ProductId: id
+        }, function (data) {
+            $("#brand_quantity_wrapper").html(data.html);
+            $("#brand_quantity_wrapperDatHangNhanh").html(data.html);
+            $("#brand_quantity_wrapperDatHangNhanh_desktop").html(data.html);
+            $el.siblings().removeClass("selected");
+            $el.addClass("selected");
+
+            if (data.available) {
+                $("#btn_add_to_card").show();
+                $("#FormSubmitDatHangNhanh #submitOrderQuick").show();
+            } else {
+                $("#btn_add_to_card").hide();
+                $("#FormSubmitDatHangNhanh #submitOrderQuick").hide();
+            }
+        });
+    }
+    function onQuantityChange(quantity, code, productId) {
+        $.post("/SanPham/KiemTraTonKhoTheoSoLuong", {
+            Barcode: code,
+            ProductId: productId,
+            Quantity: quantity
+        }, function (data) {
+            // console.log("data", data);
+            if (data.available) {
+                $("#btn_add_to_card").show();
+                $("#FormSubmitDatHangNhanh #submitOrderQuick").show();
+
+            } else {
+                $("#btn_add_to_card").hide();
+                $("#FormSubmitDatHangNhanh #submitOrderQuick").hide();
+                swal({ title: "Sản phẩm không đủ số lượng", timer: 1500, type: "warning" });
+            }
+        });
+    }
+
+    function addToCart() {
+        var code = $("#current_barcode").val();
+        var productId = $("#current_product_id").val();
+        var quantity = $("#qty1").val();
+        addProductToCart(productId, code, quantity, "Cart");
+    }
+
+    function addToCartFast() {
+        var code = $("#current_barcode").val();
+        var productId = $("#current_product_id").val();
+        var quantity = $("#qty1").val();
+        addProductToCart(productId, code, quantity, "Fast");
+    }
+
+</script>
+<style>
+    .footer_icon {
+        width: 100%;
+    }
+
+    .fixedbutton_right {
+        position: fixed;
+        bottom: 0;
+        height: 44px;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+        background-color: #e53935;
+        width: 93%;
+        z-index: 999;
+        border-radius: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: normal;
+        margin-left: 5px;
+        margin-bottom: 12px;
+        left: 10px;
+    }
+
+    .fixedbutton_left {
+        position: fixed;
+        bottom: 0;
+        height: 44px;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+        background-color: #e53935;
+        width: 45%;
+        z-index: 999;
+        border-radius: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        margin-left: 5px;
+        margin-bottom: 12px;
+        right: 15px;
+    }
+
+    .icon_datmua {
+        position: fixed;
+        height: 68px;
+        padding: 12px 16px;
+        background: white;
+        z-index: 999;
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 -1px 20px 0 rgba(0, 0, 0, .12);
+    }
+
+    iframe {
+        width: 100%;
+    }
+</style>
+@Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailHenry(Model.Product.Link))
+@Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailProduct(Model.Product.Link))
+@*@Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJsonProductDetailEvent(Model.Product.Link))*@
+<!--Code Remarketing FaceBook-->
+@Html.Raw(Shop.Web.Controllers.SanPhamController.RemarkettingFacebookViewContent(Model.Product.Link))
+

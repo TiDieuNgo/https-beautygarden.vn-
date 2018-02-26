@@ -1,0 +1,28 @@
+﻿@using Shop.Data
+@model IList<Shop.Model.ProductFrontPageMapping.ThuongHieuNoiBat>
+<div id="layered-filter-block" class="block-sidebar block-filter no-hide">
+    <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="block-title">
+        <strong>Thương hiệu nổi bật</strong>
+    </div>
+    <div class="block-content">
+        <div class="filter-options-item filter-options-categori">
+            <div class="filter-options-content">
+                <ol class="items">
+                    @if (Model.Any())
+                    {
+                        foreach (var thuonghieu in Model)
+                        {
+                            <li class="item">
+                                <label>
+                                    <a href="@Url.RouteUrl("DanhSachSanPhamThuocThuongHieu", new { linkth = thuonghieu.Link })" title="@thuonghieu.Name"><span>@thuonghieu.Name <span class="count">(@thuonghieu.Quantity)</span></span></a> 
+                                </label>
+                            </li>
+                        }
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+

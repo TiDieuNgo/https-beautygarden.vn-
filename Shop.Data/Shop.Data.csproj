@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6A4C3B88-230D-4C19-945E-4685876AA31D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shop.Data</RootNamespace>
+    <AssemblyName>Shop.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\DatabaseFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDatabaseFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\PagedResult.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Repositories\SEOFooterRepository.cs" />
+    <Compile Include="Repositories\IframeSalepageRepository.cs" />
+    <Compile Include="Repositories\ThongBaoKhiCoHangRepository.cs" />
+    <Compile Include="Repositories\PopUpBannerKMRepository.cs" />
+    <Compile Include="Repositories\KhoQuaTangRepository.cs" />
+    <Compile Include="Repositories\SalePageRepository.cs" />
+    <Compile Include="Repositories\HeThongCuaHangRepository.cs" />
+    <Compile Include="Repositories\TagTinTucRepository.cs" />
+    <Compile Include="Repositories\BannerKhuyenMaiRepository.cs" />
+    <Compile Include="Repositories\SanPhamXemCungRepository.cs" />
+    <Compile Include="Repositories\Redirect301Repository.cs" />
+    <Compile Include="Repositories\BannerDanhSachRepository.cs" />
+    <Compile Include="Repositories\CauHinhRepository.cs" />
+    <Compile Include="Repositories\CommentRepository.cs" />
+    <Compile Include="Repositories\ReviewRepository.cs" />
+    <Compile Include="Repositories\PromotionDetailRepository.cs" />
+    <Compile Include="Repositories\DanhSachTagRepository.cs" />
+    <Compile Include="Repositories\TraLoiCommentRepository.cs" />
+    <Compile Include="Repositories\UserRatingRepository.cs" />
+    <Compile Include="Repositories\TuKhoaTimKiemRepository.cs" />
+    <Compile Include="Repositories\TuKhoaTapHopRepository.cs" />
+    <Compile Include="Repositories\ThietLapRepository.cs" />
+    <Compile Include="Repositories\YKienKhachHangRepository.cs" />
+    <Compile Include="Repositories\NoiDungTienIchRepository.cs" />
+    <Compile Include="Repositories\DanhMucTienIchRepository.cs" />
+    <Compile Include="Repositories\EmailRepository.cs" />
+    <Compile Include="Repositories\PromotionRepository.cs" />
+    <Compile Include="Repositories\Account298Repository.cs" />
+    <Compile Include="Repositories\ProductStockSyncRepository.cs" />
+    <Compile Include="Repositories\DetailMenuCommentItemRepository.cs" />
+    <Compile Include="Repositories\DetailMenuCommentRepository.cs" />
+    <Compile Include="Repositories\MenuProAddRepository.cs" />
+    <Compile Include="Repositories\DetailMenuRepository.cs" />
+    <Compile Include="Repositories\KhachHangLienHeRepository.cs" />
+    <Compile Include="Repositories\MenuImageRepository.cs" />
+    <Compile Include="Repositories\MenuOptionRepository.cs" />
+    <Compile Include="Repositories\TagsLinkRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="ShopDataContex.cs" />
+    <Compile Include="Migrations\201212011507315_InitialCreate.cs" />
+    <Compile Include="Migrations\201212011507315_InitialCreate.Designer.cs">
+      <DependentUpon>201212011507315_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201212011507315_InitialCreate.resx">
+      <DependentUpon>201212011507315_InitialCreate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.Model\Shop.Model.csproj">
+      <Project>{0cb7b2db-aeca-421a-aa9f-bff8b532d535}</Project>
+      <Name>Shop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.Web.Core\Shop.Web.Core.csproj">
+      <Project>{dbf57927-89db-4526-a8e0-5c5ac90096b1}</Project>
+      <Name>Shop.Web.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

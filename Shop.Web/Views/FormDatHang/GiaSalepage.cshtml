@@ -1,0 +1,11 @@
+﻿@using Shop.Data
+@using Shop.Model
+@model Shop.Web.Controllers.FormDatHangController.GiaSalePageModel
+@if (Model.GiaKM > 0)
+{
+    <p style="text-align: center;"><span style="color: red; font-weight: bold; font-size: 25px; text-align: center;"><del>@Model.Gia.ToString("#,##,###") vnđ</del></span> giảm còn <span style="color: blue; font-weight: bold; font-size: 25px;">@Model.GiaKM.ToString("#,##,###") vnđ</span></p>
+}
+else
+{
+    <p style="text-align: center;"><span style="color: blue; font-weight: bold; font-size: 25px; text-align: center;">@Model.Gia.ToString("#,##,###") vnđ</span></p>
+}

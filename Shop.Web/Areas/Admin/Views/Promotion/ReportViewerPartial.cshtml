@@ -1,0 +1,13 @@
+﻿
+@using System.Web.UI.WebControls
+@model Shop.Web.Areas.Admin.Models.PromotionModel.ExportModel
+
+@Html.DevExpress().ReportViewer(settings =>
+{
+    settings.Name = "ReportViewer";
+    settings.Report = Model.Report;
+    settings.CallbackRouteValues = new { Controller = "Promotion", Action = "ReportViewerPartial", promotionId = Model.PromotionId };
+    settings.ExportRouteValues = new { Controller = "Promotion", Action = "ExportReportViewer", promotionId = Model.PromotionId };
+    settings.ClientSideEvents.EndCallback = "function(s,e){s.Print();}";
+    settings.PrintUsingAdobePlugIn = true;
+}).GetHtml()

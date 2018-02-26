@@ -1,0 +1,59 @@
+﻿@using DevExpress.Web.Mvc.UI
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Style Switcher -->
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+      new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+           new StyleSheet { ExtensionSuite = ExtensionSuite.Report }
+
+    )
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    @Html.DevExpress().GetScripts(
+     new Script { ExtensionSuite = ExtensionSuite.Editors },
+         new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+           new Script { ExtensionType = ExtensionType.ReportToolbar },
+                new Script { ExtensionType = ExtensionType.ReportViewer }
+)
+    <style>
+        body {
+            background-color: #525659!important
+        }
+         table#ReportToolbar_Menu {
+             display: inline-block;
+         }
+
+        #ReportViewer_Div {
+            margin: auto;
+            box-shadow: 0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12);
+        }
+
+        table#ReportToolbar_Menu {
+            display: inline-block;
+        }
+
+        .dxmLite_Metropolis {
+            display: inline-block;
+        }
+        .dxmLite_MetropolisBlue {
+            text-align: center;
+            display: inline-block;
+        }
+        #ReportToolbar_Menu {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin:5px auto;text-align: center">
+        @RenderBody()
+    </div>
+</body>
+</html>

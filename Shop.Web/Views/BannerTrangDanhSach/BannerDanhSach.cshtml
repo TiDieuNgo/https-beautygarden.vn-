@@ -1,0 +1,22 @@
+﻿@model IList<Shop.Model.BannerDanhSach>
+<div class="category-view">
+    <div class="owl-carousel "
+        data-nav="true"
+        data-dots="false"
+        data-margin="0"
+        data-items='1'
+        data-autoplaytimeout="700"
+        data-autoplay="true"
+        data-loop="true">
+        @if (Model.Any())
+        {
+            foreach (var banner in Model)
+            {
+            <div class="item ">
+                <a href="@banner.LinkHttp1" target="_blank" title="@banner.TenBanner">
+                    <img src="@string.Format("/Upload/Files/{0}",banner.HinhAnh)" alt="@banner.TenBanner"></a>
+            </div>
+            }
+        }
+    </div>
+</div>

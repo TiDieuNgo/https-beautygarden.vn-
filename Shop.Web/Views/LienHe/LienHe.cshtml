@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Khách hàng liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Models.LienHeModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn" title="Beautygarden">Trang chủ</a></li>
+        <li class="active">Liên hệ</li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <h2 class="page-heading">
+        <span class="page-heading-title2" style="color: #f4a460;">GỬI THÔNG TIN LIÊN HỆ</span>
+    </h2>
+    <div class="page-content" id="contact">
+        <div class="row">
+            @using (Html.BeginForm("Submit", "LienHe", FormMethod.Post))
+            {
+                <div class="col-sm-6">
+                    <h4 class="page-subheading">BEAUTY GARDEN - HỆ THỐNG PHÂN PHỐI MỸ PHẨM CHÍNH HÃNG</h4>
+                    <span style="color: green;">@ViewData["thongbao"]</span>
+                    <div class="contact-form-box">
+                        <div class="form-selector">
+                            <label>Họ tên <span style="color: red;">(*)</span></label>
+                            @Html.TextBoxFor(o=>o.Name,new{@class="form-control input-sm"})
+                            @Html.ValidationMessageFor(o=>o.Name,"",new {@class="erro"})
+                        </div>
+                        <div class="form-selector">
+                            <label>Điện thoại <span style="color: red;">(*)</span></label>
+                            @Html.TextBoxFor(o=>o.Link,new{@class="form-control input-sm"})
+                            
+                            @Html.ValidationMessageFor(o=>o.Link,"",new {@class="erro"})
+                        </div>
+                        <div class="form-selector">
+                            <label>Email <span style="color: red;">(*)</span></label>
+                            @Html.TextBoxFor(o=>o.HuongDanSuDung,new{@class="form-control input-sm"})
+                             
+                            @Html.ValidationMessageFor(o=>o.HuongDanSuDung,"",new {@class="erro"})
+                        </div>
+                        <div class="form-selector">
+                            <label>Địa chỉ</label>
+                            <input type="text" id="order_reference" name="GiaoHang" class="form-control input-sm">
+                        </div>
+                        <div class="form-selector">
+                            <label>Nội dung</label>
+                            @Html.TextAreaFor(o=>o.Content,new{@class="form-control input-sm"})
+                        </div>
+                     
+                        <div class="form-selector">
+                            <button type="submit" class="btn" id="btn-send-contact">Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <style>
+                .erro {
+                    color: red;
+                }
+            </style>
+            <div id="contact_form_map" class="col-xs-12 col-sm-6">
+                <h3 class="page-subheading" style="font-weight: bold;">VĂN PHÒNG GIAO DỊCH</h3>
+
+                <ul class="store_info">
+                    <li><i class="fa fa-home"></i>255 Bình Lợi, P.13, Q.Bình Thạnh, Tp.HCM</li>
+                    <li><i class="fa fa-phone"></i><span>Tổng đài: 1900 7013</span> </li>
+                    <li><i class="fa fa-phone"></i><span>Hotline: 02 873 000 283 </span></li>
+                    <li><i class="fa fa-envelope"></i>Email: <span><a href="mailto:info@beautygarden.vn" title="Email">info@beautygarden.vn</a></span></li>
+                    <li><i class="fa fa-phone"></i><span>Website: <a href="https://beautygarden.vn/">www.beautygarden.vn </a></span></li>
+                </ul>
+            </div>
+            <div id="contact_form_map" class="col-xs-12 col-sm-6">
+                <h3 class="page-subheading" style="font-weight: bold;">Hệ Thống cửa hàng</h3>
+                <ul class="store_info">
+                    <li><i class="fa fa-home"></i>Quận 3 Tp HCM: số 71, đường số 3, Cư Xá Đô Thành, P4, Q3</li>
+                    <li><i class="fa fa-home"></i>Q.Phú Nhuận Tp HCM: 98B Phan Đăng Lưu, P.3, Q.Phú Nhuận</li>
+                    <li><i class="fa fa-phone"></i><span style="color: green;">0911 784 114</span></li>
+
+                </ul>
+               
+                <ul class="store_info">
+                    <li><i class="fa fa-home"></i>Hà Nội: 152 Chùa Bộc, Đống Đa, Hà Nội</li>
+                    <li><i class="fa fa-phone"></i><span style="color: green;">0911 584 114</span></li>
+                </ul>
+                <ul class="store_info">
+                    <li><i class="fa fa-home"></i>Đà Nẵng: 268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu</li>
+                    <li><i class="fa fa-phone"></i><span style="color: green;">0911 684 114</span></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+﻿@model  IList<Shop.Model.ProductFrontPageMapping.BrandMapping>
+<li class="parent parent-megamenu">
+    <a href="#">Thương Hiệu</a>
+    <span class="toggle-submenu"></span>
+    <div class="megamenu drop-menu">
+        <ul>
+            @if (Model.Any())
+            {
+                foreach (var menu in Model)
+                {
+                    <li class="col-md-3">
+                        <ul class="list-submenu">
+                            <li><a href="@Url.RouteUrl("DanhSachSanPhamThuocThuongHieu", new { linkth = menu.Link })" title="@menu.Name">@menu.Name</a></li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</li>

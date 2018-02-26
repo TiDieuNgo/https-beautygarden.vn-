@@ -1,0 +1,26 @@
+﻿ @model Shop.Model.AccMember298
+@if(Model==null)
+{
+    <text>
+        <li class="dropdown setting">
+            <a data-toggle="dropdown" role="button" href="#" class="dropdown-toggle "><span>Tài khoản</span> <i aria-hidden="true" class="fa fa-angle-down"></i></a>
+            <div class="dropdown-menu">
+                <ul class="account account_header">
+                    <li><a href="@Url.RouteUrl("DangNhap")" title="đăng nhập"> <img src="/images/dangnhap.png"/></a></li>
+                    <li><a href="@Url.RouteUrl("DangKy")" title="đăng ký"><img src="/images/dangky.png"/></a></li>
+                    <li><a href="/LoginFaceBook/Facebook" target="_blank" title="facebook"><img src="/images/dangnhapfacebook.png"/></a></li>
+                    @*<li><a href="/" title="g+"><img src="/images/dangnhapg.png"/></a></li>*@
+                </ul>
+            </div>
+        </li>
+    </text>
+}
+else
+{
+<text>
+    <li class="dropdown setting">
+          <a role="button" href="#" class="dropdown-toggle" title="xin chào"><span>Xin chào:@Model.Email</span> </a> |<a href="/dangnhap/logout/"> (Đăng xuất)</a>
+    </li>
+</text>
+}
+

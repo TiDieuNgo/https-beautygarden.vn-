@@ -1,0 +1,77 @@
+﻿@model IList<Shop.Web.Models.BoxSPTheoMenuModel>
+@if (Model.Any())
+{
+    foreach (var Dmsanpham in Model)
+    {
+        <div class="tab-pane  fade" id="floor1-@Dmsanpham.DanhMucSanPham.id_" role="tabpanel">
+            <div class="owl-carousel"
+                 data-nav="true"
+                 data-dots="false"
+                 data-margin="0"
+                 data-responsive='{
+                                        "0":{"items":2},
+                                        "420":{"items":2},
+                                        "600":{"items":3},
+                                        "768":{"items":3},
+                                        "992":{"items":3},
+                                        "1200":{"items":5}
+                                    }'>
+
+                @if (Dmsanpham.SanPhams.Any())
+                {
+                    foreach (var sanpham in Dmsanpham.SanPhams)
+                    {
+                        <div class="item">
+                            <div class=" product-item product-item-opt-2">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">
+                                            <img alt="@sanpham.NameProduct" src="@string.Format("https://beautygarden.vn/Files/{0}", sanpham.Img)">
+                                        </a>
+                                        <div class="product-item-actions">
+                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                        </div>
+                                        @*<button type="button" class="btn btn-cart"><span>Thêm giỏ hàng</span></button>*@
+                                        @* <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                    </div>
+                                    <div class="product-item-detail">
+                                        <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })" title="@sanpham.NameProduct">@sanpham.NameProduct</a></strong>
+                                        <div class="clearfix">
+                                            <div class="product-item-price">
+                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePro)₫</span>
+                                                @* <span class="old-price">$52.00</span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" product-item product-item-opt-2">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">
+                                            <img alt="@sanpham.NameProduct" src="@string.Format("https://beautygarden.vn/Files/{0}", sanpham.Img)">
+                                        </a>
+                                        <div class="product-item-actions">
+                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                        </div>
+                                        @*<button type="button" class="btn btn-cart"><span>Thêm giỏ hàng</span></button>*@
+                                        @* <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                    </div>
+                                    <div class="product-item-detail">
+                                        <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">@sanpham.NameProduct</a></strong>
+                                        <div class="clearfix">
+                                            <div class="product-item-price">
+                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePro)₫</span>
+                                                @* <span class="old-price">$52.00</span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+}

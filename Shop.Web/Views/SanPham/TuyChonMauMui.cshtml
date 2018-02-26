@@ -1,0 +1,65 @@
+﻿@model Shop.Web.Model.ChiTietModel
+@if (Model.FlagMauMui != 0)
+{
+    <div class="product-add-form">
+        <form>
+            <div class="product-options-wrapper">
+                <div class="swatch-opt">
+                    <div class="swatch-attribute color">
+                        @if (Model.FlagMauMui == 1)
+                        {
+                            <span class="swatch-attribute-label">Chọn màu: </span>
+                        }
+                        else
+                        {
+                            <span class="swatch-attribute-label">Chọn mùi: </span>
+                        }
+                        <div class="swatch-attribute-options clearfix">
+                            @* <div class="swatch-option color selected" style="background-color: #0c3b90;"></div>*@
+                            @if (Model.MenuOptions.Any())
+                            {
+                                foreach (var menuOption in Model.MenuOptions)
+                                {
+                                    if (menuOption.Img.IndexOf("#") != -1)
+                                    {
+                                        //load hinh bang colorpicker
+                                        <div class="swatch-option color">
+                                            <img id="@menuOption.Barcode" onclick="return GetOnHand(this)" style="background-color: @menuOption.Img;width: 20px;height: 20px;" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="swatch-option color">
+                                            <img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" alt="@menuOption.TenLoai" title="@menuOption.TenLoai" id="@menuOption.Barcode" onclick="return GetOnHand(this)" />
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<script>
+    function GetOnHand(ui) {
+
+        var maVach = $(ui).attr("id");
+        //lay dc id roi, ajax truyen vao controller
+        //alert(maVach);
+        $.post("/SanPham/TinhTrangSanPham", {
+            Barcode: maVach,
+
+        }, function (data) {
+
+            $(".product-info-stock").html(data);
+
+        });
+        // location.reload();
+        console.log(maVach, "ma vach");
+
+
+    }
+</script>

@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    int stt = (Model.page * 50) - 50;
+}
+@using PagedList.Mvc
+@using Shop.Data
+@model Shop.Admin.Controllers.ThongKeDonHangController.DonHangModel
+
+<div id="page-wrapper" style="min-height: 407px;">
+    @using (Html.BeginForm("Index", "ThongKeDonHang", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="page-header">Thống kê đơn hàng</h3>
+            </div>
+            <div class="col-lg-6" style="margin-top: 50px;">
+                <div class="col-lg-4">
+                    <div class='input-group date' id='datetimepicker1'>
+
+                        <input type='text' class="form-control" id="from" name="from" value="@Model.From" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar-o"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4" style="margin-left: -35px;">
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" name="to" value="@Model.To" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar-o"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-success">Xem</button>
+                </div>
+                <div class="col-lg-2 thongke" style="margin-top: 10px;">
+                    <span>Tổng: @Model.solanmua</span>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- /.row -->
+    <div class="row">
+        @ViewData["thongbao"]
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Stt</th>
+                    <th>Tên Sản phẩm</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.danhsachsanphams.Any())
+                {
+                    foreach (var danhsachsanpham in Model.danhsachsanphams)
+                    {
+                        stt++;
+                        <tr>
+                            <th>@stt</th>
+                            <td>@danhsachsanpham.Name</td>
+                            <td>@danhsachsanpham.Count</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+            @Html.PagedListPager(Model.danhsachsanphams, page => Url.Action("Index", new { page, from = @Model.From, to = @Model.To, stt = Model.stt }))
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+        $('#datetimepicker2').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
+
+

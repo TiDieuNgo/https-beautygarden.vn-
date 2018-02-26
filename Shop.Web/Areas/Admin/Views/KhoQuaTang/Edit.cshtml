@@ -1,0 +1,45 @@
+﻿@model IList<Shop.Web.Areas.Admin.Models.ProductGiftSelect>
+@{
+    IList<int> ids = Model.Any() ? Model.Where(o => o.Selected).Select(o => o.ProductId).ToList() : new List<int>();
+}
+<div class="form-group">
+    <label class="col-sm-2 ">Chọn quà tặng</label>
+    <div class="col-sm-10">
+        <select name="IdSanPhamQuaTang" id="IdSanPhamQuaTang" class="chosen-select1" multiple="multiple" style="width: 400px">
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    if (item.Selected)
+                    {
+                        <option value="@item.ProductId" selected>@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.ProductId">@item.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<input type="hidden" name="IdQUaTangs" id="IdQUaTangs" value="@string.Join(",",ids)" />
+<script>
+    $(document).ready(function () {
+        var layIds = $("#IdQUaTangs").val();
+        var ids = layIds.split(",");
+        $(".chosen-select1").chosen().change(function (e, p) {
+            console.log("p", p);
+            if (p.selected) {
+                ids.push(p.selected);
+            }
+            if (p.deselected) {
+                var index = ids.indexOf(p.deselected);
+                ids.splice(index, 1);
+
+            }
+            $("#IdQUaTangs").val(ids.join(","));
+            console.log("ids", ids);
+        });
+    });
+</script>

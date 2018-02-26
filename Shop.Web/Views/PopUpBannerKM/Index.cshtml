@@ -1,0 +1,12 @@
+﻿@model Shop.Model.PopUpBannerKM
+@if (Model != null)
+{
+    if (Model.StartDay <= DateTime.Now && Model.EndDay >= DateTime.Now)
+    {
+        <div id="my-welcome-message">
+            <a href="@Model.Link" target="_blank"><img src="@string.Format("/Upload/Files/{0}", Model.HinhAnh)" title="@Model.TieuDe" alt="@Model.TieuDe"/></a>
+        </div>
+        <div id="fvpp-blackout"></div>
+    }
+}
+

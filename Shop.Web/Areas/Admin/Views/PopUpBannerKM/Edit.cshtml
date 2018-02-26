@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Sửa banner mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Model.PopUpBannerKM
+@using (Html.BeginForm("SaveEdit", "PopUpBannerKM", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(o => o.Id)
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header" style="margin: 20px 0 5px;">Popup banner khuyến mãi</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Thêm mới
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <style>
+                                        .redText {
+                                            color: red;
+                                        }
+
+                                        .col-sm-2 {
+                                            color: #337ab7 !important;
+                                        }
+                                    </style>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tiêu đề</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.TieuDe, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Hình ảnh
+                                            <br />
+                                            <span style="color: green;">(900 x 603 px)</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            @Html.TextBoxFor(o => o.HinhAnh, new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button onclick="return BrowseImages('HinhAnh');" type="button" class="btn btn-primary">Upload ảnh</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span style="color: red;">
+                                                (*)Nên sử dụng tool để nén
+                                                <br />
+                                                <a href="https://compressor.io/" target="_blank">Click để sử dụng tool nén</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Link</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Bắt đầu</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" style="font-size:15px;font-weight:bold" id="datetimepicker12" name="StartDay"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Kết thúc</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" style="font-size:15px;font-weight:bold" id="datetimepicker13" name="EndDay"/>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="margin-left: 151px;">Lưu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker12').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD/MM/YYYY HH:mm'
+        });
+        $('#datetimepicker13').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD/MM/YYYY HH:mm'
+        });
+    });
+</script>

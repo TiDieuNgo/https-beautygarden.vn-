@@ -1,0 +1,22 @@
+﻿@model Shop.Model.SalePage
+<h1 class="page-heading" style="border-bottom: none !important;">
+    <span class="page-heading-title2">@Html.Raw(Model.TieuDe)</span>
+</h1>
+<article class="entry-detail">
+    <div class="content-text clearfix">
+        <p>@Html.Raw(Model.NoiDung1)</p>
+        <div class="headertitleBlue">
+            <p>@Html.Raw(Model.NoiDung2)</p>
+        </div>
+        <div class="tinhnangbox">
+            <p>@Html.Raw(Model.NoiDung3)</p>
+        </div>
+        <p>@Html.Raw(Model.NoiDung4)</p>
+    </div>
+</article>
+<style>
+    .content-text p {
+        font-size: 14px !important;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    }
+</style>

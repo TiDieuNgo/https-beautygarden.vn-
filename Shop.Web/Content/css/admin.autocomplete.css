@@ -1,0 +1,9 @@
+.ac_results {padding: 0px;background-color: white;overflow: hidden;z-index: 99999;background: #fff;border-color: rgba(0,0,0,.2);-moz-border-radius: 2px;border-radius: 2px;-webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);-moz-box-shadow: 0 2px 10px rgba(0,0,0,.2);box-shadow: 0 2px 10px rgba(0,0,0,.2);-webkit-background-clip: padding-box;-moz-background-clip: padding;background-clip: padding-box;}
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results li { margin: 0px; padding: 4px 5px; cursor: default; display: block; font-size: 12px; line-height: 16px; overflow: hidden; }
+.ac_results li table { border: none !important;font-size: 12px;color: #252525}
+.ac_loading { background: white url('/Content/images/ajax-loader.gif') right center no-repeat }
+.ac_odd { background-color: #eee }
+.ac_over { background-color: #4d90fe; }
+.ac_over table tr td{color: #fff;}
+.hightlight-word{background-color: yellow;color: #252525}

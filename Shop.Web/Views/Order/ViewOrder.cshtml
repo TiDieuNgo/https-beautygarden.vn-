@@ -1,0 +1,476 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Thông tin khách hàng</title>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            font-family: Arial;
+        }
+
+        A IMG {
+            BORDER-TOP-STYLE: none;
+            BORDER-RIGHT-STYLE: none;
+            BORDER-LEFT-STYLE: none;
+            BORDER-BOTTOM-STYLE: none;
+        }
+
+        A:link {
+            FONT-SIZE: 12px;
+            COLOR: #000000;
+            TEXT-DECORATION: none;
+        }
+
+        A:visited {
+            FONT-SIZE: 12px;
+            COLOR: #000000;
+            TEXT-DECORATION: none;
+        }
+
+        A:active {
+            FONT-SIZE: 12px;
+            COLOR: #000000;
+            TEXT-DECORATION: none;
+        }
+
+        A:hover {
+            FONT-SIZE: 12px;
+            COLOR: #ff0000;
+            TEXT-DECORATION: none;
+        }
+
+        .NoiDung {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            FONT-FAMILY: Arial, Verdana;
+            font-weight: normal;
+        }
+
+        A.phantrang:link {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            text-decoration: none;
+        }
+
+        A.phantrang:visited {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            text-decoration: none;
+        }
+
+        A.phantrang:hover {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            color: white;
+            background-color: #A1C107;
+        }
+
+        A.phantrang:active {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            background-color: #A1C107;
+        }
+
+        A.phantrang_visible:link {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            text-decoration: none;
+            background-color: #A1C107;
+            color: white;
+        }
+
+        A.phantrang_visible:visited {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            text-decoration: none;
+            background-color: #A1C107;
+            color: white;
+        }
+
+        A.phantrang_visible:hover {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            color: white;
+            background-color: #A1C107;
+        }
+
+        A.phantrang_visible:active {
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border: 1px solid #C5E29F;
+            background-color: #A1C107;
+            color: white;
+        }
+
+
+        A.titleNew:link {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleNew:active {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleNew:visited {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleNew:hover {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: underline;
+        }
+
+        .Tieude_News {
+            FONT-SIZE: 16px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+        }
+
+        A.titleProduct:link {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleProduct:active {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleProduct:visited {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleProduct:hover {
+            FONT-SIZE: 13px;
+            COLOR: #000000;
+            font-weight: bold;
+            FONT-FAMILY: Arial, Verdana;
+            TEXT-DECORATION: underline;
+        }
+
+        table.bordertableDonHangDetail {
+            border: medium none;
+        }
+
+            table.bordertableDonHangDetail th {
+                background-color: Gray;
+                border: medium none;
+                color: White;
+                font-size: 12px;
+                height: 20px;
+                padding: 5px;
+            }
+
+            table.bordertableDonHangDetail td {
+                border: medium none;
+                padding: 10px;
+            }
+
+            table.bordertableDonHangDetail tr {
+                border: 1px solid Gray;
+                margin-left: 10px;
+                padding: 10px;
+            }
+
+        A.titleDonHangDetail:link {
+            FONT-SIZE: 13px;
+            font-weight: bold;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleDonHangDetail:active {
+            FONT-SIZE: 13px;
+            font-weight: bold;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleDonHangDetail:visited {
+            FONT-SIZE: 13px;
+            font-weight: bold;
+            TEXT-DECORATION: none;
+        }
+
+        A.titleDonHangDetail:hover {
+            FONT-SIZE: 13px;
+            font-weight: bold;
+            TEXT-DECORATION: underline;
+        }
+
+        table.bordertable1 {
+            border-bottom: #d3d3d3 1px solid;
+            border-right: #d3d3d3 1px solid;
+        }
+
+            table.bordertable1 th {
+                border: #d3d3d3 1px solid;
+                background-color: #efefef;
+                height: 29px;
+            }
+
+            table.bordertable1 td {
+                border-top: #d3d3d3 1px solid;
+                text-align: center;
+                border-left: #d3d3d3 1px solid;
+                height: 27px;
+            }
+
+
+        .checkout-bar {
+            text-align: center;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+            .checkout-bar a, .checkout-bar span {
+                padding: 2px 18px;
+                font-size: 11px;
+                font-weight: bold;
+                display: inline-block;
+                margin-right: 4px;
+                text-transform: uppercase;
+                height: 16px;
+                float: left;
+            }
+
+                .checkout-bar a.on {
+                    color: White;
+                    background-color: #4877CF;
+                }
+
+            .checkout-bar .current {
+                color: #4877CF;
+                background-color: White;
+                height: 14px;
+                border: 1px solid #4877CF;
+                cursor: default;
+            }
+
+            .checkout-bar .off {
+                color: White;
+                background-color: #B2B2B2;
+                cursor: default;
+            }
+
+        table.line {
+            border-top: #d3d3d3 1px solid;
+            border-left: #d3d3d3 1px solid;
+            cellpadding: 0px;
+            cellspacing: 0px;
+        }
+
+            table.line th {
+                border-bottom: #d3d3d3 1px solid;
+                border-right: #d3d3d3 1px solid;
+                background-color: #f2f2f2;
+                padding: 5px;
+                text-align: center;
+                font-weight: bold;
+                height: 27px;
+            }
+
+            table.line td {
+                border-bottom: #d3d3d3 1px solid;
+                border-right: #d3d3d3 1px solid;
+                padding: 5px;
+            }
+    </style>
+</head>
+@model Shop.Web.ViewModels.CartViewModel.OrderModel
+<body>
+    <form id="form1" style="font-size:12px; line-height:20px">
+
+        <table align="center" width="600">
+            <tr>
+                <td style="width: 149px;float:left "></td>
+                <td colspan="2" style="vertical-align: top; text-align: left;width:470px;padding-left:30px;line-height:18px;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" colspan="3">
+                    <span style="font-size:18px;font-weight:bold;">  THÔNG TIN ĐƠN HÀNG</span><br />
+                    <span id="Span1">
+                        <em>
+                            Mã đơn hàng:
+                            <span id="lblMaDonHang">@Model.Order.id_</span>
+
+                            <br />
+                            Ngày đặt: <span id="divNgayDat">@Model.Order.sDate.ToString("dd/MM/yyyy")</span>
+                        </em>
+                    </span>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="3">
+
+                    <div>
+                        <table class="bordertableDonHangDetail" cellspacing="0" border="0" id="Table1" style="width:100%;border-collapse:collapse;">
+                            <tr>
+                                <th scope="col">Thông tin sản phẩm</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Thành tiền</th>
+                            </tr>
+                            @if (Model.CartItems.Any())
+                            {
+                                foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td style="width: 400px;">
+                                            <a href="#" title="@item.Name">
+                                                <img alt="@item.Name" src="@string.Format("/Upload/Files/{0}",item.Image)" style="float: left; margin-right: 10px; width:100px" />
+                                            </a>
+                                            <div style="float: left; width:290px">
+                                                <span style="font-weight: bold; vertical-align: top; color: black;
+                                            padding-top: 10px; text-align: center">
+                                                    <a class="titleDonHangDetail" href="#" target="_blank" title="@item.Name">
+                                                        @item.Name
+                                                    </a>
+                                                </span>
+                                                <br />
+                                                Mã sản phẩm: @item.Barcode
+                                                <br />
+                                                <span style="vertical-align: top; text-align: left">
+                                                    Số lượng: @item.Quantity
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td align="center" valign="top">
+
+                                            <span style="vertical-align: top;">
+                                                <div style="padding-bottom:5px"><strike>@item.Price.ToString("#,###,###,###")đ</strike></div>
+                                                <div style="padding-bottom:5px">
+                                                    <span style="color:Red"> @item.PricePromotion.ToString("#,###,###,###")đ</span>
+                                                </div>
+                                            </span>
+                                        </td>
+                                        <td align="center" valign="top">
+                                            <span style="vertical-align: top; text-align: left">
+                                                @item.Total.ToString("#,###,###,###")đ
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+
+                    <div id="divhtmlPVC" style="border-left:1px solid Gray;border-right:1px solid Gray; width:600px;height:35px;line-height:40px;border-bottom:1px dotted Gray;">
+                        <span style="margin-left:450px;float:left;"> <span id="divPhiVanCHuyen"></span></span>
+                    </div>
+
+                    <div style="border-bottom:1px solid Gray;border-left:1px solid Gray;border-right:1px solid Gray; width:600px;height:40px;line-height:40px;">
+                        <span style="font-weight:bold;margin-left:150px;float:left;">TỔNG CỘNG</span>
+                        <div style="width:10px;float:left;margin-left:50px;margin-top:6px;"><img src="images/linedonhang.png" /></div>
+                        <span style="font-weight:bold;margin-left:100px;float:left;">
+                            @Model.Total.ToString("#,###,###,###")đ
+                        </span>
+                    </div>
+                </td>
+
+
+            </tr>
+            <tr height="20px;">
+                <td></td>
+            </tr>
+            <tr>
+
+                <td colspan="3" style="height:200px;border:1px solid Gray;width:600px; vertical-align: top; text-align: left;">
+
+                    <div style="float:left;width:200px;padding:20px;line-height:18px;">
+                        <span style="font-weight:bold;">Thông tin người đặt hàng</span><br />
+
+                        <span id="lblhoten">Họ tên: @Model.CartForm.Name</span><br />
+
+
+                        <span id="lbldiachi">Địa chỉ: @Model.CartForm.ShipAddress</span><br />
+
+                        <span id="lbldienthoai">Điện thoại: @Model.CartForm.Phone</span><br />
+
+                        <span id="lblemail">Email: @Model.CartForm.Email</span><br />
+
+                        <span id="Span3">Ghi chú: @Model.CartForm.Note</span><br />
+
+                    </div>
+
+
+                    <div style="float:left;width:200px;padding:20px;line-height:18px;margin-left:100px;">
+                        <span style="font-weight:bold;">Thông tin người nhận hàng</span><br />
+
+                        <span id="lblhoten">Họ tên: @Model.CartForm.Name</span><br />
+
+
+                        <span id="lbldiachi">Địa chỉ: @Model.CartForm.ShipAddress</span><br />
+
+                        <span id="lbldienthoai">Điện thoại: @Model.CartForm.Phone</span><br />
+
+                        <span id="lblemail">Email: @Model.CartForm.Email</span><br />
+
+                        <span id="Span3">Ghi chú: @Model.CartForm.Note</span><br />
+
+
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="vertical-align: top; padding-top: 20px"></td>
+            </tr>
+
+        </table>
+
+    </form>
+</body>
+</html>

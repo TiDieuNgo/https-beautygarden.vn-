@@ -1,0 +1,15 @@
+﻿@model IList<Shop.Model.DetailMenu>
+@if (Model.Any())
+{
+    int i = 0;
+    foreach (var detailMenu in Model)
+    {
+        i++;
+        <div class="row_khuyenmai_@i">
+            <a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=detailMenu.Link })" target="_blank" class="alert-link" title="tin khuyến mãi">@detailMenu.Name<span class="detail_showkm"> Chi tiết</span></a>
+        </div>
+    }
+}
+@*@Html.Action("GiaTotMoiNgay", "Cart")*@
+@Html.Action("SanPhamCoQuaTang","Cart")
+

@@ -1,0 +1,33 @@
+﻿@model IList<Shop.Model.ProductFrontPageMapping.BannerShowHome>
+<div class="block-section-top block-section-top5 block-section-top5-custom">
+    <div class="container">
+        <div class="box-section-top">
+            <div class="block-slide-main slide-opt-5">
+                <div class="owl-carousel "
+                     data-nav="true"
+                     data-dots="false"
+                     data-margin="0"
+                     data-items='1'
+                     data-autoplaytimeout="700"
+                     data-autoplay="true"
+                     data-loop="true">
+                    @if (Model.Any())
+                    {
+                        foreach (var banner in Model)
+                        {
+                            <div class="item">
+                                <a href="@banner.Link" title="@banner.Name" target="_blank"> <img  alt="@banner.Name" data-src="@string.Format("/Upload/Files/{0}",banner.Img)" src="@string.Format("/Upload/Files/{0}",banner.Img)"></a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="feature hidden-xs">
+            <div class="one"><i class="bicon-12"></i> HỆ THỐNG PHÂN PHỐI MỸ PHẨM<br /> CHÍNH HÃNG</div>
+            <div class="two"><i class="bicon-13"></i> PHÁT HIỆN HÀNG KHÔNG CHÍNH <br>HÃNG ĐỀN NGAY 10.000.000 VNĐ</div>
+            <div class="three"><i class="bicon-14"></i> TÍCH ĐIỂM 1.000.000 VNĐ<br>TẶNG PHIẾU MUA HÀNG 100.000 VNĐ</div>
+            <div class="four"><i class="bicon-15"></i> FREESHIP NỘI THÀNH 48H VỚI <br>HÓA ĐƠNTRÊN 200.000 VNĐ</div>
+        </div>
+    </div>
+</div>

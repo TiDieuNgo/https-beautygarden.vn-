@@ -1,0 +1,187 @@
+﻿@model IList<Shop.Web.Models.BoxSPTheoMenuModel>
+@using Shop.Web.Core.Helper
+
+@if (Model.Any())
+{
+    foreach (var Dmsanpham in Model)
+    {
+    <div class="block-floor-products block-floor-products-opt2 floor-products7" id="floor0-1">
+        <div class="container">
+            <div class="block-title">
+                <!--ban desktop-->
+                <span class="title hidden-xs">
+                    <span class="icon">
+                        <img alt="@Dmsanpham.DanhMucSanPham.NameProduct" src="@string.Format("https://beautygarden.vn/Files/Thumb/{0}", Dmsanpham.DanhMucSanPham.IconMenu)"></span>
+                    <span class="text">@Dmsanpham.DanhMucSanPham.NameProduct</span>
+                </span>
+                <!--ban mobile-->
+                <span class="titlemobile hidden-lg hidden-sm hidden-md">
+                    <span class="icon">
+                        <img alt="@Dmsanpham.DanhMucSanPham.NameProduct" src="@string.Format("https://beautygarden.vn/Files/Thumb/{0}", Dmsanpham.DanhMucSanPham.IconMenu)" style="display: block;    vertical-align: initial;width: 25px;"></span>
+                    <span class="text">@Dmsanpham.DanhMucSanPham.NameProduct</span>
+                </span>
+
+                <div class="links dropdown">
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu" style="margin-right: 0px !important">
+                        @{
+                            int floor1 = Dmsanpham.DanhMucSanPham.id_ + 3;
+                            int floor2 = floor1 + 3;
+                          }
+                        <ul>
+                            <li class="active"><a data-toggle="tab" href="#floor1-@Dmsanpham.DanhMucSanPham.id_">Sản phẩm mới</a></li>
+                            <li><a data-toggle="tab" href="#floor1-@floor1">Sản phẩm nổi bật</a></li>
+                            <li><a data-toggle="tab" href="#floor1-@floor2">Sản phẩm bán chạy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content ">
+                <!--danh muc con level 2-->
+                <div class="col-categori">
+                    <ul>
+                        <!--chi hien thi danh muc level 2-->
+                        @if (Dmsanpham.SanPhams.Any())
+                        {
+                            foreach (var menu in Dmsanpham.DanhSachMenuCon)
+                            {
+                            <li><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = menu.Link })">@menu.NameProduct</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <!--ket thuc danh muc con-->
+
+                <div class="products products-grid tab-content">
+                    <!--col-products tab-content-->
+                    <div class="tab-pane fade in active" id="floor1-@Dmsanpham.DanhMucSanPham.id_">
+                        @if (Dmsanpham.SanPhams.Any())
+                        {
+                            foreach (var sanpham in Dmsanpham.SanPhams)
+                            {
+                            <div class="col-lg-2-4 col-xs-6 ">
+                                <div class="product-item product-item-opt-2" style="padding-top: 75px !important;">
+                                    <div class="product-item-info">
+                                        <div class="product-item-photo">
+                                            <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">
+                                                <img alt="@sanpham.NameProduct" src="@string.Format("/Upload/Files/{0}", sanpham.Img)" style="width: 174px;height: 194px;"></a>
+                                            <div class="product-item-actions">
+                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                            </div>
+                                            <button type="button" class="btn btn-cart"><span>Thêm giỏ hàng</span></button>
+                                            @* <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                        </div>
+                                        <div class="product-item-detail">
+                                            <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })" title="@sanpham.NameProduct">@sanpham.NameProduct</a></strong>
+                                            <div class="clearfix">
+                                                <div class="product-item-price">
+                                                    <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePro)₫</span>
+                                                    @* <span class="old-price">$52.00</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="floor1-@floor1">
+                        @if (Dmsanpham.SanPhams.Any())
+                        {
+                            foreach (var sanpham in Dmsanpham.SanPhamNoiBatHomes)
+                            {
+                            <div class="col-lg-2-4 col-xs-6 ">
+                                <div class="product-item product-item-opt-2" style="padding-top: 75px !important;">
+                                    <div class="product-item-info">
+                                        <div class="product-item-photo">
+                                            <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">
+                                                <img alt="@sanpham.NameProduct" src="@string.Format("/Upload/Files/{0}", sanpham.Img)" style="width: 174px;height: 194px;"></a>
+                                            <div class="product-item-actions">
+                                                <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                            </div>
+                                            <button type="button" class="btn btn-cart"><span>Thêm giỏ hàng</span></button>
+                                            @* <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                        </div>
+                                        <div class="product-item-detail">
+                                            <strong class="product-item-namenoibat"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })" title="@sanpham.NameProduct">@sanpham.NameProduct</a></strong>
+                                            <div class="clearfix">
+                                                <div class="product-item-price">
+                                                    <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePro)₫</span>
+                                                    @* <span class="old-price">$52.00</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="floor1-@floor2">
+                        @if (Dmsanpham.SanPhams.Any())
+                        {
+                        foreach (var sanpham in Dmsanpham.SanPhamBanChayHomes)
+                        {
+                        <div class="col-lg-2-4 col-xs-6 ">
+                            <div class=" product-item product-item-opt-2" style="padding-top: 75px !important;">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })">
+                                            <img alt="@sanpham.NameProduct" src="@string.Format("/Upload/Files/{0}", sanpham.Img)" style="width: 174px;height: 194px;"></a>
+                                        <div class="product-item-actions">
+                                            <a class="btn btn-quickview" href=""><span>quickview</span></a>
+                                        </div>
+                                        <button type="button" class="btn btn-cart"><span>Thêm giỏ hàng</span></button>
+                                        @* <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                    </div>
+                                    <div class="product-item-detail">
+                                        <strong class="product-item-namebanchay"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanpham.Link })" title="@sanpham.NameProduct">@sanpham.NameProduct</a></strong>
+                                        <div class="clearfix">
+                                            <div class="product-item-price">
+                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePro)₫</span>
+                                                @* <span class="old-price">$52.00</span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    }
+                    </div>
+                    <!-- list product -->
+                </div>
+            </div>
+        </div>
+    </div>
+        <style>
+            .product-item-opt-2 .product-item-namenoibat {
+                  font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+        height: 40px;
+            }
+             .product-item-opt-2 .product-item-namebanchay {
+                  font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+        height: 40px;
+            }
+        </style>
+    }
+}

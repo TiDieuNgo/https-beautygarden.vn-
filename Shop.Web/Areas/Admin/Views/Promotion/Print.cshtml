@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Danh sách sản phẩm khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_PrintLayout.cshtml";
+}
+@model Shop.Web.Areas.Admin.Models.PromotionModel.ExportModel
+
+<div style="margin: auto; text-align: center;">
+    @Html.Partial("ReportToolbar")
+     @Html.Partial("ReportViewerPartial", Model)
+   
+</div>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0CB7B2DB-AECA-421A-AA9F-BFF8B532D535}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shop.Model</RootNamespace>
+    <AssemblyName>Shop.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\AccMember298 - Copy.cs" />
+    <Compile Include="Database\CauHinh.cs" />
+    <Compile Include="Database\ThongBaoKhiCoHang.cs" />
+    <Compile Include="Database\PopUpBannerKM.cs" />
+    <Compile Include="Database\KhoQuaTang.cs" />
+    <Compile Include="Database\SalePage.cs" />
+    <Compile Include="Database\HeThongCuaHang.cs" />
+    <Compile Include="Database\BannerKhuyenMai.cs" />
+    <Compile Include="Database\TagTinTuc.cs" />
+    <Compile Include="Database\SanPhamXemCung.cs" />
+    <Compile Include="Database\Redirect301.cs" />
+    <Compile Include="Database\BannerDanhSach.cs" />
+    <Compile Include="Database\IframeSalepage.cs" />
+    <Compile Include="Database\Comment.cs" />
+    <Compile Include="Database\Review.cs" />
+    <Compile Include="Database\PromotionDetail.cs" />
+    <Compile Include="Database\DanhSachTag.cs" />
+    <Compile Include="Database\TraLoiComment.cs" />
+    <Compile Include="Database\UserRating.cs" />
+    <Compile Include="Database\TuKhoaTimKiem.cs" />
+    <Compile Include="Database\Email.cs" />
+    <Compile Include="Database\ThietLap.cs" />
+    <Compile Include="Database\YKienKhachHang.cs" />
+    <Compile Include="Database\NoiDungTienIch.cs" />
+    <Compile Include="Database\DanhMucTienIch.cs" />
+    <Compile Include="Database\TuKhoaTapHop.cs" />
+    <Compile Include="Database\Promotion.cs" />
+    <Compile Include="Database\AccMember298.cs" />
+    <Compile Include="Database\Account298.cs" />
+    <Compile Include="Database\ProductStockSync.cs" />
+    <Compile Include="Database\DetailMenuCommentItem.cs" />
+    <Compile Include="Database\DetailMenuComment.cs" />
+    <Compile Include="Database\MenuProAdd.cs" />
+    <Compile Include="Database\DetailMenu.cs" />
+    <Compile Include="Database\MenuImage.cs" />
+    <Compile Include="Database\MenuOption.cs" />
+    <Compile Include="Database\Menu.cs" />
+    <Compile Include="Database\TagsLink.cs" />
+    <Compile Include="Database\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

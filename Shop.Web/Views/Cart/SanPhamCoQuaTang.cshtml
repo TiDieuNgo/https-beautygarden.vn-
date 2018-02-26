@@ -1,0 +1,78 @@
+﻿@model Shop.Web.Model.QuaTangModel
+@if (Model.Products.Any())
+{
+ <!-- Sản phẩm có quà tặng -->
+    <div class="block-related tieude_gtmn">
+        <div class="block-title">
+            <strong class="title">Sản phẩm có quà tặng</strong>
+        </div>
+        <div class="block-content ">
+            <ol class="product-items owl-carousel " data-nav="true" data-dots="false" data-margin="30" data-slide-by="4" data-responsive='{"0":{"items":2},"480":{"items":2},"600":{"items":4},"992":{"items":4}}'>
+                @foreach (var menu in Model.Products)
+                {
+                    <li class="product-item product-item-opt-2">
+                        <div class="product-item-info">
+                            <div class="product-item-photo">
+                                <a href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" class="product-item-img" title="@menu.NameProduct">
+                                    <img src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)" alt="@menu.NameProduct" style="max-width: 173px; max-height: 193px;">
+                                </a>
+                                <div class="product-item-actions">
+                                    <a class="btn btn-wishlist" href="javascript:addtofavorites(@menu.id_);" id="@menu.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                </div>
+                                @if (menu.HasPromotion)
+                                {
+                                    <span class="product-item-label label-price">@menu.Discount% <span>off</span></span>
+                                }
+                                @*@{
+                                    int giatru = ((menu.Price * 2) * 10)/100;
+                                    int gia =(menu.Price * 2) - giatru;
+                                }
+                                @if (menu.Price < 80000 && !menu.HasPromotion)
+                                {
+                                    if (gia > 100000)
+                                    {
+                                        <span class="label-price-combo">@gia.ToString().Substring(0,3)K/2</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label-price-combo">@gia.ToString().Substring(0,2)K/2</span>
+                                    }
+                                        
+                                }*@
+                            </div>
+                            <div class="product-item-detail">
+                                @*@if (menu.Price < 80000 && !menu.HasPromotion)
+                                {
+                                    if (gia > 100000)
+                                    {
+                                        <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua 2 SP</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP</div>
+                                    }
+                                }*@
+                                <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                                <div class="clearfix">
+                                    <div class="product-item-price giamoi" style="line-height: 40px;">
+                                        @if (menu.HasPromotion)
+                                        {
+                                            <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                            <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ol>
+        </div>
+    </div>
+}
+<!-- ./Sản phẩm có quà tặng -->

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model Shop.Model.User
+
+@using (Html.BeginForm("Addnew", "User", FormMethod.Post, new { @class = "form-horizontal well" }))
+{
+  
+    <div class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls">
+            @Html.TextBoxFor(o => o.Email, new{@class="input-xlarge"})
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Họ Tên</label>
+        <div class="controls">
+            @Html.TextBoxFor(o=>o.HoTen, new{@class="input-xlarge"})
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Tên Đăng Nhập</label>
+        <div class="controls">
+            @Html.TextBoxFor(o=>o.TenDangNhap, new{@class="input-xlarge"})
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Mật Khẩu</label>
+        <div class="controls">
+            @Html.PasswordFor(o=>o.MatKhau, new{@class="input-xlarge"})
+           
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Ngày Tạo</label>
+        <div class="controls">
+            @Html.TextBoxFor(o=>o.NgayTao, new{@class="input-xlarge"})
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Trạng Thái</label>
+        <div class="controls">
+            @Html.CheckBoxFor(o=>o.TrangThai, new{@class="input-xlarge"})
+        </div>
+    </div>
+    
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </div>
+}
+  <script>
+      $(function () {
+          $("#NgayTao").datepicker({
+              changeMonth: true,
+              changeYear: true,
+              yearRange: '1900:2014'
+          });
+      });
+  </script>

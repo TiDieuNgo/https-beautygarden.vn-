@@ -1,0 +1,38 @@
+﻿@model Shop.Web.Model.ThuongHieuModel
+<link href="~/Content/cssBG/thuonghieu.css" rel="stylesheet" />
+
+<div class="block-service-opt2">
+    <div class="container">
+        <div class="col-md-12 text-center headHome-th thuonghieu_tieude">
+            <h2 class="title">Thương hiệu nổi bật</h2>
+        </div>
+        <div class="col-md-12 thuonghieu_custom" >
+            <div class="carousel" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+                <div class="carousel-inner">
+                    @if (Model.Brands.Any())
+                    {
+                        <div class="item active">
+                            <div class="col-md-2 col-sm-6 col-xs-6">
+                                <a href="#" title="thương hiệu nổi bật ">
+                                    <img src="/Upload/files/laneige-korea.jpg" class="img-responsive" alt="thương hiệu" style="height: 100px;width: 137px;"></a>
+                            </div>
+                        </div>
+                        foreach (var thuonghieu in Model.Brands)
+                        {
+  
+                            <div class="item">
+                                <div class="col-md-2 col-sm-6 col-xs-6">
+                                    <a href="@Url.RouteUrl("DanhSachSanPhamThuocThuongHieu", new { linkth = thuonghieu.Link })" title="@thuonghieu.Name">
+                                        <img src="@string.Format("/Upload/Files/{0}?width=137&height=100",thuonghieu.Img)" class="img-responsive" alt="@thuonghieu.Name" style="height: 100px;width: 137px;"></a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-angle-left" id="muitentrai"></i></a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-angle-right" id="muitenphai"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+

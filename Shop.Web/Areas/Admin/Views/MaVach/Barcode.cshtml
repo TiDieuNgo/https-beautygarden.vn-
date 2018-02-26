@@ -1,0 +1,267 @@
+﻿@using Newtonsoft.Json
+@model Shop.Web.Areas.Admin.Models.BarcodeModel
+@{
+    var json = JsonConvert.SerializeObject(Model.OptionShows);
+    IList<SelectListItem> selectes = new List<SelectListItem>()
+                                         {
+                                             new SelectListItem{Text = "không có gì",Value = "0"},
+                                             new SelectListItem{Text = "Màu",Value = "1"},
+                                             new SelectListItem{Text = "Mùi",Value = "2"},
+                                         };
+}
+<div class="form-group">
+    <label class="col-sm-2 ">
+        Phải có mã vạch
+    </label>
+
+    <div class="col-sm-3" id="block_checked">
+        <td class="center" style="text-align: center;">
+            <input type="checkbox" value="1" /></td>
+
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2">Mã vạch<span style="color: red;"> (*)</span></label>
+    <div class="col-sm-2">
+        <select name="BarcodeType" class="form-control" id="showmavachmaumui" onchange="return onTypeSelectChange(this);">
+            @foreach (var o in selectes)
+            {
+                if (Convert.ToInt16(o.Value) == Model.Type)
+                {
+                <option value="@o.Value" selected="selected">@o.Text</option>        
+                }
+                else
+                {
+                <option value="@o.Value">@o.Text</option>        
+                }
+            }
+        </select>
+    </div>
+    <div class="col-sm-6">
+
+        <input type="text" class="form-control" value="@Model.Barcode" name="Barcode" id="Barcode"/>
+
+        <div class="popupcontent" id="form_crud_barcode">
+            <div class="form-group">
+                <label class="col-sm-3" style="font-weight: normal;">Tên loại</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="Ten_mv" name="Ten_mv" type="text" value="">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" style="font-weight: normal;">Hình ảnh
+                      <br />
+                  <span style="color: green;">(30 x 30 px)</span>
+                </label>
+                <div class="col-sm-6">
+                    <input class="form-control" id="Hinh_mv" name="Hinh_mv" type="text" value="">
+                </div>
+                <div class="col-sm-3">
+                    <button onclick="return BrowseImages('Hinh_mv');" type="button" class="btn btn-primary">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" style="font-weight: normal;">Mã vạch</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="maVach_mv" name="maVach_mv" type="text" value="">
+                </div>
+
+            </div>
+            <button type="button" onclick="return save()" class="btn btn-success" style="margin-left: 115px;">Lưu mã vạch</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="form-group">
+    <label class="col-sm-6 "></label>
+    <div class="col-sm-6">
+
+        <ul id="images_other1">
+            @if (Model.OptionShows.Any())
+            {
+                foreach (var o in Model.OptionShows)
+                {
+                <li>
+                    <img class="img-thumbnail" src="@o.Img" onclick="return edit(@o.id_)"/>
+                    <span onclick="return remove(this)" class="remove"><i class="fa fa-close"></i></span>
+                </li>
+            
+                }
+            }
+
+        </ul>
+    </div>
+
+</div>
+
+<div style="display: none;">
+    <textarea id="MaVachJson" name="MaVachJson">@json</textarea>
+</div>
+
+<script type="text/javascript">
+    var type = @Model.Type;
+    
+    $(function() {
+        toggleType(type);
+        barcodeInputChange();
+    });
+
+    function barcodeInputChange() {
+        //neu ma vach rong thi khoa nut luu san pham lai
+        if($("#Barcode").val()==="") {
+            $("#btn_submit_form").prop('disabled', true);
+        }
+        $("#Barcode").change(function() {
+            var code = $(this).val();
+            console.log("code", code);
+            
+            $.get("/maVach/CheckBarcode",{code:code}, function( data ) {
+                if(!data.ok) {
+                    $("#btn_submit_form").prop('disabled', true);
+                    //alert(data.message);
+                    swal({
+                        title: data.message,
+                        imageUrl: "/images/error.jpg"    
+                    });
+                    
+                }else {
+                    $("#btn_submit_form").prop('disabled', false);
+                }
+                
+            });
+        });
+    }
+
+    function onTypeSelectChange(obj) {
+        type =parseInt($(obj).val());
+        toggleType(type);
+    }
+    
+    function toggleType(t) {
+        
+        if(t===0) {
+            // $("#btn_add_barcode").hide();
+            $("#form_crud_barcode").hide();
+            $("#Barcode").show();
+        }else {
+            // $("#btn_add_barcode").show();
+            $("#form_crud_barcode").show();
+            $("#Barcode").hide();
+        }
+        
+    }
+
+    function showFormCrud() {
+        $("#btn_add_barcode").hide();
+        $("#form_crud_barcode").show();
+    }
+    function hideFormCrud() {
+        $("#btn_add_barcode").show();
+        $("#form_crud_barcode").hide();
+    }
+
+
+    function edit(ui) {
+        var code = $(ui).attr("data-barcode");
+        var inputJson = $("#MaVachJson").val();
+        if (inputJson === "")
+            inputJson = "[]";
+        var maVachJson = JSON.parse(inputJson);
+        var item = {};
+        for (var i = 0; i < maVachJson.length; i++) {
+            if (maVachJson[i].Barcode === code) {
+                item = maVachJson[i];
+                break;
+            }
+        }
+       
+        $("#maVach_mv").val(item.Barcode);
+        $("#Hinh_mv").val(item.Img);
+        $("#Ten_mv").val(item.TenLoai);
+        $("#form_crud_barcode").show();
+    }
+
+    function remove(ui) {
+        $(ui).parent().remove();
+        var inputJson = $("#MaVachJson").val();
+        if (inputJson === "")
+            inputJson = "[]";
+        var maVachJson = JSON.parse(inputJson);
+        var newJson = [];
+        var code = $(ui).attr("data-barcode");
+        for(var o in maVachJson) {
+            if(maVachJson[o].Barcode!==code) {
+                newJson.push(maVachJson[o]);
+            }
+        }
+        $("#MaVachJson").val(JSON.stringify(newJson));
+
+        var id =parseInt($(ui).attr("data-option-id"));
+        if(id!==0) {
+            $.post("/maVach/DeleteMenuOption",{id:id}, function(  ) {});
+        }
+    }
+
+    function save() {
+        if($("#maVach_mv").val()==="")  {
+            $("#btn_submit_form").prop('disabled', true);
+        }
+        $.get("/maVach/CheckBarcodeMenuOption",{code:$("#maVach_mv").val()}, function( data ) {
+            if(data.ok) {
+                var inputJson = $("#MaVachJson").val();
+                if (inputJson === "")
+                    inputJson = "[]";
+                var maVachJson = JSON.parse(inputJson);
+                var o = {
+                    id_: 0,
+                    Barcode: $("#maVach_mv").val(),
+                    Img: $("#Hinh_mv").val(),
+                    TenLoai: $("#Ten_mv").val(),
+                    Flag: type
+                };
+                maVachJson.push(o);
+                $("#MaVachJson").val(JSON.stringify(maVachJson));
+        
+                var hinh = o.Img;
+                var imgs = hinh.replace("/files/", "");
+                $("#images_other1").append(' <li class="hinhanh" style="list-style: none;">' +
+                    '<img onclick="return edit(this)" data-barcode="'+o.Barcode+'" class="img-thumbnail" style=" width: 40px;height: 40px;margin-left: -40px; margin-bottom: 10px;" src="' + "/Upload/Files/" + imgs + '"/>' +
+                    '<span onclick="return remove(this)" data-option-id="'+o.id_+'" data-barcode="'+o.Barcode+'" class="remove"><i class="fa fa-close"></i></span>' +
+                    '</li>');
+
+                emptyForm();
+                $("#btn_submit_form").prop('disabled', false);
+            }else {
+                $("#btn_submit_form").prop('disabled', true);
+                // alert(data.message);
+                swal({
+                    title: data.message,
+                    imageUrl: "/images/error.jpg"    
+                });
+            }
+                
+        });
+
+    }
+
+    function emptyForm() {
+        $("#maVach_mv").val("");
+        $("#Ten_mv").val("");
+        $("#Hinh_mv").val("");
+    }
+    //neu check vao o phai co ma vach thi mo khoa nut luu len de luu san pham
+    $("#block_checked input").click(function(e) {
+        var that=$(this);
+        var vlCheck = that.val();
+        //alert(vlCheck);
+        if (vlCheck==1) {
+            
+            $("#btn_submit_form").prop('disabled', false);
+        } 
+    
+    });
+   
+</script>
+

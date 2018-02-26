@@ -1,0 +1,165 @@
+﻿@model Shop.Web.Models.DanhMucViewModel
+@using System.Collections
+@using Shop.Model
+@using Shop.Web.Core.Helper
+@using Shop.Web.ViewModels
+
+<div class="header-nav mid-header">
+    <div class="container">
+        <div class="box-header-nav">
+            <span data-action="toggle-nav-cat" class="nav-toggle-menu nav-toggle-cat"><span>Categories</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+            <div class="block-nav-categori hidden-xs">
+                <div class="block-title">
+                    <span>Categories</span>
+                </div>
+                <div class="block-content" id="hidecatagory">
+                    <div class="clearfix"><span data-action="close-cat" class="close-cate"><span>Categories</span></span></div>
+                    <ul class="ui-categori">
+                        @if (Model.DanhMucs != null && Model.DanhMucs.Any())
+                        {
+                            IList<Menu> danhmuccap1 = Model.DanhMucs.Where(o => o.Style == "danh-muc-san-pham" && o.idControl == 1).OrderBy(o => o.SapxepDanhMuc).ToList();//level 1
+                            foreach (var menu in danhmuccap1)
+                            {
+
+                                IList<int> ids = new List<int>() { 7, 1238, 8 };
+                                IList<Menu> danhmuccap2 = Model.DanhMucs.Where(o => o.idControl == menu.id_ && o.ShowMenuTop).OrderBy(o => o.SapxepDanhMuc).ToList(); //level 2
+                                string cl = "", clImg = "", climgcatagories = "", clli = "", parent = "", clkhungchamsoctoc = "";
+
+                                if (ids.Contains(menu.id_))
+                                {
+                                    cl = "menu-small";
+                                    clImg = "menu-small-img";
+                                    climgcatagories = "img_menu-thumb";
+                                    clli = "limenusmall";
+
+                                }
+                                if (menu.id_ != 8)
+                                {
+                                    parent = "parent";
+                                }
+                                if (menu.id_ == 5)
+                                {
+                                    //lam nho khung cham soc toc
+                                    clkhungchamsoctoc = "khungchamsoctoc";
+                                }
+
+                                <li class="@parent">
+                                    <a href="@Url.RouteUrl("DanhSachSanPham", new { splink = menu.Link })" title="danh mục sản phẩm">  <span class="icon"> <img src="@string.Format("/Upload/Files/{0}", menu.IconMenu)" alt="nav-cat" style="width: 20px;height: 20px;"></span>@menu.NameProduct</a>
+                                    <span class="toggle-submenu"></span>
+                                    @if (menu.id_ != 8)
+                                    {
+                                        <div class="submenu @clkhungchamsoctoc" id="@cl">
+                                            <div class="categori-img hidden-xs hidden-sm">
+                                                @if (menu.id_ == 2 || menu.id_ == 3 || menu.id_ == 1240)
+                                                {
+                                                    <a href=""><img src="@string.Format("/Upload/Files/{0}", menu.BannerDanhMuc)" alt="categori-img" id="img_menu @climgcatagories"></a>
+                                                }
+
+                                            </div>
+                                            <ul class="categori-list">
+                                                @if (danhmuccap2.Any())
+                                                {
+                                                    IList<MenuLeveModel> menuLeveModels = new List<MenuLeveModel>();
+                                                    int pageSize = ids.Contains(menu.id_) ? 5 : (danhmuccap2.Count / 3);
+                                                    for (int i = 1; i <= 3; i++)
+                                                    {
+                                                        IList<Menu> menus = danhmuccap2.Skip((i - 1) * pageSize)
+                                                            .Take(pageSize).ToList();
+                                                        if (menus.Any())
+                                                        {
+                                                            menuLeveModels.Add(new MenuLeveModel()
+                                                            {
+                                                                Menus = menus
+                                                            });
+                                                        }
+
+                                                    }
+
+                                                    foreach (var item in menuLeveModels)
+                                                    {
+                                                        <li class="col-md-4">
+                                                            @if (item.Menus.Any())
+                                {
+                                                                <ul class="list-submenu">
+                                                                    @foreach (var l2 in item.Menus)
+                                                                    {
+                                                                        IList<Menu> menusL3 = Model.DanhMucs.Where(o => o.idControl == l2.id_).OrderBy(o => o.SapxepDanhMuc).ToList();//level 3
+                                                                        <li class="@clli">
+                                                                            @if (menusL3.Any())
+                                                                            {
+                                                                                <strong class="title"><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = l2.Link })" title="@l2.NameProduct"><span>@l2.NameProduct </span></a></strong>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span style="color: #888;"><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = l2.Link })" title="@l2.NameProduct "><p class="@clImg" style="line-height: 15px;">@l2.NameProduct </p></a></span>
+                                                                            }
+                                                                            @if (menusL3.Any())
+                                                                            {
+                                                                                <ul class="list-submenu">
+                                                                                    @foreach (var menuconlast in menusL3)
+                                                                                    {
+
+                                                                                        <li><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = menuconlast.Link })" title="@menuconlast.NameProduct"><p style="line-height: 15px;">@menuconlast.NameProduct</p></a></li>
+                                                                                    }
+
+                                                                                </ul>
+
+                                                                            }
+
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+
+
+                                                        </li>
+
+                                                    }
+
+                                                }
+                                            </ul>
+                                        </div>
+
+
+                                    }
+
+                                </li>
+                            }
+                        }
+                        <li class="cat-link-orther">
+                            <a href="" title="thương hiệu">
+                                <span class="icon">
+                                    <img src="/images/icon/index1/nav-cat8.png" alt="nav-cat">
+                                </span>
+                                Thương hiệu
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <!--click an menu catagories-->
+            <!--click an menu catagories-->
+
+            @Html.Action("MenuTop", "Menu")
+            <span data-action="toggle-nav" class="nav-toggle-menu"><span>Menu</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+            @Html.Action("CountDropdownCart", "Cart")
+            <div class="block-search">
+                <div class="block-title">
+                    <span>Search</span>
+                </div>
+                <div class="block-content">
+                    <div class="form-search">
+                        <form action="@Url.RouteUrl("SanPhamTimKiem")" method="GET">
+                            <div class="box-group">
+                                <input type="text" name="keyword" id="keySearchdown" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                                <button class="btn btn-search" type="submit"><span>search</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

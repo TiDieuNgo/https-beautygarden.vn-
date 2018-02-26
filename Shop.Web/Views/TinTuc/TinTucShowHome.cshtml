@@ -1,0 +1,48 @@
+﻿@model IList<Shop.Model.DetailMenu>
+<!-- Block Blog -->
+<div class="block-the-blog-opt7">
+    <div class="container">
+        <div class="block-title block-title_showhome">
+            <h2 class="title title_tintuc">thông tin nổi bật</h2>
+        </div>
+        <div class="block-content">
+            <div class="owl-carousel"
+                 data-nav="true"
+                 data-dots="false"
+                 data-margin="30"
+                 data-slide-by="4"
+                 data-responsive='{
+                            "0":{"items":2},
+                            "480":{"items":2},
+                            "768":{"items":2},
+                            "992":{"items":3},
+                            "1200":{"items":4}
+                        }'>
+                @if (Model.Any())
+                {
+                    foreach (var detailMenu in Model)
+                    {
+
+                        <div class="blog-item blog_item_tintuc">
+                            <div class="blog-photo blog_photo_tintuc">
+                                <a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=detailMenu.Link })" title="@detailMenu.Name ">
+                                    <img src="@string.Format("/Upload/files/{0}?width=268&height=179",detailMenu.Img)" alt="@detailMenu.Name">
+                                </a>
+
+                            </div>
+                            <div class="blog-detail" style="height: 130px;">
+                                <strong class="blog-name" title="@detailMenu.Name"><a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=detailMenu.Link })" style="font-family: Arial;" title="@detailMenu.Name">@detailMenu.Name </a></strong>
+
+                                <div class="blog-des">
+                                    @Html.Raw(detailMenu.Note)
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

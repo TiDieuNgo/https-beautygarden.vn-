@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Thêm mới tin báo chí";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Model.DetailMenu
+@using (Html.BeginForm("Addnew", "TinBaoChi", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Tin báo chí</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+            <style>
+                 .col-sm-2 {
+                                                color: #337ab7 !important;
+                                            }
+            </style>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Thêm tin báo chí
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tiêu đề<br/><span style="color: green;"> (tối đa 45 kí tự)</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o=>o.Name, new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Title (SEO)
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(tối đa 60 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEOtitle, new { @class = "form-control", @maxlength = "60" })
+                                            @Html.ValidationMessageFor(o => o.SEOtitle, "", new { @class = "redText" })
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Description (SEO)
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(tối đa 155 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEODescription, new { @class = "form-control", @maxlength = "155" })
+                                            @Html.ValidationMessageFor(o => o.SEODescription, "", new { @class = "redText" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Hình ảnh</label>
+                                        <div class="col-sm-4">
+                                            @Html.TextBoxFor(o => o.Img, new { @class = "form-control" })
+                                          
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button onclick="return BrowseImages('Img');" type="button" class="btn btn-primary">Upload ảnh</button>
+                                        </div>
+                                          <div class="col-sm-4">
+                                         <span style="color: red;"> (*)Nên sử dụng tool để nén
+                                             <br/>
+                                             <a href="https://compressor.io/" target="_blank">Click để sử dụng tool nén</a>
+                                         </span>
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Link bài báo</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+                                    <style>
+                                        #cke_Content {
+                                            width: 820px !important;
+                                        }
+                                    </style>
+                                    <button type="submit" class="btn btn-success" style="margin-left: 151px;">Lưu</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+   
+}
+
+

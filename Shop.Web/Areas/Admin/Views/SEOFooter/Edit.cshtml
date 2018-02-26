@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Sửa SEO Footer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Model.SEOFooter
+@using (Html.BeginForm("SaveEdit", "SEOFooter", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(o => o.Id)
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header" style="margin: 20px 0 5px;">SEO Footer</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Sửa
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <style>
+                                        .redText {
+                                            color: red;
+                                        }
+
+                                        .col-sm-2 {
+                                            color: #337ab7 !important;
+                                        }
+                                    </style>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tên</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.TieuDe, new { @class = "form-control", required = "" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Link</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control", required = "" })
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="margin-left: 151px;">Lưu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Mã vạch màu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@using PagedList.Mvc
+@model PagedList.IPagedList<Shop.Model.MenuOption>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Mã vạch</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: red;">
+                    Danh sách mã vạch của sản phẩm có "màu"
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="width: 204.2px;">Tên sản phẩm</th>
+                                             <th style="width: 30px;">Ảnh màu</th>
+                                      
+
+                                            <th style="width: 204.2px;">Mã vạch</th>
+                                            <th style="width: 100px;">Tên màu</th>
+                                            <th style="width: 106px;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null )
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+                                                <td>@tag.NameProduct</td>
+                                                <td> <img src="@string.Format("https://beautygarden.vn/Files/{0}", tag.Img)"  style="width:40px;height:40px;text-align: center;"/></td>
+
+                                                <td class="center">@tag.Barcode</td>
+                                                <td class="center">@tag.TenLoai</td>
+                                                <td class="actions">
+                                                    <a title="Sửa" href="/admin/mavach/EditMVMau/@tag.id_" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a title="Xóa"  onclick="return xoa(@tag.id_)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                              <div class="col-sm-6">
+                                <div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">
+                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+
+                                @Html.PagedListPager(Model, page => Url.Action("Mau", new { page }))
+
+                            </div>
+                        </div>
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+ </div>
+    <script>
+        function xoa(f) {
+            var r = confirm("Bạn có muốn xóa không?");
+            if (r) {
+                location.href = "/admin/mavach/DeleteMau/" + f;
+            }
+        }
+    </script>

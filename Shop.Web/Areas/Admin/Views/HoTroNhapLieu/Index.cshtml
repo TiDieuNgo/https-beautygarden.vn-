@@ -1,0 +1,271 @@
+﻿@{
+    ViewBag.Title = "Hỗ trợ nhập liệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+@using PagedList;
+@using Shop.Data
+@model Shop.Web.Areas.Admin.Models.SanPhamModel
+@{
+    int stt = (Model.page * 50) - 50;
+}
+<div id="page-wrapper">
+<div class="container">
+    <div class="title" style="text-align: center; color: green;">
+        <h1 style="font-weight: bold; font-family: 'DINMedium';">Hỗ trợ nhập liệu (Beautygarden)</h1>
+    </div>
+    <div class="row">
+        <div id="dataTables-example_filter">
+            <label class="col-sm-1" style="margin-top: 10px;">
+                Lọc theo:
+            </label>
+            <div class="col-sm-3">
+                <select class="form-control" onchange="changetypePromotion(this.value)">
+                    @if (Convert.ToInt32(ViewData["sx"].ToString()) == 0)
+                    {
+                        <option value="0" selected="">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 1)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1" selected="">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 2)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2" selected="">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 3)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3" selected="">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 4)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4" selected="">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 5)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5" selected="">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 6)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6" selected="">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+
+                    }
+                    else if(Convert.ToInt32(ViewData["sx"].ToString()) == 7)
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7" selected="">Sản phẩm đã xong</option>
+                        <option value="8">Sản phẩm chưa đổi tên</option>
+                    }
+                    else
+                    {
+                        <option value="0">Tất cả sản phẩm</option>
+                        <option value="1">Giá tăng dần</option>
+                        <option value="2">Giá giảm dần</option>
+                        <option value="3">Id tăng dần</option>
+                        <option value="4">Id giảm dần</option>
+                        <option value="5">Tên tăng dần</option>
+                        <option value="6">Tên giảm dần</option>
+                        <option value="7">Sản phẩm đã xong</option>
+                        <option value="8" selected="">Sản phẩm chưa đổi tên</option>
+                    }
+
+                </select>
+            </div>
+            <div class="col-sm-5" style="margin-top: 10px;">
+                <p>Tổng số lượng: @Model.soluongtimduoc </p>
+            </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("ExportExcel", "HoTroNhapLieu", FormMethod.Post))
+                {
+                    <input type="submit" value="Export excel" />
+                }
+            </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("ExportExcelForZalo", "HoTroNhapLieu", FormMethod.Post))
+                {
+                    <input type="submit" value="Export excel Zalo" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover font_th" id="dataTables-example">
+            <thead>
+                <tr class="font_tr">
+                    <th>Stt</th>
+                    <th style="width: 15px;">Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Tên ngắn <span style="color: red;">(tối đa 25 kí tự)</span></th>
+                    <th>Mô tả ngắn <span style="color: red;">(tối đa 25 kí tự)</span></th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Menus.Any())
+                {
+                    foreach (var menu in Model.Menus)
+                    {
+                        stt++;
+
+                        string row = "row_data_" + menu.id_;
+                        <tr class="@row">
+                            <td>@stt</td>
+                            <td>
+                                <a href="@string.Format("https://www.beautygarden.vn/{0}", menu.Link + ".html")" target="_blank">
+                                    <img src="@string.Format("https://www.beautygarden.vn/Upload/Files/{0}?width=80&height=90", menu.Img)" style="width: 40px;height: 50px;"/></a></td>
+                            <td style="width: 300px;"><a href="@string.Format("https://www.beautygarden.vn/{0}", menu.Link + ".html")" target="_blank">@menu.NameProduct</a></td>
+                            <td>@string.Format("{0:#,#.##}", menu.PricePro)₫</td>
+                      
+                            <td><input type="text" class="form-control" id="ten-ngan-@menu.id_" maxlength="25" value="@menu.TenNgan"/></td>
+                            <td><input type="text" class="form-control" id="mo_ta_ngan-@menu.id_" maxlength="25" value="Mỹ Phẩm Chính Hãng"/></td>
+                        
+                            <td class="actions">
+                                <button type="button" class="btn btn-success" onclick="return Save(@menu.id_)">Lưu</button>
+                            </td>
+                        
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+            <div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">
+                Page @(Model.Menus.PageCount < Model.Menus.PageNumber ? 0 : Model.Menus.PageNumber) of @Model.Menus.PageCount
+            </div>
+        </div>
+        <div class="col-sm-6">
+            @if (Convert.ToInt32(ViewData["sx"].ToString()) != 0)
+            {
+                @Html.PagedListPager(Model.Menus, page => Url.Action("Index", new { page, sx = (ViewData["sx"]), stt = Model.stt }))
+            }
+            else
+            {
+                @Html.PagedListPager(Model.Menus, page => Url.Action("Index", new { page, stt = Model.stt }))   
+            }
+        </div>
+    </div>
+</div>
+</div>
+<style>
+    .font_th .font_tr th {
+        font-weight: normal!important;
+    }
+
+    .hidden_row_date {
+        display: none;
+    }
+</style>
+<script type="text/javascript">
+    function changetypePromotion(sx) {
+        location.href = "/admin/HoTroNhapLieu?sx=" + sx;
+    }
+</script>
+<script>
+    //de biet duoc la san pham da xong thi 2 field ten ngan va mo ta ngan phai not null(co du lieu)
+    function Save(id) {
+        var row_id = "row_data_" + id;
+        var tenngan_id = "ten-ngan-" + id;
+        var motangan_id = "mo_ta_ngan-" + id;
+        var tenngan = $("#" + tenngan_id).val();
+        var motangan = $("#" + motangan_id).val();
+        var id = id;
+        var url = '/admin/HoTroNhapLieu/Save';
+        if (tenngan=="" || motangan=="") {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+        } else {
+            $.post(url, {
+                    tenNgan: tenngan,
+                    motaNgan: motangan,
+                    id:id
+                }, function (data) {
+                    alert(data.mess);
+                    //thanh cong thi an dong do di
+                    $("." + row_id).addClass("hidden_row_date");
+                    location.reload();
+                });
+        }
+       
+    }
+</script>
+<script>
+    function ExportExcel() {
+        var url = '/admin/HoTroNhapLieu/ExportExcel';
+        $.post(url, {
+        }, function (data) {
+           // location.reload();
+            alert("Đã xuất file!");
+        });
+    }
+</script>

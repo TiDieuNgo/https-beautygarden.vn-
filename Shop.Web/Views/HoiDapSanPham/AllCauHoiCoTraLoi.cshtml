@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Những câu hỏi có câu trả lời";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Model.CommentModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+        <li>@ViewData["tenSP"]</li>
+        <li class="active"><a href="">tất cả câu hỏi có câu trả lời</a></li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-main">
+            <!-- List Products -->
+            <div class="products  products-grid beauty_review">
+                <div class="question-answer-box" style="margin-top: 0px !important;">
+                    <div class="question-answer-content">
+                         @if (Model.Comments.Any())
+                         {
+                             foreach (var modelComment in Model.Comments)
+                             {
+                                 <div class="item">
+                                     <div class="item-col-1">
+                                         <div class="group">
+                                             <p class="number" id="countlikecomment-@modelComment.CommentId">
+                                                 0                         
+                                             </p>
+                                             <p class="text">Thích</p>
+                                         </div>
+                                     </div>
+                                     <div class="item-col-2">
+                                         <div class="group">
+                                             <p class="name">@modelComment.NoiDungCmt</p>
+                                                @Html.Action("TraLoiCauHoiShowHome","HoiDapSanPham",new{idcomment= modelComment.CommentId})
+                                             <p class="action" style="margin-left: -10px !important;">
+                                                 <a href="javascript:addtoLike(@modelComment.CommentId);" id="@modelComment.CommentId">Thích</a>
+                                                 <a href="@Url.RouteUrl("HoiDapSanPham",new{seo="hoi-dap",id=modelComment.CommentId})">Trả lời</a>
+                                                 <a href="@Url.RouteUrl("HoiDapSanPham",new{seo="hoi-dap",id=modelComment.CommentId})">Xem tất cả @Shop.Web.Model.CommentModel.GetSlCautraloi(modelComment.CommentId) câu trả lời</a>
+                                             </p>
+                                         </div>
+                                     </div>
+                                 </div>
+                             }
+                         }
+                    </div>
+                    @*<div class="question-answer-form">
+                        <p class="form">
+                            <input type="text" name="content" id="content" data-product="704170" class="form-control" value="" placeholder="Hãy đặt câu hỏi liên quan đến sản phẩm...">
+                            <button type="button" class="btn btn-primary btn-add-question">Gửi câu hỏi</button>
+                        </p>
+                    </div>*@
+                </div>
+                
+
+            </div>
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class="col-md-3 col-sidebar">
+
+            <!-- Block  bestseller products-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  bestseller products-->
+            <!-- block slide top -->
+            @Html.Action("BannerQCChiTiet","Banner")
+            <!-- block slide top -->
+
+            @Html.Action("SanPhamMoiVeInChiTiet","TinTuc")
+        </div>
+        <!-- Sidebar -->
+
+    </div>
+</div>
+<h2 style="display: none;">Danh sách các sản phẩm thuộc danh mục</h2>
+<h3 style="display: none;">Trang điểm</h3>
+<h3 style="display: none;">Chăm sóc da</h3>
+<h3 style="display: none;">Chăm sóc tóc</h3>
+<h3 style="display: none;">Nước hoa</h3>
+<h3 style="display: none;">Phụ kiện</h3>
+<h3 style="display: none;">Thực phẩm chức năng</h3>
+<!-- end MAIN -->
+
+<script>
+    var likeComments = JSON.parse(localStorage.getItem('likeComments')) || [];
+    var countlikecomment = 0;
+
+    likeComments.forEach(function (CommentId) {
+        //chay lan luot tung li da co class liked
+        $("#" + CommentId).text('Đã thích');
+        $("#" + CommentId).addClass("liked");
+        var soluong = $("#" + CommentId).length;
+        var idlike = "countlikecomment-" + CommentId;
+        $("#" + idlike).text(soluong);
+    });
+
+    function addtoLike(CommentId) {
+        var index = likeComments.indexOf(CommentId);
+        if (!CommentId) return;
+        if (index == -1) {
+            //khi click thi day id cua thang click vao like Comment
+            likeComments.push(CommentId);
+            $("#" + CommentId).text('Đã thích');
+            $("#" + CommentId).addClass("liked");
+        } else {
+            swal("Bạn đã nhấn thích cho câu hỏi này trước đó.");
+        }
+        localStorage.setItem('likeComments', JSON.stringify(likeComments));
+        var idlike = "countlikecomment-" + CommentId;
+        likeComments.forEach(function (CommentId) {
+            var soluong = $("#" + CommentId).length;
+            $("#" + idlike).text(soluong);
+        });
+    }
+</script>

@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Review sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList.Mvc
+@model PagedList.IPagedList<Shop.Model.Review>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="margin: 20px 0 5px;">Review sản phẩm</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: #337ab7;">
+                    <a href="/admin/review/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button></a>
+                    
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="width: 204.2px;">Tiêu đề </th>
+                                           <th style="width: 80px;">Hình ảnh</th>
+                                            <th style="width: 204.2px;">Mô tả</th>
+                                            <th style="width: 30px;">Vị trí</th>
+                                            <th style="width: 30px;">Ẩn/hiện?</th>
+                                            <th style="width: 30px;">Người tạo</th>
+                                            <th style="width: 106px;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null )
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+                                                <td><a href="@Url.RouteUrl("ChiTietReview", new { seolink=tag.Link })">@tag.TieuDe</a></td>
+                                           
+                                               <td>
+                                                    <img src="@string.Format("/Upload/Files/{0}", tag.HinhAnh)"  style="width:100px;"/></td>
+
+                                                <td class="center">@tag.Mota</td>
+                                                <td class="center">@tag.Sapxep</td>
+                                                @if (tag.Ok)
+                                                {
+                                                    <td class="center" style="text-align: center;">
+                                                        <input id="check_anhien" type="checkbox" checked="checked" value="@tag.id_"/>
+                                                       
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="center" style="text-align: center;">
+                                                        <input id="check_anhien" type="checkbox" value="@tag.id_"/>
+                                                        <span style="color: red;font-weight: normal;float: right;margin-top: 45px;">ẩn
+
+                                                        </span>
+                                                       
+                                                    </td>
+                                                    
+                                                }
+                                                <td>
+                                                    @tag.NguoiTao
+                                                </td>
+                                                <td class="actions">
+                                                    <a title="Sửa" href="/admin/review/edit/@tag.id_" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a title="Xóa"  onclick="return xoa(@tag.id_)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                </div>
+                                <div class="col-sm-6">
+
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+                                </div>
+                            </div>
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+ </div>
+    <script>
+        function xoa(f) {
+            var r = confirm("Bạn có muốn xóa không?");
+            if (r) {
+                location.href = "/admin/review/Delete/" + f;
+            }
+        }
+    </script>
+
+<script>
+    //update an hien 
+    $("#dataTables-example tr td #check_anhien").click(function (e) {
+        var that = $(this);
+        var vlCheck = that.val();
+        //alert(vlCheck);
+        var url = '/admin/review/UpdateOk';
+        $.post(url, {
+                idtintuc: vlCheck,
+                checked: that.is(':checked')
+            }, function (data) {
+                alert("Cập nhật trạng thái thành công!");
+            });
+    });
+</script>
+

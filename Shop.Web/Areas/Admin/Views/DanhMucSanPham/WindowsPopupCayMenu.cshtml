@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Xem cây menu";
+}
+@using Shop.Model
+@model Shop.Web.Areas.Admin.Models.CayMenuModel
+
+<a style="float: right;">
+    <button type="button" class="btn btn-success" onclick="myFunction()">Xem cây menu</button></a>
+<script>
+function myFunction() {
+    window.open("/admin/danhmucsanpham/caymenu", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=90,left=500,width=400,height=650");
+}
+</script>

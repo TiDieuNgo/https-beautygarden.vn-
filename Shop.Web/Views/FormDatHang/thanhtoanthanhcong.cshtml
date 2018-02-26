@@ -1,0 +1,36 @@
+﻿
+<div class="thanhcong_salepage" style="text-align: center;">
+    <p style="color: blue; font-size: 16px; font-weight: bold;">Bạn đã gửi thành công. Chúng tôi sẽ liên lạc trong thời gian sớm nhất!</p>
+    <img src="/images/thongbaothanhcong.jpg" style="width: 300px;"/>
+</div>
+<!-- Code chuyển đổi google -->
+<script type="text/javascript">
+/* <![CDATA[ */
+    var google_conversion_id = 960772426;
+    var google_conversion_label = "ZdChCKfZh3EQyvKQygM";
+    var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/960772426/?label=ZdChCKfZh3EQyvKQygM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+<!--Code Remarketing FaceBook-->
+<!-- ReFacebook -->
+<script>
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        }; if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+    }(window,
+        document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '288940968216155'); // Insert your pixel ID here.
+    fbq('track', 'PageView');
+</script>
+@Html.Raw(Shop.Web.Controllers.FormDatHangController.RemarkettingFacebookPurchase(ViewBag.barcode))

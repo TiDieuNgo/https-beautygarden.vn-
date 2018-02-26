@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+@model Shop.Web.Models.KhachHangModel
+    <body>
+        <h2>Thông Báo</h2>
+        <br />
+        <p>Xin Chào: @Model.Email</p>
+        <br />
+        <p>
+            Chúc mừng bạn đã trở thành, thành viên của Beautygarden!<br />
+            Bạn vui lòng xem lại thông tin của bạn bên dưới.<br />
+            <br />
+        </p>
+        <table style="width: 100%; border: 1px solid red;">
+           
+            <tr>
+                <td align="right" style="width: 100px; height: 32px">Email:</td>
+                <td align="left" style="width: 123px; height: 32px">@Model.Email</td>
+            </tr>
+          
+            <tr>
+                <td align="right" style="width: 100px; height: 32px">Mật Khẩu:</td>
+                <td align="left" style="width: 123px; height: 32px">@Model.Password</td>
+            </tr>
+
+
+        </table>
+    </body>
+</html>

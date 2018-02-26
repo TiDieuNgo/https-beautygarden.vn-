@@ -1,0 +1,143 @@
+﻿@using Newtonsoft.Json
+@using Shop.Model
+@model  Shop.Web.Areas.Admin.Models.CategoryTreeModel
+
+<style>
+    .category_menu_tree
+    {
+        max-height: 500px;
+        overflow-y: auto;
+        width: 500px;
+        padding: 10px;
+    }
+
+        .category_menu_tree ul
+        {
+            list-style: none;
+        }
+
+        .category_menu_tree li
+        {
+            position: relative;
+            padding: 0px 10px;
+        }
+
+            .category_menu_tree li ul
+            {
+                display: none;
+            }
+
+            .category_menu_tree li.open > ul
+            {
+                display: block;
+            }
+
+        .category_menu_tree i
+        {
+            position: absolute;
+            right: 3px;
+        }
+
+        .category_menu_tree li a
+        {
+            display: inline;
+            padding-left: 0px;
+        }
+</style>
+@{
+    string json = JsonConvert.SerializeObject(Model.SelectedIds);
+}
+<div style="display: none;">
+    <textarea id="danhMucIds" name="DanhMucIds" >@json</textarea>
+
+</div>
+<div class="btn-group " id="category_tree">
+    <button type="button" class="btn btn-default dropdown-toggle">
+        Chọn danh mục sản phẩm <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu category_menu_tree">
+        @if (Model.Categories.Any())
+        {
+            foreach (var l1 in Model.Categories.Where(o => o.Level == 1))
+            {
+                bool checked1 = Model.SelectedIds.Contains(l1.DanhMucId);
+                string checked1_str = checked1 ? "checked" : "";
+            <li onclick="return toggleUl(this,event);">
+                <input type="checkbox" class="check_box" @checked1_str data-category-id="@l1.DanhMucId"/>
+                <a href="javascript:void(0)">@l1.Name</a>
+                <i class="fa fa-chevron-right"></i>
+                @{
+                IList<MenuCategoryTree> categories_2 = Model.Categories.Where(o => o.ParentId == l1.DanhMucId).ToList();
+                }
+                @if (categories_2.Any())
+                {
+                    <ul class="level-2">
+                        @foreach (var l2 in categories_2)
+                        {
+                            bool checked2 = Model.SelectedIds.Contains(l1.DanhMucId);
+                            string checked2_str = checked2 ? "checked" : "";
+                            <li onclick="return toggleUl(this,event);">
+                                <input class="check_box" type="checkbox" @checked2_str data-category-id="@l2.DanhMucId"/>
+                                <a href="javascript:void(0)">@l2.Name</a>
+                                <i class="fa fa-chevron-right"></i>
+                                @{
+                            IList<MenuCategoryTree> categories_3 = Model.Categories.Where(o => o.ParentId == l2.DanhMucId).ToList();
+                                }
+                                @if (categories_3.Any())
+                                {
+                                    <ul class="level-3">
+                                        @foreach (var l3 in categories_3)
+                                        {
+                                            <li>
+                                                <input class="check_box" type="checkbox" data-category-id="@l3.DanhMucId"/>
+                                                <a href="javascript:void(0)">@l3.Name</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+            </li>
+            }
+        }
+
+
+    </ul>
+</div>
+
+<script>
+    $(function () {
+        $("#category_tree").click(function () {
+            var $this = $(this);
+
+            $this.toggleClass("open");
+        });
+
+        $(".check_box").click(function (event) {
+            var id =parseInt($(this).attr("data-category-id"));
+            
+            var ids = JSON.parse($("#danhMucIds").val());
+            
+            if ($(this).is(":checked")) {
+                ids.push(id);
+            } else {
+                var index = ids.indexOf(id);
+                if (index > -1)
+                    ids.splice(index, 1);
+            }
+            $("#danhMucIds").val(JSON.stringify(ids));
+            event.stopPropagation();
+        });
+    });
+
+
+    function toggleUl(ui, event) {
+        var $this = $(ui);
+
+        $this.toggleClass("open");
+
+        event.stopPropagation();
+    }
+</script>

@@ -1,0 +1,11 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Web.Mvc.UI
+
+@{Html.DevExpress().ReportToolbar(settings =>
+  {
+      settings.Name = "ReportToolbar";
+      settings.ReportViewerName = "ReportViewer";
+      //settings.ClientSideEvents.SetEventHandler("Init", "function(s, e) { reportViewer.Print(); }");
+  }).Render();
+   
+}

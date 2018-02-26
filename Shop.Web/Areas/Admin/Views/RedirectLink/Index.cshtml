@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Redirect 301";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+@using Shop.Data
+@model PagedList.IPagedList<Shop.Model.Redirect301>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="margin: 20px 0 5px;">Redirect 301</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: blue;">
+                    <a href="/admin/RedirectLink/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button></a>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Link cũ</th>
+                                            <th>Link mới</th>
+                                            <th>Ngày tạo</th>
+                                            <th style="text-align: center;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+                                            
+                                                <td>@tag.LinkCu</td>
+                                                <td>@tag.LinkMoi</td>
+                                                <td>@tag.NgayTao.ToShortDateString()</td>
+                                                <td class="actions">
+                                                    <a title="Sửa" href="/admin/RedirectLink/edit/@tag.Redirect301Id" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>
+                                                <a title="Xóa"  onclick="return xoa(@tag.Redirect301Id)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            </div>
+                        </div>
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+</div>
+<script>
+    function xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        if (r) {
+            location.href = "/admin/RedirectLink/Delete/" + f;
+        }
+    }
+</script>
+

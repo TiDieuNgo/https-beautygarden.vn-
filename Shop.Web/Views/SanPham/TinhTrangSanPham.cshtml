@@ -1,0 +1,59 @@
+﻿@model Shop.Web.Model.TinhTrangSanPhamModel
+<div class="product-info-stock">
+    <div class="stock available">
+        <span class="diachi"><i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+            <br />
+            @if (Model.CheckOnhandQ3 > 0)
+            {
+                <span style="margin-left: 13px;">71, Đường số 3, Cư Xá Đô Thành, P4, Q3 - <span style="color: #199427!important;">Còn hàng (@Model.CheckOnhandQ3)</span> </span> 
+            }
+            else
+            {
+                <span style="margin-left: 13px;">71, Đường số 3, Cư Xá Đô Thành, P4, Q3 - <span style="color: red!important;">Hết hàng </span> </span> 
+            }
+            <br />
+            @if (Model.CheckOnhandPhuNhan > 0)
+            {
+                <span style="margin-left: 13px;">98B Phan Đăng Lưu, P.3, Q.Phú Nhuận - <span style="color: #199427!important;">Còn hàng (@Model.CheckOnhandPhuNhan)</span> </span> 
+            }
+            else
+            {
+                <span style="margin-left: 13px;">98B Phan Đăng Lưu, P.3, Q.Phú Nhuận -  <span style="color: red!important;">Hết hàng </span> </span>  
+            }
+
+        </span>
+        <br />
+        @if (Model.CheckOnhandHaNoi > 0)
+        {
+            <span class="diachi"><i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+               
+                <span>152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">Còn hàng (@Model.CheckOnhandHaNoi)</span> </span>
+            </span>
+        }
+        else
+        {
+            <span class="diachi"><i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                <span>152 Chùa Bộc, Đống Đa, Hà Nội -  <span style="color: red!important;">Hết hàng </span> </span> 
+            </span>
+        }
+        <br />
+        @if(Model.CheckOnhandDaNang>0)
+        {
+             <span class="diachi"><i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+            <span>268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">Còn hàng (@Model.CheckOnhandDaNang)</span> </span>  
+            </span>
+        }
+        else
+        {
+             <span class="diachi"><i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+            <span>268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -  <span style="color: red!important;">Hết hàng </span> </span>  
+            </span>
+        }
+    </div>
+</div>
+<style>
+    .diachi span
+    {
+        color: #666 !important;
+    }
+</style>

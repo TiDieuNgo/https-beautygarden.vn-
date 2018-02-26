@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html ⚡>
+@using System.Text.RegularExpressions
+@model Shop.Web.Model.TinTucModel
+@{
+    ViewBag.Title = Model.TinTucChiTiet.Name;
+    ViewBag.Keyword = Model.TinTucChiTiet.Note == null ? "✅" + Model.TinTucChiTiet.Note : Regex.Replace("✅" + Model.TinTucChiTiet.Note, @"<[^>]*>", String.Empty);
+    ViewBag.Description = Model.TinTucChiTiet.Note == null ? "✅" + Model.TinTucChiTiet.Note : Regex.Replace("✅" + Model.TinTucChiTiet.Note, @"<[^>]*>", String.Empty);
+    ViewBag.image = "https://beautygarden.vn/Upload/Files/" + Model.TinTucChiTiet.Img;
+    ViewBag.canonical = "https://beautygarden.vn/tin-tuc/" + Model.TinTucChiTiet.Link + ".amp";
+}
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <link rel="canonical" href="@ViewBag.canonical">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script src="https://beautygarden.vn/Scripts/JsBg/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="robots" content="noodp, noydir" />
+  
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    
+    <script type="application/ld+json">
+    {
+      "@@context": "http://schema.org",
+      "@@type": "NewsArticle",
+      "mainEntityOfPage": "@ViewBag.canonical",
+      "description": "@ViewBag.Description",
+      "headline": "@ViewBag.Title",
+      "datePublished": "@DateTime.Now",
+      "dateModified": "@DateTime.Now",
+      "publisher": {
+        "@@type": "Organization",
+        "name": "Beautygarden.vn",
+        "logo": {
+            "@@type": "ImageObject",
+            "url": "@ViewBag.canonical",
+            "height": "60",
+            "width": "234"
+          }
+      },
+      "author": {
+            "@@type": "Organization",
+            "name": "@Model.TinTucChiTiet.Name"
+
+      },
+      "image": {
+        "@@type": "ImageObject",
+        "url": "@ViewBag.image",
+        "height": "100",
+        "width": "100"
+      }
+    }
+    </script>
+    
+    <style amp-custom>
+        .logo amp-img {
+            vertical-align: middle;
+            width: 320px;
+            height: 81px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo {
+            display: block;
+            text-align: center;
+        }
+        .header-opt-5 .header-top {
+            background-color: #eee;
+            padding: 0;
+            font-size: 13px;
+            height: 35px;
+        }
+        .nav-left {
+            list-style: none;
+        }
+       
+        .container {
+            width: 1200px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .header-opt-5 .header-content {
+            background-color: #fff;
+            padding: 20px 0 30px;
+        }
+        .header-top .hotline a{
+            text-decoration: none;
+        }
+        .mau_hotline {
+            color: #1f601f;
+            font-weight: bold;
+            font-size: 14px;
+            font-family: Arial, serif;
+        }
+        .mau_dienthoai {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: Arial, serif;
+        }
+        .hotline {
+            line-height: 30px;
+        }
+        .center_text {
+            text-align: center;
+        }
+        .breadcrumb {
+            padding: 8px 0px;
+            margin-bottom: 20px;
+            list-style: none;
+            border-radius: 4px;
+            margin: 13px 0;
+            background-color: transparent;
+            text-transform: capitalize;
+            padding: 0;
+            font-size: 14px;
+            margin-bottom: 22px;
+            margin-top: 20px;
+        }
+        .breadcrumb>li {
+            display: inline-block;
+            color: #999;
+            line-height: 25px;
+        }
+        ol li, ul li {
+            list-style: none;
+        }
+        .breadcrumb li a {
+            color: #999;
+            text-decoration: none;
+        }
+        .breadcrumb>li+li:before {
+            padding: 0 5px;
+            color: #ccc;
+            content: "/\00a0";
+        }
+        .page-heading {
+            border-bottom: 1px solid #eaeaea;
+            line-height: 25px;
+            position: relative;
+            font-size: 20px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper" id="wrapper_content_page">
+    <header class="site-header header-opt-5">
+        <!-- header-top -->
+        <div class="header-top">
+            <div class="container">
+                <div class="center_text">
+                    <span class="hotline">
+                        <a href="tel:0911384114" title="0911384114"><span class="mau_hotline">Hotline:</span> <span class="mau_dienthoai">0911 384 114</span></a>
+                    </span>
+                </div>
+            </div>
+        </div> <!-- header-top -->
+        <!-- header-content -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-4 nav-left hidden-xs">
+                        <!-- logo -->
+                        <strong class="logo">
+                            <a href="https://beautygarden.vn">
+                                <amp-img src="/images/logomoi-compressor.png" class="img_responsive" alt="Beautygarden" width="200"
+                                         height="200"
+                                         layout="responsive"></amp-img>
+                            </a>
+                        </strong><!-- logo -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+        <li><a href="@ViewData["duongdan"]">@ViewData["ten"]</a></li>
+        <li class="active">@Model.TinTucChiTiet.Name</li>
+    </ol>
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-12  col-main">
+            <h1 class="page-heading">
+                <span class="page-heading-title2">@Model.TinTucChiTiet.Name</span>
+            </h1>
+            <article class="entry-detail">
+                <div class="content-text clearfix">
+                    @Html.Raw(Regex.Replace(Model.TinTucChiTiet.Content.Replace("img", "amp-img"), "<[^>]*>", String.Empty))
+                </div>
+            </article>
+            <!-- Related Posts -->
+            <div class="single-box">
+                <h2>Tin khác</h2>
+                <ul class="related-posts owl-carousel" data-dots="false" data-loop="true" data-nav="true" data-margin="30" data-autoplaytimeout="1000" data-autoplayhoverpause="true" data-responsive='{"0":{"items":2},"600":{"items":2},"1000":{"items":4}}'>
+                    @if (Model.tinkhacs.Any())
+                    {
+                        foreach (var detailMenu in Model.tinkhacs)
+                        {
+                            <li class="post-item">
+                                <article class="entry">
+                                    <div class="entry-thumb image-hover2">
+                                        <a href="@Url.RouteUrl("ChiTietTinTuc", new {seolink = detailMenu.Link})">
+                                            <amp-img  src="@string.Format("/Upload/files/{0}", detailMenu.Img)" alt="@detailMenu.Name" width="1698"
+                                                     height="2911"
+                                                     layout="responsive">
+                                            </amp-img>
+                                        </a>
+                                    </div>
+                                    <div class="entry-ci">
+                                        <h3 class="entry-title"><a href="@Url.RouteUrl("ChiTietTinTuc", new {seolink = detailMenu.Link})">@detailMenu.Name</a>
+                                        </h3>
+                                    </div>
+                                </article>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="single-box">
+                <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="870"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

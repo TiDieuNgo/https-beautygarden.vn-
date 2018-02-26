@@ -1,0 +1,24 @@
+﻿@model Shop.Web.Model.QuaTangModel
+<ul class="lipgift">
+    @if (Model.Products.Any())
+    {
+        foreach (var menu in Model.Products)
+        {
+            <li>
+                <a href="@Url.RouteUrl("ChiTietSanPham", new { splink = menu.Link })">
+                    <img data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)" alt="@menu.NameProduct" title="@menu.NameProduct" class="img2">
+                    <br>
+                    @if (menu.HasPromotion)
+                    {
+                        <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                            <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                    }
+                    else
+                    {
+                        <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                    }
+                </a>
+            </li>
+        }
+    }
+</ul>

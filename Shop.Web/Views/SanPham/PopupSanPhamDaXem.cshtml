@@ -1,0 +1,45 @@
+﻿@model Shop.Web.Model.SanPhamMoiVeModel
+<li class="dropdown setting dropdown-setting-daxem">
+    <a data-toggle="dropdown" role="button" href="#" class="dropdown-toggle" title="sản phẩm đã xem ">
+        <i aria-hidden="true" class="fa fa-chevron-down"></i>
+        <a href="@Url.RouteUrl("SanPhamDaXem")" title="sản phẩm bạn đã xem"><span> Sản phẩm bạn đã xem</span> </a>
+    </a>
+    <div class="dropdown-menu dropdown-menu-daxem">
+        <ul class="account account_daxem">
+            <!--danh sach san pham đã xem-->
+            <div class="block-content">
+                    @if (Model.Products.Any())
+                    {
+                        int i = 0;
+                        foreach (var menu in Model.Products)
+                        {
+                            i++;
+                            <div class="product-item product-item-opt-1 sp_daxem_box" style="float: left;">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct">
+                                            <img alt="@menu.NameProduct" src="@string.Format("/Upload/Files/{0}?width=173&height=193",menu.Img)" style="max-width: 91px!important;max-height: 91px!important;">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            if (i==10)
+                            {
+                                 <div class="product-item product-item-opt-1 sp_daxem_box see-all-div" style="float: left;">
+                                   <a href="@Url.RouteUrl("SanPhamDaXem")" class="see-all" title="xem thêm">Xem thêm</a>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="nullMessage">
+                            <span>Bạn chưa xem sản phẩm nào</span>
+                            <br/>
+                            <span>Hãy tiếp tục khám phá Beautygarden, các sản phẩm bạn đã xem sẽ hiển thị ở đây!</span>
+                        </div>
+                    }
+            </div>         
+        </ul>
+    </div>
+</li>

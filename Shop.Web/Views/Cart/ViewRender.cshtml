@@ -1,0 +1,81 @@
+﻿@model Shop.Web.ViewModels.CartViewModel.CartModel
+<div class="cart-sidebar">
+    <div id="cart-loading" class="hide"></div>
+    <div class="widget-wrapper">
+        <div id="cart-info" class="cart-info">
+            <h2 class="title">Giỏ Hàng</h2>
+            <ul class="list-unstyled">
+                @if (Model.CartItems.Any())
+                {
+                    foreach (var item in Model.CartItems)
+                    {
+                        <li>
+                            <figure>
+                                <a class="cart_list_product_img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = item.Link })" title="@item.Name">
+                                    <img src="@string.Format("/Upload/Files/{0}?width=350&height=391", item.Image.Replace("/Upload/files/",""))" alt="@item.Name">
+                                </a>
+                                <p class="action remove_item">
+                                    <a href="/cart/DeleteCart?barcode=@item.Barcode" class="btn-link btn-item-delete" style="margin-left: 17px;font-size: 15px;" title="xóa"> <i class="fa fa-trash-o"></i> </a>
+                                </p>
+                            </figure>
+                            <div class="list_content">
+                                <h5>
+                                    <a href="@Url.RouteUrl("ChiTietSanPham", new { splink = item.Link })" style="font-size: 14px!important;">
+                                        <span>@item.Name</span>
+                                        @if (item.AttributeFlag != 0)
+                                        {
+                                            <span class="variant_title"> - @item.AttributeName</span>
+                                        }
+                                    </a>
+                                </h5>
+                            </div>
+                            <div class="list_content" style="padding-left: 0px!important;">
+                                <div class="quantity">
+                                    <input class=" " type="number" min="1" max="999" value="@item.Quantity" required="" onchange="onChangeCartPopup(@item.ProductId,'@item.Barcode',this)" style="width: 35px!important;height: 26px;border: 1px solid #ececec !important;" /> x
+                                    <span class="amount">
+                                        <span class="money">
+                                            @item.PricePromotion.ToString("#,###,###,###") = &nbsp;
+                                        </span>
+                                    </span>
+                                    <span class="thanhtien">
+                                        @{
+                                            int giagoc = 0, soluong = 0, tongtien = 0, giaKm = 0, tongKM = 0;
+                                            giagoc = item.Price;
+                                            soluong = item.Quantity;
+                                            tongtien = giagoc * soluong;
+                                            tongKM = item.PricePromotion * soluong;
+                                        }
+                                        <span class="money" style="color: #199427;">
+                                            <br /> @tongKM.ToString("#,###,###,###") ₫
+                                        </span>
+                                        @if (item.HasPromotion)
+                                        {
+                                            <span style="text-decoration: line-through; font-size: 12px;color: #199427;">
+                                                <br /> @tongtien.ToString("#,###,###,###") ₫
+                                            </span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                                                }
+                                            }
+            </ul>
+
+            <!--Tổng số tiền-->
+            <div class="subtotal">
+                Tổng Cộng:
+                <span>
+                    <span class="amount">
+                        <strong class="money" style="color: #199427;"> @Model.Total.ToString("#,###,###,###") ₫</strong>
+                    </span>
+                </span>
+            </div>
+            <div class="buttons">
+                <a href="@Url.RouteUrl("Cart")" class="btn-viewcart" title="xem giỏ hàng">XEM GIỎ HÀNG</a>
+                <a href="@Url.RouteUrl("Order")" class="btn-pay" title="thanh toán">THANH TOÁN</a>
+                <a href="#" onclick="return hideCart()" class="btn-viewcart hidden-lg hidden-md hidden-desktop" style="margin-top: 10px" title="đóng giỏ hàng">ĐÓNG GIỎ HÀNG</a>
+            </div>
+        </div>
+    </div>
+</div>

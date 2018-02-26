@@ -1,0 +1,40 @@
+﻿@model IList<Shop.Web.Models.DanhMucTree>
+@using System.Collections
+@using Shop.Data
+@using Shop.Model
+
+<div class="block-sidebar block-sidebar-categorie hidden-xs">
+    <div class="block-title">
+        <strong>DANH MỤC SẢN PHẨM</strong>
+    </div>
+    <div class="block-content">
+        <ul class="items">
+            @if (Model.Any())
+            {
+               
+                foreach (var l1 in Model)
+                {
+                    string l1c=l1.Selected?"active":"";
+
+                 <li class="parent @l1c">
+                    <a href="@Url.RouteUrl("DanhSachSanPham", new { splink = l1.Link })" title="danh mục sản phẩm">@l1.Name (@Shop.Web.Models.DanhMucGetData.GetslHientai(l1.Id))</a>
+                    <span class="toggle-submenu"></span>
+                    <ul class="subcategory">
+                        @if(l1.Childs.Any())
+                        {
+                            foreach (var menucon in l1.Childs)
+                            {
+                                string l2c=menucon.Selected?"active":"";
+                                 <li class="@l2c"><a href="@Url.RouteUrl("DanhSachSanPham", new { splink = menucon.Link })">@menucon.Name (@Shop.Web.Models.DanhMucGetData.GetslHientai(menucon.Id))</a> </li>
+                            }
+                        }
+                       
+                    </ul>
+                </li>
+                }
+            }
+
+
+        </ul>
+    </div>
+</div>

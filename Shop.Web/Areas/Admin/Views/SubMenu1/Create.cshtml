@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Danh mục con";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model Shop.Model.Menu
+@using (Html.BeginForm("Addnew", "SubMenu1", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(o => o.id_)
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Danh mục sản phẩm</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <style>
+            .col-sm-2
+            {
+                color: #337ab7 !important;
+            }
+        </style>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Thêm danh mục con sản phẩm
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Tên Danh mục</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="NameProduct" name="NameProduct" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Vị trí</label>
+                                        <div class="col-sm-2">
+                                            <input class="form-control" id="SapxepDanhMuc" name="SapxepDanhMuc" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-success" style="margin-left: 151px;" onclick="return SaveSub1()">Lưu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    //viet ajax day id cua danh muc san pham qua de them moi
+    function SaveSub1() {
+        var Tendanhmuc = $('#NameProduct').val();
+        var Sapxep = $('#SapxepDanhMuc').val();
+        var pathArray = window.location.pathname.split('/admin/SubMenu1/add/');
+        var newPathname = "";
+        for (i = 0; i < pathArray.length; i++) {
+            newPathname += "";
+            newPathname += pathArray[i];//idmenu
+        }
+        if (Tendanhmuc==""||Sapxep=="") {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+        } else {
+            $.post("/admin/submenu1/Addnew", {
+                IdMenu: newPathname,
+                NameProduct: Tendanhmuc,
+                IPosition: Sapxep
+            }, function (data) {
+                location.href = "/admin/Submenu1/index/" + newPathname;
+            });
+        }
+    }
+</script>

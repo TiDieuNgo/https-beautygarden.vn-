@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Beautygarden - Mỹ phẩm chính hãng giá tốt nhất tại Việt Nam";
+    ViewBag.Keyword = "Beauty Garden - Mỹ phẩm chính hãng";
+    ViewBag.Description= "Beautygarden - Thương hiệu mỹ phẩm chính hãng với vô số những mặt hàng chăm sóc và làm đẹp cho da bạn có giá tốt nhất trên thị trường mỹ phẩm Việt Nam.";
+    ViewBag.image = "https://beautygarden.vn/images/logomoi.png";
+    ViewBag.canonical = "https://beautygarden.vn/";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@model Shop.Model.Menu
+@Html.Action("Index", "Banner")
+@Html.Action("SanPhamKhiCoKhuyenMai", "SanPham")
+@Html.Action("SanPhamKhuyenMai", "SanPham")
+<!--banner quang cao trang chu-->
+ <h1 style="display: none;">Beautygarden Hệ thống phân phối mỹ phẩm số 1 Việt Nam</h1>
+<div class="block-banner-lag effect-banner2">
+    <div class="container">
+        <div class="clearfix">
+            <div class="col-sm-12 no-padding">
+                <a href="#" class="box-img">
+                    @if(Model!=null)
+                    {
+                        <a href="@Model.LinkHttp1" target="_blank" title="banner quảng cáo trang chủ"><img data-src="@string.Format("/Upload/Files/{0}",Model.Img)" alt="banner quảng cáo trang chủ"/></a>
+                    }
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner quang cao trang chu-->
+<div class="clearfix" style="background-color: #eaeaea; margin-bottom: 30px; padding-top: 30px;">
+    <!--best seller-->
+    @Html.Action("Index", "BestSeller")
+  <!--best seller-->
+    @Html.Action("ProductHomeBox", "SanPham")
+</div>
+@Html.Action("Thuonghieushowhome","ThuongHieu")
+@Html.Action("TinTucShowHome","TinTuc")
+@Html.Action("Index","YKienKhachHang")
+@Html.Action("Index","HeThongCuaHang")

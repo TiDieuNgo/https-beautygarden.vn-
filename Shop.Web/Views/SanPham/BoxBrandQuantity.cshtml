@@ -1,0 +1,73 @@
+﻿@model Shop.Web.ViewModels.SanPhamViewModel.CheckBrandQuantityModel
+    
+<div class="stock available">
+
+    <span class="diachi">
+        <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+        <br />
+        @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+        {
+
+            //if (b.Id != 14364)
+            //{
+                 <span style="margin-left: 13px;">
+                @*<span>*@
+                    @b.Name -
+                    @if (b.Quantity > 0)
+                    {
+                        <span style="color: #199427 !important;">
+                            Còn hàng @if (Model.IsAdmin)
+                                     {
+                                         <span>(@b.Quantity.ToString("#,###,###,###"))</span>
+                                     }
+                        </span>
+                    }
+                    else
+                    {
+                        <span style="color: red !important;">Cháy hàng</span>
+                    }
+                </span>
+                <br />
+            //}
+        }
+    </span>
+    @{
+        var hn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("HN"));
+        var dn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("ĐN"));
+    }
+    <span class="diachi">
+        <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+        @if (hn.Quantity > 0)
+        {
+            <span>152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">Còn hàng  @if(Model.IsAdmin)
+                                                                                           {
+                                                                                               <span>(@hn.Quantity.ToString("#,###,###,###"))</span>
+                                                                                           }</span> </span>
+        }
+        else
+        {
+            <span>
+                152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+            </span>
+        }
+    </span>
+    <br />
+    <span class="diachi">
+        <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+        @if (dn.Quantity > 0)
+        {
+            <span>268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">Còn hàng  @if(Model.IsAdmin)
+                                                                                           {
+                                                                                               <span>(@dn.Quantity.ToString("#,###,###,###"))</span>
+                                                                                           }</span> </span>
+        }
+        else
+        {
+            <span>
+                268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu -
+                <span style="color: red !important;">Cháy hàng</span>
+            </span>
+        }
+    </span>
+
+</div>

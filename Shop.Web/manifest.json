@@ -1,0 +1,7 @@
+{
+  "name": "Beauty Garden - Mỹ phẩm chính hãng",
+  "short_name": "Beauty Garden",
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "482941778795"
+}

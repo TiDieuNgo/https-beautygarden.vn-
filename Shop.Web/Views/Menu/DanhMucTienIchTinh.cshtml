@@ -1,0 +1,128 @@
+﻿<div class="header-nav mid-header">
+    <div class="container">
+        <div class="box-header-nav" id="stick_nav">
+            <span data-action="toggle-nav-cat" class="nav-toggle-menu nav-toggle-cat"><span>Categories</span>
+                    <i aria-hidden="true" class="fa fa-bars"></i></span>
+            <span class="hotline_mobile hidden-md hidden-lg hidden-desktop">
+                @*<i class="fa fa-phone"></i> *@
+            @*    <span class="sdt_mobile">0911 384 114</span>*@
+               @Html.Action("CountCartMobile","Cart")
+            </span>
+            <div class="block-nav-categori hidden-xs">
+                <div class="block-title">
+                    <span>Categories</span>
+                </div>
+                <div class="block-content" id="hidecatagory">
+                    <ul class="ui-categori">
+                        <li class="parent">
+                            <a href="#" title="thông tin">
+                                <span class="icon"><img src="/Upload/files/thongtin.png" alt="Thông tin" style="width: 20px;height: 20px;"></span>
+                                Thông tin
+                            </a>
+                            <span class="toggle-submenu"></span>
+                            <div class="submenu hidden-phone hidden-xs" id="fixkhung">
+                                <ul class="categori-list">
+                                    <li class="col-sm-12">
+                                        <ul>
+                                            <li><a href="@Url.RouteUrl("SuKienKhuyenMai")" title="Sự kiện - Khuyến mãi">Sự kiện - Khuyến mãi</a></li>
+                                            <li><a href="@Url.RouteUrl("BiQuyetLamDep")" title="Bí quyết làm đẹp">Bí quyết làm đẹp</a></li>
+                                            <li><a href="@Url.RouteUrl("TinBaoChi")" title="Tin báo chí">Tin báo chí</a></li>
+                                            <li><a href="@Url.RouteUrl("Review")" title="Review sản phẩm">Review sản phẩm</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="parent">
+                            <a href="#" title="về chúng tôi">
+                                <span class="icon"><img src="/Upload/files/WebDevelopmentV2_AboutUs-128.png" alt="Về chúng tôi" style="width: 20px;height: 20px;"></span>
+                                Về chúng tôi
+                            </a>
+                            <span class="toggle-submenu"></span>
+                            <div class="submenu hidden-phone hidden-xs" id="fixkhung">
+                                <ul class="categori-list">
+                                    <li class="col-sm-12">
+                                        <ul>
+                                            <li><a href="https://beautygarden.vn/noi-dung/gioi-thieu-beautygarden.html" title="Giới thiệu Beautygarden">Giới thiệu Beautygarden</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/he-thong-cua-hang.html" title="Hệ thống cửa hàng">Hệ thống cửa hàng</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/chuong-trinh-tich-diem.html" title="Chương trình tích điểm">Chương trình tích điểm</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/bao-mat-thong-tin.html" title="Bảo mật thông tin">Bảo mật thông tin</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/dieu-khoan-su-dung.html" title="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                                       
+                        </li>
+                        <li class="parent">
+                            <a href="#" title="hỗ trợ ">
+                                <span class="icon"><img src="/Upload/files/supportpng.png" alt="Hỗ trợ" style="width: 20px;height: 20px;"></span>
+                                Hỗ trợ
+                            </a>
+                            <span class="toggle-submenu"></span>
+                            <div class="submenu hidden-phone hidden-xs" id="fixkhung">
+                                <ul class="categori-list">
+                                    <li class="col-sm-12">
+                                        <ul>
+                                            <li><a href="https://beautygarden.vn/noi-dung/huong-dan-mua-hang.html">Hướng dẫn mua hàng</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/thanh-toan-van-chuyen.html">Thanh toán vận chuyển</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/chinh-sach-doi-tra-hang.html">Chính sách đổi trả</a></li>
+                                            <li><a href="https://beautygarden.vn/noi-dung/giai-dap-thac-mac.html">Giải đáp thắc mắc</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="@Url.RouteUrl("LienHe")" title="liên hệ">
+                                <span class="icon"><img src="/Upload/files/address_book-128.png" alt="Liên Hệ" style="width: 20px;height: 20px;"></span>
+                                Liên Hệ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/danh-muc/thuc-pham-chuc-nang.html" title="Thực phẩm chức năng">
+                                <span class="icon"><img src="/Upload/files/medicine-13-128.png" alt="Thực phẩm chức năng" style="width: 30px;height: 30px; margin-left: -5px;"></span>
+                                Thực phẩm chức năng
+                            </a>
+                        </li>   
+                        <li>
+                            <a href="@Url.RouteUrl("SalePageIndex")" title="sale page">
+                                <span class="icon"><img src="/images/salepage.png" alt="salepage" style="width: 30px;height: 30px; margin-left: -5px;"></span>
+                                Salepage
+                            </a>
+                        </li>          
+                    </ul>
+                </div>
+                            
+            </div>
+            <!--click an menu catagories-->
+
+            @Html.Action("MenuTop", "Menu")
+            <span data-action="toggle-nav" class="nav-toggle-menu"><span></span><i aria-hidden="true" class="fa fa-bars"></i></span>
+
+            @Html.Action("CountDropdownCart","Cart")
+
+            <div class="block-search">
+                <div class="block-title">
+                    <span>Search</span>
+                </div>
+                <div class="block-content" id="keySearchClick_down">
+                    <div class="form-search">
+                        <form action="@Url.RouteUrl("SanPhamTimKiem")" method="GET">
+                            <div class="box-group">
+                                <input type="text" name="keyword" id="keySearchdown" class="form-control border_searchdown" placeholder="Tìm kiếm sản phẩm...">
+                                <button class="btn btn-search" type="submit"><span>search</span></button>
+                            </div>
+                            <div class="box-group" style="display: block">
+                                 <ul id="search_down"  tabindex="0" class="ui-menu ui-widget ui-widget-content ui-front" style="width: 340px;left: 933.5px;display: none;">
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

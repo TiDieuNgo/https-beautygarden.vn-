@@ -1,0 +1,721 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@Html.Raw(ViewBag.Keyword)">
+    <meta name="description" content="@Html.Raw(ViewBag.Description)">
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:type" content="website" />
+    <meta name="google-site-verification" content="QxFxkiJEk9ZuvRzsJFbjOVPJc-9D4RkwQ3xTHsZPQgc" />
+    <meta name="google-site-verification" content="1yxm2X58Xn4nM1ppStenC07Pp4t7HBDohFLPRHwoXP8" />
+    <meta property="og:site_name" content="beautygarden.vn | Beauty Garden - Mỹ phẩm chính hãng" />
+    <meta property="og:description" content="@Html.Raw(ViewBag.Description)" />
+    <meta property="og:image" content="@ViewBag.image" />
+    <meta name="robots" content="@ViewBag.content404" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico" />
+    <!-- Style CSS -->
+    <link href="~/Content/csscompressor/Style.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Style1.css" rel="stylesheet" />
+    @*<link href="~/Content/cssBG/cssmoi.css" rel="stylesheet" />*@
+    <link href="~/Content/csscompressor/cssmoi.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/colcss.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/rateit.min.css" rel="stylesheet" />
+
+    <link href="~/Content/csscompressor/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/cssBG/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cart.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/jquery.elevator.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cssphone.min.css" rel="stylesheet" media="only screen and (max-width: 640px)" />
+    <link rel="manifest" href="~/manifest.json">
+    <meta property="fb:app_id" content="1071737652879858" />
+    <meta property="fb:admins" content="100003298980591" />
+    <meta property="fb:admins" content="100000138045258" />
+    <link rel="canonical" href="@ViewBag.canonical">
+    <!-- jQuery -->
+    <script src="~/Scripts/JsBg/jquery.min.js"></script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '288940968216155'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img src="https://www.facebook.com/tr?id=288940968216155&ev=PageView&noscript=1" height="1" width="1" style="display:none" alt="image facebook" /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <!--thông báo đẩy-->
+    <link rel="manifest" href="~/manifest.json">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    <script>
+        var OneSignal = OneSignal || [];
+        OneSignal.push([
+            'init', {
+                appId: 'eb1f125c-b72e-45fc-8e03-d296ac73df15',
+                safari_web_id: '35c3b21f-3634-4ed2-bd52-fd09e2637415',
+                autoRegister: true,
+                notifyButton: {
+                    enable: false,
+                    size: 'small',
+                    position: 'bottom-left',
+                    prenotify: true,
+                    showCredit: false,
+                    text: {
+                        'tip.state.unsubscribed': 'Đăng ký nhận thông báo',
+                        'tip.state.subscribed': 'Bạn đã đăng ký nhận thông báo',
+                        'tip.state.blocked': 'Bạn đã chặn hiển thị thông báo',
+                        'message.prenotify': 'Click để đăng ký nhận thông báo',
+                        'message.action.subscribed': 'Cảm ơn bạn đã đăng ký!',
+                        'message.action.resubscribed': 'Bạn đã đăng ký nhận thông báo',
+                        'message.action.unsubscribed': 'Bạn đã hủy đăng ký nhận thông báo',
+                        'dialog.main.title': 'Quản lý thông báo',
+                        'dialog.main.button.subscribe': 'ĐĂNG KÝ',
+                        'dialog.main.button.unsubscribe': 'HỦY ĐĂNG KÝ',
+                        'dialog.blocked.title': 'Bỏ chặn thông báo',
+                        'dialog.blocked.message': 'Thực hiện các hướng dẫn sau để cho phép thông báo:'
+                    }
+                },
+                welcomeNotification: {
+                    title: 'BEAUTY GARDEN',
+                    message: 'Cảm ơn bạn đã đăng ký!'
+                },
+                promptOptions: {
+                    siteName: 'BEAUTY GARDEN',
+                    actionMessage: 'Chúng tôi muốn hiển thị thông báo cho bạn khi có bài viết hoặc cập nhật mới.',
+                    exampleNotificationTitle: 'Thông báo mẫu',
+                    exampleNotificationMessage: 'Ví dụ cách thông báo sẽ hiển thị',
+                    exampleNotificationCaption: 'Bạn có thể dừng nhận thông báo bất kỳ lúc nào',
+                    acceptButtonText: 'CHO PHÉP',
+                    cancelButtonText: 'BỎ QUA'
+                }
+            }
+        ]);
+    </script>
+    <!--thông báo đẩy-->
+    <style>
+        .popupthongbaohethang {
+            width:100%;
+            height:100%;
+            opacity:.95;
+            top:0;
+            left:0;
+            display:none;
+            position:fixed;
+            background-color:#313131;
+            overflow: auto;
+            z-index: 999;
+        }
+        .popupthongbaohethang #close {
+            position:absolute;
+            right:-14px;
+            top:-14px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+        }
+        .popupthongbaohethang #popupContact {
+            position:absolute;
+            left:50%;
+            top:17%;
+            margin-left:-202px;
+        }
+        .popupthongbaohethang form {
+            width: 500px;
+            min-width:250px;
+            padding:10px 50px;
+            border:2px solid gray;
+            border-radius:10px;
+            background-color:#fff
+        }
+        .popupthongbaohethang p {
+            margin-top:30px
+        }
+          
+        .popupthongbaohethang hr {
+            margin:10px -50px;
+            border:0;
+            border-top:1px solid #ccc
+        }
+        .popupthongbaohethang input[type=text] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            padding-left: 22px;
+            font-size: 12px;
+               
+        }
+        .popupthongbaohethang #submit {
+            text-decoration:none;
+            width:100%;
+            text-align:center;
+            display:block;
+            background-color:#199427;
+            color:#fff;
+            border:1px solid #199427;
+            padding:10px 0;
+            font-size:20px;
+            cursor:pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .popupthongbaohethang span {
+            color:red;
+            font-weight:700
+        }
+        .popupthongbaohethang button {
+            width:10%;
+            height:45px;
+            border-radius:3px;
+            background-color:#f60;
+            color:#fff;
+            font-size:18px;
+            cursor:pointer
+        }
+    </style>
+</head>
+<body class="cms-index-index index-opt-5">
+
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1071737652879858";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Google Analytics -->
+<script>
+    window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+    ga.l = +new Date;
+    ga('create', 'UA-32703462-58', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+<div class="wrapper" id="wrapper_content_page">
+    <!-- HEADER -->
+    <header class="site-header header-opt-5">
+        <!-- header-top -->
+        <div class="header-top">
+            <div class="container">
+                <!-- nav-left -->
+                <ul class="nav-left hidden-xs">
+                    <li class="social">
+                        <a href="https://www.facebook.com/BeautyGardenCosmetics/" title="BeautyGardenCosmetics" class="sh-facebook" target="_blank" rel="noopener,nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/beautygarden.cosmetics/" title="beautygarden.cosmetics" class="sh-twitter" target="_blank" rel="noopener,nofollow"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.pinterest.com/BeautyGardenvn/" title="BeautyGardenvn" class="sh-pinterest" target="_blank" rel="noopener,nofollow"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                        <a href="https://plus.google.com/u/4/101900698437907415834" title="google+Beautygarden" class="sh-google" target="_blank" rel="noopener,nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <!--sản phẩm đã xem-->
+                    @Html.Action("PopupSanPhamDaXem", "SanPham")
+                    <!--end sản phẩm đã xem-->
+                    <!--thông tin đơn hang-->
+                    @*<li class="donhang_info">
+                                <i class="fa fa-truck"></i>
+                                <a href="/" title="theo dõi đơn hàng">Theo dõi đơn hàng</a>
+                            </li>*@
+                    <!--thông tin đơn hang-->
+                </ul>
+                <!-- nav-left -->
+                <!-- nav-right -->
+                <ul class="nav-right hidden-xs">
+                    <li><span style="font-size: 14px; font-family: Arial, serif; color: red;"><a href="tel:0911384114" title="0911384114" style="color: red; font-weight: bold; text-decoration: none;"> <span style="color: #1f601f;">Hotline:</span> 0911 384 114</a></span> </li>
+                    <li><span style="font-size: 14px; font-family: Arial, serif; color: red;"><a href="tel:0911384114" title="0911384114" style="color: red; font-weight: bold; text-decoration: none;"> <span style="color: #1f601f;">Tổng đài tư vấn:</span> 1900 7013</a></span> </li>
+                    <!--tra cứu đơn hàng-->
+                    @*@Html.Action("Index", "TraCuuDonHang")*@
+                    <!--tra cứu đơn hàng-->
+                    @Html.Action("GetUser", "Home")
+                </ul>
+                <div class="hidden-lg hidden-md hidden-sm hidden-desktop" style="text-align: center;">
+                    <span style="font-size: 14px; font-family: Arial, serif; color: #1f601f; line-height: 40px; font-weight: bold;"><a href="tel:0911384114" title="0911384114" style="color: #1f601f;">Hotline: 0911 384 114</a></span>
+                </div>
+                <!--nav-right -->
+            </div>
+        </div> <!-- header-top -->
+        <!-- header-content -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-4 nav-left hidden-xs">
+                        <!-- logo -->
+                        <strong class="logo">
+                            <a href="https://beautygarden.vn/"><img src="/images/logomoi-compressor.png" alt="Beautygarden" title="Beautygarden"></a>
+                        </strong><!-- logo -->
+                    </div>
+                    <div class="col-md-4 col-md-push-4 nav-left hidden-sm hidden-desktop hidden-lg hidden-md">
+                        <!-- logo -->
+                        <strong class="logo">
+                            <a href="/"><img src="/images/Logo-Beauty-Garden-05-compressor.png" alt="Beautygarden" title="Beautygarden"></a>
+                        </strong><!-- logo -->
+                    </div>
+                    <div class="col-md-4 col-md-pull-4 nav-mind">
+                        <!-- block search -->
+                        <div class="block-search " id="keySearchClick">
+                            <div class="block-title">
+                                <span>Search</span>
+                            </div>
+                            <div class="block-content">
+                                <div class="form-search">
+                                    <form action="@Url.RouteUrl("SanPhamTimKiem")" method="GET" id="form_search_id">
+                                        <div class="box-group">
+                                            <input type="text" name="keyword" id="keySearch" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                                            <select id="search-type" class="selectpicker search-box-type" onchange="ChangeSearch()" style="border: 1px solid #eee; height: 40px; color: #777; border-left: none;">
+                                                <option value="1">Sản phẩm</option>
+                                                <option value="2">Tin tức</option>
+                                            </select>
+                                            <button class="btn btn-search" type="submit"><span>search</span></button>
+                                        </div>
+                                        <div class="box-group" style="display: block">
+                                            <ul id="ui-top-search" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="top: 40px; display: none;"></ul>
+                                        </div>
+                                    </form>
+                                    <script>
+                                        function ChangeSearch() {
+                                            var value = $("#search-type").val();
+                                            if (value == 1) {
+                                                document.getElementsByName('keyword')[0].placeholder =
+                                                    'Tìm kiếm sản phẩm...';
+                                                document.getElementById('form_search_id').action =
+                                                    "@Url.RouteUrl("SanPhamTimKiem")";
+                                            } else {
+                                                document.getElementsByName('keyword')[0].placeholder =
+                                                    'Tìm kiếm tin tức...';
+                                                document.getElementById('form_search_id').action =
+                                                    "@Url.RouteUrl("TinTucTimKiem")";
+                                                //document.getElementById('keySearch').id = 'key';
+                                                $("#ui-id-1").addClass("hideauto");
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                                <style>
+                                    .hideauto {
+                                        display: none !important;
+                                    }
+
+                                    .relative {
+                                        position: relative;
+                                    }
+
+                                    .block_input_order_checking input {
+                                        font-size: 12px;
+                                        font-weight: 400;
+                                    }
+
+                                    .btn_site_1 {
+                                        background: #1f601f;
+                                        border-radius: 3px;
+                                        color: #fff;
+                                        display: inline-block;
+                                        padding: 5px 10px;
+                                        font-weight: 700;
+                                        font-size: 15px;
+                                    }
+
+                                    .btn_site_1:hover {
+                                        color: #ffffff;
+                                        background: #199427;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 nav-right hidden-xs">
+                        <!-- block mini cart -->
+                        @Html.Action("CountCart", "Cart")
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Action("DanhMucTienIchTinh", "Menu")
+    </header>
+    <main class="site-main">
+        @RenderBody()
+    </main>
+    @Html.Action("Index", "Footer")
+    <div id="top" class="elevator hidden-xs"></div>
+    <div id="bottom" class="elevator hidden-xs"></div>
+</div>
+@Html.Action("CartView", "Cart")
+<!-- sticky -->
+<script src="~/Scripts/JsBgcompressor/jquery.sticky.min.js"></script>
+<!-- OWL CAROUSEL Slider -->
+<script src="~/Scripts/JsBgcompressor/owl.carousel.min.js"></script>
+<link href="~/Content/csscompressor/ykienkhachhang.min.css" rel="stylesheet"/>
+<!-- Boostrap -->
+<script src="~/Scripts/JsBg/bootstrap.min.js"></script>
+<!-- Countdown -->
+<script src="~/Scripts/JsBgcompressor/jquery.countdown.min.js"></script>
+<!--jquery Bxslider -->
+<script src="~/Scripts/JsBg/jquery.bxslider.min.js"></script>
+<!-- actual -->
+<script src="~/Scripts/JsBg/jquery.actual.min.js"></script>
+<!-- Chosen jquery-->
+<script src="~/Scripts/JsBg/chosen.jquery.min.js"></script>
+<!-- parallax jquery-->
+<script src="~/Scripts/JsBgcompressor/jquery.parallax-1.1.3.min.js"></script>
+<!-- elevatezoom -->
+<script src="~/Scripts/JsBg/jquery.elevateZoom.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.rateit.min.js"></script>
+<!-- fancybox -->
+<script src="~/Scripts/JsBg/jquery.fancybox.pack.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.fancybox-media.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.fancybox-thumbs.min.js"></script>
+<!-- arcticmodal -->
+<script src="~/Scripts/JsBgcompressor/jquery.arcticmodal.min.js"></script>
+<!-- Main -->
+<script src="~/Scripts/JsBgcompressor/main.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery-ui.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/autocompleteMasterpage.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/autocompleteDropdown.min.js"></script>
+<script src="~/Scripts/sweetalert2.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/jquery.elevator.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/SearchSmartDown.min.js"></script>
+<script src="~/Scripts/JsBgcompressor/lazyloadtx.min.js"></script>
+<script src="~/Scripts/jquery.firstVisitPopup.js"></script>
+@*<script src="~/Scripts/onesignal.js"></script>*@
+<script>
+    $('.carousel[data-type="multi"] .item').each(function() {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+        for (var i = 0; i < 4; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+<!--làm menu mobile fixed-->
+<script>
+    $(document).ready(function() {
+        $("#stick_nav").sticky({ topSpacing: 0, zIndex: 99999 });
+    });
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $("#stick_nav").css({ "z-index": "99999" });
+
+    }
+</script>
+<script>
+    //lazy load moi
+    $.extend($.lazyLoadXT,
+        {
+            edgeY: 200,
+            srcAttr: 'data-src',
+            scrollContainer: 200
+        });
+</script>
+<!--làm menu mobile fixed-->
+
+<script>
+    $('body').click(function() {
+        $("#hidecatagory").css("display", "none");
+
+    });
+    $("#sonpro #cuoi").last().addClass("highlight");
+
+</script>
+<script type="text/javascript">
+    $('#wrapper_content_page').click(function() {
+        $("#cart-sidebar").removeClass("opened");
+    });
+</script>
+<!-- Google Code dành cho Thẻ tiếp thị lại -->
+<!--------------------------------------------------
+Không thể liên kết thẻ tiếp thị lại với thông tin nhận dạng cá nhân hay đặt thẻ tiếp thị lại trên các trang có liên quan đến danh mục nhạy cảm. Xem thêm thông tin và hướng dẫn về cách thiết lập thẻ trên: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 869708714;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+
+<script>
+    $.elevator({
+        show_top: true,
+        show_bottom: true,
+        item_top: null,
+        item_bottom: "single-box-height-scroll",
+        align: 'bottom right',
+        navigation: [],
+        navigation_text: false,
+        margin: 100,
+        speed: 1000,
+        shape: 'circle',
+        glass: false,
+        tooltips: false,
+        onBeforeMove: function() {},
+        onAfterMove: function() {},
+        onBeforeGoTop: function() {},
+        onAfterGoTop: function() {},
+        onBeforeGoBottom: function() {},
+        onAfterGoBottom: function() {
+            $('html, body').animate({ scrollTop: $('#single-box-height-scroll').position().top }, 'slow');
+            return
+        },
+        onBeforeGoSection: function() {},
+        onAfterGoSection: function() {}
+    });
+</script>
+
+<noscript>
+    <div style="display: inline;">
+        <img height="1" width="1" style="border-style: none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/869708714/?guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+
+@*xu huong tim kiem*@
+<script type="text/javascript">
+    var clicksearch = 0;
+    $("#keySearch").on('click',
+        function() {
+            if ($("#keySearch").val().length == 0) {
+                if (clicksearch == 0) {
+                    $.post("/Home/GetTopSearch",
+                        {
+                        },
+                        function(data) {
+                            if (data.status) {
+                                $('#ui-top-search li').remove();
+                                var html =
+                                    '<span class="popular-search-title search_smart" id="xuhuong">Xu hướng tìm kiếm</span>';
+                                for (var i = 0; i < data.data.length; i++) {
+                                    html += '<li class="search_li ui-menu-item search_top10">' +
+                                        '<a class="search_li ui-menu-item search_li" href="https://beautygarden.vn/tim-kiem.html?keyword=' +
+                                        data.data[i].TuKhoa +
+                                        '"><div class="search_ten search_top10_ten"><span>' +
+                                        data.data[i].TuKhoa +
+                                        '</span></div></a>' +
+                                        '</li>';
+                                }
+                                $("#ui-top-search").append(html);
+                                $("#ui-top-search").show();
+                                clicksearch = 1;
+                            } else {
+                                alert(data.message);
+                            }
+                        });
+                } else {
+                    $('#ui-top-search li,.search_smart').remove();
+                    clicksearch = 0;
+                }
+            }
+        });
+
+    $("#keySearch").change(function() {
+        $('#ui-top-search li,.search_smart').remove();
+        clicksearch = 0;
+    });
+
+    $('body').click(function(evt) {
+        if (evt.target.id == "keySearchClick")
+            return;
+        if ($(evt.target).closest('#keySearchClick').length)
+            return;
+        $('#ui-top-search li,.search_smart').remove();
+        clicksearch = 0;
+    });
+</script>
+<style>
+    #ui-top-search {
+        border: none !important;
+    }
+    .fb_dialog_advanced {
+        bottom: 150pt !important;
+    }
+</style>
+<script>
+    //danh sách sản phẩm yêu thích
+    // get favorites from local storage or empty array
+    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    var countfavorite = 0;
+    // add class 'fav' to each favorite
+    favorites.forEach(function(productId) {
+        //chay lan luot tung li da co class fav
+        $("#" + productId).addClass("fav");
+        //dành cho trái tim trong chi tiết
+        $(".fav_" + productId).attr('src', '/images/heart_green.png');
+        countfavorite++; //đếm số lượng yêu thích
+    });
+
+    if (favorites.length == 0) {
+        $("#show_hide_favorite").addClass("hide_favorite");
+    } else {
+        $("#show_hide_favorite").removeClass("hide_favorite");
+    }
+    $("#countfavorite").text(favorites.length);
+
+
+    //danh sách yêu thích
+    function clickviewFavorites() {
+        var danhsachIds = JSON.parse(localStorage.getItem('favorites'));
+        $.post("/DanhSachYeuThich/GetDanhSachYeuThich",
+            {
+                IdYeuThics: danhsachIds
+            },
+            function(data) {
+                //du lieu ra
+                if (data.success) {
+                    window.location.href = "/danh-sach-yeu-thich.html";
+                }
+            });
+    }
+
+    function addtofavorites(productId) {
+        var index = favorites.indexOf(productId);
+        // return if target doesn't have an id (shouldn't happen)
+        if (!productId) return;
+        // khi chưa click vào trái tim
+        if (index == -1) {
+            //khi click thi day id cua thang click vao favorites
+            favorites.push(productId);
+            $("#" + productId).addClass("fav");
+        } else {
+            // co roi ma click lan nua thi het favorites
+            favorites.splice(index, 1);
+            $("#" + productId).removeClass("fav");
+        }
+        // store array in local storage
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        $("#countfavorite").text(favorites.length);
+
+        //mất trai tim ben goc phải màn hình
+        if (favorites.length == 0) {
+            $("#show_hide_favorite").addClass("hide_favorite");
+        } else {
+            $("#show_hide_favorite").removeClass("hide_favorite");
+        }
+    }
+
+    //yeu thich cho trang chi tiet
+    function addtofavoritesDetail(productId) {
+        var index = favorites.indexOf(productId);
+        // return if target doesn't have an id (shouldn't happen)
+        if (!productId) return;
+        // khi chưa click vào trái tim
+        if (index == -1) {
+            //khi click thi day id cua thang click vao favorites
+            favorites.push(productId);
+            $(".fav_" + productId).attr('src', '/images/heart_green.png');
+        } else {
+            // co roi ma click lan nua thi het favorites
+            favorites.splice(index, 1);
+            $(".fav_" + productId).attr('src', '/images/heart.png');
+        }
+        // store array in local storage
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        $("#countfavorite").text(favorites.length);
+
+        if (favorites.length == 0) {
+            $("#show_hide_favorite").addClass("hide_favorite");
+        } else {
+            $("#show_hide_favorite").removeClass("hide_favorite");
+        }
+    }
+</script>
+@Html.Raw(Shop.Web.Controllers.SanPhamController.FormatJSonWebsite())
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '1071737652879858',
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-customerchat" page_id="1572720252750427"></div>
+</body>
+<!--chat-->
+@*<script>
+    $(document).ready(function () {
+        $(".fb-page").hide();
+        $("#closefbchat").click(function () {
+
+            $(".fb-page").toggle();
+            $("#closefbchat").css("bottom", "299px");
+        });
+    });
+</script>
+<div class="fbchatbox hidden-xs" style="position: fixed; right: 5px; bottom: 5px; z-index: 50">
+    <div class="fb-page" data-href="https://www.facebook.com/BeautyGardenPN" data-small-header="true" data-adapt-container-width="false" data-height="300" data-width="300" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-tabs="messages">
+        <div class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/BeautyGardenPN"><a href="https://www.facebook.com/BeautyGardenPN" rel="nofollow">Beauty Garden</a></blockquote>
+        </div>
+    </div>
+    <span id="closefbchat" style="white-space: nowrap; position: absolute; right: 2px; bottom: 299px;width: 78px; padding: 3px 15px; background: #44619D; color: #fff; cursor: pointer;">
+        <img src="/images/Chat-2-icon.png" style="width: 20px;" alt="Hỗ trợ khách hàng"/>Chat
+    </span>
+</div>*@
+<!--end chat-->
+@Html.Action("Index", "PopUpBannerKM")
+<script>
+    $(function () {
+        var local = localStorage.getItem("showPopup");
+        var today = formatDate(new Date());
+        if (local && local === today) {
+            deleteCookie("fvpphomepage");
+            return;
+        } else {
+            $('#my-welcome-message').firstVisitPopup({
+                cookieName: 'homepage',
+                showAgainSelector: '#show-message'
+            });
+            localStorage.setItem("showPopup", today);
+        }
+    });
+
+    function deleteCookie(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    };
+    function formatDate(date) {
+        var d = date,
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+</script>
+
+</html>

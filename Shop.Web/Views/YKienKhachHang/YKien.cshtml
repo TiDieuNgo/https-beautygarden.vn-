@@ -1,0 +1,69 @@
+﻿@model IList<Shop.Model.YKienKhachHang>
+<div class="block-the-blog-opt8">
+    <div class="container">
+        <div class="block-title ykien_kh">
+            <span class="title tieude_ykien">
+                <img class="ghichu" src="/Upload/files/quote-01.png" /> ý kiến khách hàng <img class="ghichu" src="/Upload/files/quote-02.png" />
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                    <!-- Carousel Slides / Quotes -->
+                    <div class="carousel-inner text-center" style="height: 150px!important;">
+                        <!-- Quote 1 -->
+                        @if (Model.Any())
+                        {
+                            int i = 0;
+                            foreach (var yKienKhachHang in Model)
+                            {
+                                string cl = "";
+                                i++;
+                                if (i / 1 == 1)
+                                {
+                                    cl = "active";
+                                }
+                                <div class="item @cl">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <div class="testimonial-avatar">
+                                                <div class="picter">
+                                                    <img src="@string.Format("/Upload/Files/{0}?width=60&height=60",yKienKhachHang.HinhDaiDien)" alt="@yKienKhachHang.TenKhachHang">
+                                                </div>
+                                            </div>
+                                            <a href="@yKienKhachHang.LinkFaceBook" rel="nofollow" target="_blank" title="@yKienKhachHang.TenKhachHang"><p class="link_facebook">@Html.Raw(yKienKhachHang.MoTa) ...<span style="color: #199427;">Xem chi tiết</span></p></a>
+                                            <small><a href="@yKienKhachHang.LinkFaceBook" rel="nofollow" target="_blank" title="@yKienKhachHang.TenKhachHang"><span class="ten_face">@yKienKhachHang.TenKhachHang</span></a></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <!-- Carousel Buttons Next/Prev -->
+                    <!-- Carousel Buttons Next/Prev -->
+                    <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-angle-left"></i></a>
+                    <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#testimonial-slider").owlCarousel({
+            items: 2,
+            itemsDesktop: [1000, 2],
+            itemsDesktopSmall: [980, 1],
+            itemsTablet: [768, 1],
+            pagination: true,
+            navigation: false,
+            navigationText: ["", ""],
+            autoPlay: true
+        });
+    });
+</script>

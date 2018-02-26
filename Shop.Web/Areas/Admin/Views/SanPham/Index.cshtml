@@ -1,0 +1,363 @@
+﻿@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Areas.Admin.Models.SanPhamViewModel
+@using PagedList.Mvc;
+@{
+    int stt = (Model.page * 50) - 50;
+}
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="margin: 20px 0 5px;">Sản Phẩm</h3>
+            @ViewData["thongbao"]
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="/admin/sanpham/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button>
+                    </a>
+                    <div class="col-sm-7" style="float: right;">
+                        <div id="dataTables-example_filter" class="dataTables_filter">
+                            <label class="col-sm-2" style="margin-top: 10px;">
+                                Lọc theo:
+                            </label>
+                            <div class="col-sm-5" style="margin-left: -40px;">
+                                <select class="form-control" onchange="changetypePromotion(this.value)">
+                                    @if (Convert.ToInt32(ViewData["sx"].ToString()) == 0)
+                                    {
+                                    <option value="0" selected="">Tất cả sản phẩm</option>
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 1)
+                                    {
+
+                                    <option value="1" selected="">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 2)
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2" selected="">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 3)//san pham het hang
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3" selected="">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 4) //san pham moi dang
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4" selected="">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 6) //san pham da an
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6" selected="">Sản phẩm đã ẩn</option>
+                                    <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 7) //san pham show ra gia tot moi ngay
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="7" selected="">Sản phẩm show gía tốt mỗi ngày</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                    else if (Convert.ToInt32(ViewData["sx"].ToString()) == 8) //top 100 ban chay
+                                    {
+                                        <option value="1">Sản phẩm chưa có mã vạch</option>
+                                        <option value="2">Sản phẩm đã có mã vạch</option>
+                                        <option value="3">Sản phẩm đã hết hàng</option>
+                                        <option value="4">Sản phẩm mới đăng</option>
+                                        <option value="5">Sản phẩm sắp xếp theo vị trí</option>
+                                        <option value="6">Sản phẩm đã ẩn</option>
+                                        <option value="7">Sản phẩm show gía tốt mỗi ngày</option>
+                                        <option value="8" selected="">Top 100 bán chạy</option>
+                                    }
+                                    else //san pham sap xep theo vi tri
+                                    {
+                                    <option value="1">Sản phẩm chưa có mã vạch</option>
+                                    <option value="2">Sản phẩm đã có mã vạch</option>
+                                    <option value="3">Sản phẩm đã hết hàng</option>
+                                    <option value="4">Sản phẩm mới đăng</option>
+                                    <option value="5" selected="">Sản phẩm sắp xếp theo vị trí</option>
+                                    <option value="6">Sản phẩm đã ẩn</option>
+                                    <option value="8">Top 100 bán chạy</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-5" style="margin-top: 10px;">
+                                <p>Tổng số lượng: @Model.soluongtimduoc </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="text-align: center;">Hình ảnh</th>
+                                            <th style="text-align: center;">Tên sản phẩm</th>
+                                            <th style="text-align: center;">Giá</th>
+                                            <th style="text-align: center;">Vị trí</th>
+                                            <th style="text-align: center;">Ẩn/hiện?</th>
+                                            <th style="text-align: center;width: 100px;">Giá tốt mỗi ngày?</th>
+                                            <th style="text-align: center;">Top 100</th>
+                                            <th style="text-align: center;">Người tạo</th>
+                                            <th style="text-align: center;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null && Model.Menus.Any())
+                                        {
+                                            foreach (var sanPham in Model.Menus)
+                                            {
+                                                stt++;
+                                                <tr class="gradeU odd" role="row">
+                                                    <td>
+                                                        <a href="/admin/ProductId/Index/@sanPham.id_" target="_blank">
+                                                            <img src="@string.Format("/Upload/Files/{0}?width=173&height=193", sanPham.Img)" style="width:70px;text-align: center;" />
+                                                        </a>
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="@Url.RouteUrl("ChiTietSanPham", new { splink = sanPham.Link })" target="_blank">@sanPham.NameProduct</a>
+                                                        @if (sanPham.HasValue == true)
+                                                        {
+                                                            <br /> <p class="fa fa-edit" style="margin-top: 30px; float: right; line-height: 23px; color: green; font-weight: bold;">
+                                                                <a href="#" style="color: green;" onClick="window.open('/admin/sanpham/EditMaVach/@sanPham.id_', '_blank','toolbar=yes,scrollbars=yes,resizable=yes,top=90,left=500,width=700,height=500')">Có mã vạch</a>
+                                                                <br />
+                                                                <span style="color: grey;font-weight: normal;">@sanPham.sDate</span>
+                                                            </p>
+
+                                                            if (sanPham.HasOnHand == true)
+                                                            {
+                                                                <br /> <p class="fa fa-check" style="margin-top: 30px; color: green; font-weight: bold;">Còn hàng</p>
+                                                            }
+                                                            else
+                                                            {
+
+                                                                <br /> <p class="fa fa-check" style="margin-top: 30px; color: red; font-weight: bold;">Hết hàng</p>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <br /> <p class="fa fa-barcode" style="float: right;line-height: 30px; color: red; font-weight: bold;">
+                                                                <a href="#" style="color: red;" onClick="window.open('/admin/sanpham/EditMaVach/@sanPham.id_', '_blank','toolbar=yes,scrollbars=yes,resizable=yes,top=90,left=500,width=700,height=500')">Chưa có mã vạch</a>
+                                                                <br />
+                                                                <span style="color: grey;font-weight: normal;">@sanPham.sDate</span>
+                                                            </p>
+                                                        }
+
+                                                    </td>
+
+                                                    <td class="center" style="text-align: center;">@string.Format("{0:#,#.##}", sanPham.PricePro)₫</td>
+
+                                                    <td class="center" style="text-align: center;">@sanPham.SapXepSanPham</td>
+                                                    <!--check de hien thi hoac an san pham-->
+                                                    @if (sanPham.ok)
+                                                    {
+                                                        <td class="center" style="text-align: center;">
+                                                            <input id="check_showhide" type="checkbox" checked="checked" value="@sanPham.id_" />
+                                                            <br />
+                                                            <span style="padding-top: 60px;float: right;">@stt</span>
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="center" style="text-align: center;">
+                                                            <input id="check_showhide" type="checkbox" value="@sanPham.id_" />
+                                                            <span style="color: red;font-weight: normal;float: right;margin-top: 45px;">
+                                                                ẩn
+
+                                                            </span>
+                                                            <br />
+                                                            <span style="padding-top: 60px;float: right;">@stt</span>
+                                                        </td>
+
+                                                    }
+
+                                                    @if (sanPham.GiaHot)
+                                                    {
+                                                        <td class="center" style="text-align: center;"><input id="check_giahot" type="checkbox" checked="checked" value="@sanPham.id_" /> </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="center" style="text-align: center;">
+                                                            <input id="check_giahot" type="checkbox" value="@sanPham.id_" />
+                                                            <span style="color: red;font-weight: normal;float: right;margin-top: 45px;">ẩn </span>
+                                                        </td>
+                                                    }
+                                                    @*show top 100*@
+                                                    @if (sanPham.Bestseller)
+                                                    {
+                                                        <td class="center" style="text-align: center;"><input id="check_top100" type="checkbox" checked="checked" value="@sanPham.id_" /> </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="center" style="text-align: center;">
+                                                            <input id="check_top100" type="checkbox" value="@sanPham.id_" />
+                                                            <span style="color: red;font-weight: normal;float: right;margin-top: 45px;">ẩn </span>
+                                                        </td>
+                                                    }
+
+                                                    <input type="hidden" id="id_" value="@sanPham.id_" name="idsanpham" />
+                                                    <td>@sanPham.NguoiTao</td>
+                                                    <td class="actions">
+                                                        <a title="Sửa" href="/admin/sanpham/edit/@sanPham.id_" class="btn">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <a title="Xóa" onclick="return xoa(@sanPham.id_)" href="#" class="btn">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <script>
+                                                    function myFunction() {
+                                                        window.open("/admin/sanpham/EditMaVach/" + @sanPham.id_, "_blank", "toolbar=yes,scrollbars=yes,resizable=no,top=90,left=500,width=400,height=650");
+                                                    }
+                                                </script>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">
+                                    Page @(Model.Menus.PageCount < Model.Menus.PageNumber ? 0 : Model.Menus.PageNumber) of @Model.Menus.PageCount
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                @if (Convert.ToInt32(ViewData["sx"].ToString()) != 0)
+                                {
+                                    @Html.PagedListPager(Model.Menus, page => Url.Action("Index", new { page, sx = (ViewData["sx"]), stt = Model.stt }))
+                                }
+                                else
+                                {
+                                    @Html.PagedListPager(Model.Menus, page => Url.Action("Index", new { page, stt = Model.stt }))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        if (r) {
+            location.href = "/admin/sanpham/Delete/" + f;
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function changetypePromotion(sx) {
+        location.href = "/Admin/sanpham?sx=" + sx;
+    }
+</script>
+
+<script>
+    //update an hien cho san pham
+    $("#dataTables-example tr td #check_showhide").click(function(e) {
+        var that=$(this);
+        var vlCheck = that.val();
+
+        var url = '/admin/SanPham/UpdateOk';
+        $.post(url, {
+            idsanpham:vlCheck,
+            checked: that.is(':checked')
+
+        }, function(data) {
+            alert("Cập nhật trạng thái thành công!");
+        });
+    });
+</script>
+
+<script>
+    //update an hien cho san pham co gia hot
+    $("#dataTables-example tr td #check_giahot").click(function(e) {
+        var that=$(this);
+        var vlCheck = that.val();
+
+        var url = '/admin/SanPham/UpdateGiaHot';
+        $.post(url, {
+            idsanpham:vlCheck,
+            checked: that.is(':checked')
+
+        }, function(data) {
+            alert("Cập nhật trạng thái thành công!");
+        });
+    });
+</script>
+
+
+<script>
+    //update an hien cho san pham co gia hot
+    $("#dataTables-example tr td #check_top100").click(function(e) {
+        var that=$(this);
+        var vlCheck = that.val();
+
+        var url = '/admin/SanPham/UpdateTop100';
+        $.post(url, {
+            idsanpham:vlCheck,
+            checked: that.is(':checked')
+
+        }, function(data) {
+            alert("Cập nhật trạng thái thành công!");
+        });
+    });
+</script>
+

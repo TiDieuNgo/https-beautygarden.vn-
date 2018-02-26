@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Banner khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Shop.Model.BannerKhuyenMai>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="margin: 20px 0 5px;">Banner khuyến mãi</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: red;">
+                    <a href="/admin/BannerKhuyenMai/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Hình ảnh</th>
+                                            <th>Tên</th>
+                                            <th>Mô tả</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                                <tr class="gradeU odd" role="row">
+                                                    <td>
+                                                        <img src="@string.Format("/Upload/Files/{0}", tag.HinhAnh)" style="width:200px;height:100px;text-align: center;" />
+                                                    </td>
+                                                    <td class="center">@tag.Ten</td>
+                                                    <td class="center">@Html.Raw(tag.MoTa)</td>
+                                                    <td class="actions">
+                                                        <a title="Sửa" href="/admin/BannerKhuyenMai/edit/@tag.Id" class="btn">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <a title="Xóa" onclick="return xoa(@tag.Id)" href="#" class="btn">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        if (r) {
+            location.href = "/admin/BannerKhuyenMai/Delete/" + f;
+        }
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+
+<link href="~/Content/tags/jquery.tagit.css" rel="stylesheet" />
+<link href="~/Content/tags/tagit.ui-zendesk.css" rel="stylesheet" />
+<script src="~/Content/tags/tag-it.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.get("/Admin/SanPham/getListTag", function (data) {
+            var listTag = [];
+            for (var i = 0; i < data.length; i++) {
+                listTag.push(data[i].TenTag);
+            }
+            $('#myTags').tagit({
+                availableTags: listTag,
+                singleField: true, allowSpaces: true,
+                singleFieldNode: $('#mySingleField')
+            });
+        });
+    });
+</script>
+<div class="form-group">
+    <label class="col-sm-2 ">Tag</label>
+    <div class="col-sm-10">
+        <input id="mySingleField" name="mySingleField" value="" type="text" style="display: none;" />
+        <ul id="myTags"></ul>
+    </div>
+</div>
+<script>
+    var pathArray = window.location.pathname.split('/admin/sanpham/edit/');
+    var newPathname = "";
+    for (i = 0; i < pathArray.length; i++) {
+        newPathname += "";
+        newPathname += pathArray[i];    //idmenu
+    }
+    $.post("/admin/SanPham/setValEdit", {
+        IdMenu: newPathname,
+    }, function (data) {
+        var listTag = [];
+        for (var i = 0; i < data.length; i++) {
+            listTag.push(data[i].TenTag);
+        }
+        $("#mySingleField").val(listTag);
+    });
+</script>

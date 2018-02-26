@@ -1,0 +1,65 @@
+﻿@using Newtonsoft.Json
+@model  IList<Shop.Model.MenuImageMapping.MenuImage>
+@{
+    string imgs = JsonConvert.SerializeObject(Model);
+}
+
+<ul id="images_other">
+    @if (Model.Any())
+    {
+        foreach (var menuImage in Model)
+        {
+        <li>
+            <img class="img-thumbnail" src="@menuImage.ImageName"/>
+            <span onclick="return deleteImage(@menuImage.id,this)" class="remove"><i class="fa fa-close"></i></span>
+        </li>
+        }
+    }
+</ul>
+
+<div>
+    <button onclick="return BrowseMenuImages();" type="button" class="btn btn-primary">Thêm ảnh khác</button>
+</div>
+<div style="display: none;">
+    <textarea id="OtherImages" name="OtherImages">@imgs</textarea>
+</div>
+<script>
+    function BrowseMenuImages() {
+        var finder = new CKFinder();
+        finder.basePath = '/Content/ckfinder/';
+        finder.selectActionFunction = SetFileFieldImg;
+        finder.popup();
+    }
+
+    function SetFileFieldImg(fileUrl) {
+        console.log("fileUrl", fileUrl);
+        $("ul#images_other").append("<li><img class=\"img-thumbnail\" src='" + fileUrl + "'/><span onclick=\"return deleteImage(0,this)\" class=\"remove\"><i class=\"fa fa-close\" ></i></span></li>");
+
+        var imgs = $("#OtherImages").val();
+        var otherImgs = [];
+        if (imgs != "") {
+            otherImgs = JSON.parse(imgs);
+            console.log("otherImgs", otherImgs);
+        }
+
+        otherImgs.push({
+            id: 0,
+            ImageName: fileUrl
+        });
+        console.log("otherImgs", otherImgs);
+        $("#OtherImages").val(JSON.stringify(otherImgs));
+    }
+
+    function deleteImage(id, element) {
+        //ajax xoa hinh
+        $.post("/admin/SanPham/DeleteSmallImage", {
+            Id: id,
+
+        }, function (data) {
+            //alert(data.message);
+        });
+        
+        $(element).parent().remove();//xoa tren giao dien
+       
+    }
+</script>

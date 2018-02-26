@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Phân Loại Sản Phẩm Theo Tag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@model Shop.Web.Model.DanhSach
+@using Shop.Data
+@{
+    ViewBag.Title = string.IsNullOrEmpty(Model.DanhSachTag.SEOtitle) ? @ViewData["tentag"] : Model.DanhSachTag.SEOtitle;
+    ViewBag.Keyword = string.IsNullOrEmpty(Model.DanhSachTag.SEODescription) ? @ViewData["tentag"] : Model.DanhSachTag.SEODescription;
+    ViewBag.Description = string.IsNullOrEmpty(Model.DanhSachTag.SEODescription) ? @ViewData["tentag"] : Model.DanhSachTag.SEODescription;
+}
+<!-- MAIN -->
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li><a href="">Phân loại sản phẩm theo tag</a></li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3  col-main">
+            <!-- List Products -->
+            <div class="toolbar-products toolbar-top" style="margin-top: 0;">
+                <h1 class="cate-title first-letter">@ViewData["tentag"]</h1>
+            </div>
+            <div class="products  products-grid">
+                <ol class="product-items row">
+                    @if (Model.SanPhamTheoTags.Any())
+                    {
+                        foreach (var menu in Model.SanPhamTheoTags)
+                        {
+
+                            <li class="col-sm-3 col-xs-6 tag_box">
+                                <div class="product-item-opt-2 tag_box_product">
+                                    <div class="product-item-info">
+                                        <div class="product-item-photo">
+                                            <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" class="product-item-img tag_box_a" title="@menu.NameProduct">
+                                                <img src="@string.Format("/Upload/Files/{0}?width=350&height=391",menu.Img)" alt="@menu.NameProduct" style="max-width: 173px;max-height: 193px;">
+                                            </a>
+                                            <div class="product-item-actions">
+                                                <a class="btn btn-wishlist" href="javascript:addtofavorites(@menu.id_);" id="@menu.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                            </div>
+
+                                            @if (menu.HasPromotion)
+                                            {
+                                                <span class="product-item-label label-price">@menu.Discount% <span>off</span></span>
+                                            }
+                                            <button type="button" class="btn btn-cart" onclick="location.href = '/cart/QuickAdd?productId=@menu.id_';return false;"><span>Thêm giỏ hàng</span></button>
+                                        </div>
+                                        <div class="product-item-detail">
+                                            <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                                            <div class="clearfix">
+                                                <div class="product-item-price">
+                                                    @if (menu.HasPromotion)
+                                                    {
+                                                        <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                                        <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-pull-9  col-sidebar">
+            @Html.Action("Thuonghieunoibat", "ThuongHieu")
+            @Html.Action("BannerQCDanhSach", "Banner")
+        </div>
+    </div>
+</div>
+@functions
+{
+    //tinh so luong hinh anh trong danh muc
+    //neu >0 thi show ra, nguoc lai an di
+    public int GetslHientai(int id)
+    {
+        using (var context = new ShopDataContex())
+        {
+            string sql = string.Format("select COUNT(*) from BannerDanhSachs where IdDanhMuc={0}", id);
+            return context.Database.SqlQuery<int>(sql).First();
+        }
+    }
+}
+
+<script>
+    //danh sách sản phẩm yêu thích
+    // get favorites from local storage or empty array
+    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    // add class 'fav' to each favorite
+    favorites.forEach(function (productId) {
+        //chay lan luot tung li da co class fav
+        $("#" + productId).addClass("fav");
+    });
+
+    function addtofavorites(productId) {
+        var index = favorites.indexOf(productId);
+
+        // return if target doesn't have an id (shouldn't happen)
+        if (!productId) return;
+        // khi chưa click vào trái tim
+        if (index == -1) {
+            //khi click thi day id cua thang click vao favorites
+            favorites.push(productId);
+            $("#" + productId).addClass("fav");
+        } else {
+            // co roi ma click lan nua thi het favorites
+            favorites.splice(index, 1);
+            $("#" + productId).removeClass("fav");
+        }
+        // store array in local storage
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+</script>

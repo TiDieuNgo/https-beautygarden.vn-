@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Sản phẩm bạn đã xem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@model Shop.Web.Model.DanhSach
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "sản phẩm bạn đã xem";
+}
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li class="active">Sản phẩm bạn đã xem</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3  col-main">
+            <div class="products  products-grid">
+                <ol class="product-items row">
+                    @if (Model.SanPhamTheoDanhMucs.Any())
+                    {
+                        foreach (var menu in Model.SanPhamTheoDanhMucs)
+                        {
+                            DateTime date = DateTime.Now;
+                            DateTime startdate = date;
+                            DateTime enddate = menu.NgayHetHang;
+                            var subenddate = startdate.Subtract(enddate).Days;
+                            if (subenddate <= 15)
+                            {
+                                <li class="col-sm-3 col-xs-6 box_sanpham_ds">
+                                    <div class="product-item-opt-2 box_sanpham_product">
+                                        <div class="product-item-info">
+                                            <div class="product-item-photo">
+                                                <a href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" class="product-item-img" title="@menu.NameProduct">
+                                                    <img data-src="@string.Format("/Upload/Files/{0}?width=350&height=391",menu.Img)" alt="@menu.NameProduct" style="max-width: 173px;max-height: 193px;">
+                                                </a>
+                                                <div class="product-item-actions">
+                                                    <a class="btn btn-wishlist" href="javascript:addtofavorites(@menu.id_);" id="@menu.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                                </div>
+                                                @if (menu.HasPromotion)
+                                                {
+                                                    <span class="product-item-label label-price">@menu.Discount% <span>off</span></span>
+                                                }
+                                                @if (enddate < startdate && menu.HasOnHand == false)
+                                                {
+                                                    <span class="label-price-combo"><img src="/images/hethang.png" style="width: 45px; height: 45px;"/></span>
+                                                }
+                                            @{
+                                                int giatru = ((menu.Price * 2) * 10)/100;
+                                                int gia =(menu.Price * 2) - giatru;
+                                            }
+                                            @if (menu.Price < 80000 && !menu.HasPromotion)
+                                            {
+                                                if (gia > 100000)
+                                                {
+                                                    <span class="label-price-combo2">@gia.ToString().Substring(0,3)K/2</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label-price-combo2">@gia.ToString().Substring(0,2)K/2</span>
+                                                }
+                                            }
+                                     <button type="button" class="btn btn-cart" onMouseOver="show_sidebar()" onMouseOut="hide_sidebar()" onclick="location.href = '/cart/QuickAdd?productId=@menu.id_';return false;"><span>Thêm giỏ hàng</span></button>
+                                            </div>
+                                            <div class="product-item-detail">
+                                                @if (menu.Price < 80000 && !menu.HasPromotion)
+                                            {
+                                                if (gia > 100000)
+                                                {
+                                                    <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua 2 SP</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua 2 SP</div>
+                                                }
+                                            }
+                                                <strong class="product-item-name"><a href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                                                <div class="clearfix">
+                                                    <div class="product-item-price">
+                                                        @if (menu.HasPromotion)
+                                                        {
+                                                            <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                                            <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ol>
+            </div>
+            <div class="toolbar-products toolbar-bottom">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model.SanPhamTheoDanhMucs, page => Url.Action("Index", new { page }))
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-pull-9  col-sidebar">
+            @Html.Action("Thuonghieunoibat", "ThuongHieu")
+            @Html.Action("BannerQCDanhSach", "Banner")
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+    </div>
+</div>
+<h2 style="display: none;">Danh sách các sản phẩm thuộc danh mục</h2>
+<h3 style="display: none;">Trang điểm</h3>
+<h3 style="display: none;">Chăm sóc da</h3>
+<h3 style="display: none;">Chăm sóc tóc</h3>
+<h3 style="display: none;">Nước hoa</h3>
+<h3 style="display: none;">Phụ kiện</h3>
+<h3 style="display: none;">Thực phẩm chức năng</h3>
+<script>
+    function show_sidebar() {
+        $(".txt_combo").css("display", "none");
+    }
+    function hide_sidebar() {
+        $(".txt_combo").css("display", "block");
+    }
+</script>

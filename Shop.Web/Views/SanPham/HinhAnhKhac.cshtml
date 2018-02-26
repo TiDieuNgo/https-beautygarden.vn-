@@ -1,0 +1,17 @@
+﻿@model IList<Shop.Model.MenuImage>
+<div class="product_preview images-small">
+    <div class="owl-carousel thumbnails_carousel" id="thumbnails" data-nav="true" data-dots="false" data-margin="10" data-responsive='{"0":{"items":3},"480":{"items":4},"600":{"items":5},"768":{"items":3}}'>
+        @if (Model.Any())
+        {
+            foreach (var menuImage in Model)
+            {
+                string urlImages = "", images = "";
+                images = menuImage.ImageName;
+                urlImages = images.Replace("/Upload/files/", "");
+                <a href="#" data-image="@string.Format("/Upload/Files/{0}", @urlImages)" data-zoom-image="@string.Format("/Upload/Files/{0}", @urlImages)">
+                    <img src="@string.Format("/Upload/Files/{0}", @urlImages)" data-large-image="@string.Format("/Upload/Files/{0}", @urlImages)" alt="@menuImage.ImageName">
+                </a>
+            }
+        }
+    </div>
+</div>

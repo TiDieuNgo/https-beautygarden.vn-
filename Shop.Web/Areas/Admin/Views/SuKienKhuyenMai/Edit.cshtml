@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Sửa tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    elementForEditorInstance = "Content";
+    ckoptions.width = "90%";
+    $(function () {
+        InstanceCkeditor();
+    });
+</script>
+@model Shop.Model.DetailMenu
+@using (Html.BeginForm("SaveEdit", "SuKienKhuyenMai", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(o => o.id_)
+    <div id="page-wrapper" style="min-height: 407px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header" style="margin: 20px 0 5px;">Tin tức</h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="color: #337ab7;">
+                        Thêm mới sự kiện khuyến mãi
+                    </div>
+                    <style>
+                        .redText {
+                            color: red;
+                        }
+
+                        .col-sm-2 {
+                            color: #337ab7 !important;
+                        }
+                    </style>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Tiêu đề
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(tối đa 45 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Name, new { @class = "form-control", required = "" })
+                                            @*@Html.ValidationMessageFor(o => o.Name, "", new { @class = "redText" })*@
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Link<span style="color: red;">(*)</span> </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.Link, new { @class = "form-control", type = "text", required = "nhap ten san pham" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Title (SEO)
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(tối đa 60 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEOtitle, new { @class = "form-control", required = "" })
+                                            @*@Html.ValidationMessageFor(o => o.SEOtitle, "", new { @class = "redText" })*@
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Description (SEO)
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(tối đa 155 kí tự)</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(o => o.SEODescription, new { @class = "form-control", required = "" })
+                                            @*@Html.ValidationMessageFor(o => o.SEODescription, "", new { @class = "redText" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">
+                                            Hình ảnh
+                                            <br />
+                                            <span style="color: green; font-weight: normal;">(960 x 502 px)</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            @Html.TextBoxFor(o => o.Img, new { @class = "form-control", required = "" })
+                                            @*@Html.ValidationMessageFor(o => o.Img, "", new { @class = "redText" })*@
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button onclick="return BrowseImages('Img');" type="button" class="btn btn-primary">Upload ảnh</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span style="color: red;">
+                                                (*)Nên sử dụng tool để nén
+                                                <br />
+                                                <a href="https://compressor.io/" target="_blank">Click để sử dụng tool nén</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Nội dung tóm tắt</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(o => o.Note, new { @class = "form-control", required = "" })
+                                            @*@Html.ValidationMessageFor(o => o.Note, "", new { @class = "redText" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Vị trí</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="text" required="" name="sPosition" value="1000" />
+                                            @*@Html.ValidationMessageFor(o => o.sPosition, "", new { @class = "redText" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Chi tiết bài viết</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(o => o.Content)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Salepage</label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(o => o.IdSalePage, new SelectList(ViewBag.SalePages, "Id", "TieuDe"), "Vui lòng chọn bài salepage", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    @Html.Action("TagSuKienKM", "DanhSachTag")
+                                    <button type="submit" class="btn btn-success" style="margin-left: 151px;">Lưu</button>
+                                </form>
+                            </div>
+                            <style>
+                                #cke_Content {
+                                    width: 820px !important;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

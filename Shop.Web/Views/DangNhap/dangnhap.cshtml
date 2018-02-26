@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+    ViewBag.canonical = "https://beautygarden.vn/dang-nhap.html";
+}
+@model Shop.Web.Model.DanhNhapModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li><a href="@Url.RouteUrl("DangNhap")" title="đăng nhập">Đăng nhập</a></li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <h2 class="page-heading" style="text-align: center;">
+        <span class="page-heading-title2 dangky>Đăng nhập</span>
+    </h2>
+    <div class="page-content">
+        <div class="row">
+            <p style="text-align: center; font-size: 12px;"><i class="fa fa-user"></i> Bạn chưa có tài khoản?<a href="@Url.RouteUrl("DangKy")" style="color: #00b7f1;" title="tạo tài khoản"> Đăng ký</a> </p>
+            <div class="col-sm-12">
+                @using (Html.BeginForm("Submit", "DangNhap", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                      
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label" style="color: green;font-size: 14px;">Email<span style="color: red;"> (*)</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="inputPassword3" name="Email" placeholder="Nhập Email">
+                            @Html.ValidationMessageFor(o=>o.Email,"", new { @class = "erro" })
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label" style="color: green;font-size: 14px;">Mật khẩu<span style="color: red;"> (*)</span></label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="inputEmail3" name="Password" placeholder="Nhập mật khẩu">
+                            @Html.ValidationMessageFor(o=>o.Password,"", new { @class = "erro" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button type="submit" class="btn btn-success">Đăng nhập</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>@Html.Raw(Regex.Replace(Model.TieuDe, @"<[^>]*>", string.Empty))</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <meta name="description" content="@Model.SeoDecription" />
+    <meta name="keywords" content="@Model.KeyWord" />
+    <meta name="robots" content="index,follow" />
+    <meta http-equiv="content-language" content="vi-VN" />
+    <meta name="geo.placename" content="Việt Nam" />
+    <meta name="geo.region" content="VN" />
+    <meta name="geo.position" content="14.058324;108.277199" />
+    <meta name="ICBM" content="14.058324, 108.277199" />
+    <meta name="revisit-after" content="days" />
+    <meta name="DC.title" content="@Model.SeoTitle" />
+    <meta name="dc.description" content="@Model.SeoDecription" />
+    <meta name="dc.keywords" content="@Model.KeyWord" />
+    <meta name="dc.identifier" content="https://beautygarden.vn/@Model.Link" />
+    <meta name="dc.language" content="vi-VN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://beautygarden.vn/@Model.Link" />
+    <meta property="og:title" content="@Model.SeoTitle" />
+    <meta property="og:description" content="@Model.SeoDecription" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon2.ico" />
+    <link href="~/Content/cssBG/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/Style.css" rel="stylesheet" />
+    <link href="~/Content/cssSalepage/new_css.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/cssmoi.min.css" rel="stylesheet" />
+    <link href="~/Content/csscompressor/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/JsBg/jquery.min.js"></script>
+    <!-- ReFacebook -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '288940968216155'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+    </script>
+</head>
+@using System.Text.RegularExpressions
+@model Shop.Model.SalePage
+<body>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32703462-58"></script>
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '1071737652879858',
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1071737652879858";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="k14-sp-wrapper">
+        <div class="sp-sticky-header kenh14 clearfix">
+            <a href="https://beautygarden.vn/sale-page.html" class="sp-back-to-k14 sp-back-to-site" style="width: 210px !important"></a>
+            <a href="/" class="sp-mag-logo">
+                <img src="/images/logonentrang.png">
+
+            </a>
+        </div>
+        <!--hotline bản desktop-->
+        <div class="nav-right hidden-xs">
+            <span style="font-size: 14px; font-family: Arial, serif; color: white;">
+                <a href="tel:0911384114" title="0911384114" style="color: white; font-weight: bold; text-decoration: none;">
+                    <span style="color: white;">Hotline:</span> 0911 384 114
+                </a>
+            </span>
+            <span style="color: white;">|</span>
+            <span style="font-size: 14px; font-family: Arial, serif; color: white;">
+                <a href="tel:0911384114" title="0911384114" style="color: white; font-weight: bold; text-decoration: none;">
+                    <span style="color: white;">Tổng đài tư vấn:</span> 1900 7013
+                </a>
+            </span>
+        </div>
+        <!--hotline bản mobile-->
+        <div class="nav-right nav-right-custom hidden-lg hidden-desktop hidden-sm">
+            <div class="box_hotline">
+                <span style="font-size: 14px; font-family: Arial, serif;">
+                    <a href="tel:0911384114" title="0911384114">
+                        0911 384 114
+                    </a>
+                </span>
+            </div>
+            <style>
+                .nav-right-custom {
+                    margin-top: -40px !important;
+                    margin-right: 7px !important;
+                }
+
+                .box_hotline {
+                    position: relative;
+                    border: 1px solid #ddd;
+                    border-radius: 3px;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 10px 0 10px;
+                    background-color: #fff;
+                }
+
+                    .box_hotline a {
+                        font-weight: bold;
+                        color: red;
+                        text-decoration: none;
+                    }
+
+                @@media (max-width:479px) {
+                    iframe {
+                        width: 90%;
+                        height: 290px;
+                    }
+                    .iframebarcode {
+                        height: 410px !important;
+                    }
+                    .box-form .btn-1 {
+                        margin: 0 auto !important;
+                    }
+                }
+              
+                .iframegia {
+                    height: 55px !important;
+                }
+            </style>
+        </div>
+    </div>
+    <div class="content_bg" style="margin-top: 50px;">
+       @* <img alt="@Model.TieuDe" src="@string.Format("/Upload/{0}",Model.HinhAnh)" style="height: auto !important; margin-top: 44px; width: 100%;">*@
+        <div class="container">
+            <p>@Html.Raw(Model.NoiDung1)</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="single-box">
+            <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="100%"></div>
+        </div>
+    </div>
+    <footer class="site-footer footer-opt-1 footer_custom">
+        <div class="container">
+            <div class="footer-column">
+                <div class="row">
+                    <div class="col-md-5 col-lg-5 col-xs-12 col">
+                        <div class="links">
+                            <span class="title">Hệ thống cửa hàng</span>
+                            <ul>
+                                <li>
+                                    <a href="#popup2" class="showroom showroompopup2" title="98B Phan Đăng Lưu, P.3, Q.Phú Nhuận - 0911 384 114">
+                                        <i class="fa fa-map-marker"></i><span class="coso_bg"> Q.Phú Nhuận Tp.HCM -</span>
+                                        98B Phan Đăng Lưu, P.3, Q.Phú Nhuận - 0911 384 114
+                                        <img src="/images/maps-compressor.png" class="coso_bg_img" alt="98B Phan Đăng Lưu, P.3, Q.Phú Nhuận" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#popup1" class="showroom showroompopup1" title="Số 71, Đường số 3, Cư Xá Đô Thành, P4, Q3 - 0911 784 114">
+                                        <i class="fa fa-map-marker"></i><span class="coso_bg"> Quận 3 Tp.HCM -</span>
+                                        Số 71, Đường số 3, Cư Xá Đô Thành, P4, Q3 - 0911 784 114
+                                        <img class="coso_bg_img" src="/images/maps-compressor.png" alt="Số 71, Đường số 3, Cư Xá Đô Thành" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#popup3" class="showroom showroompopup3" title="152 Chùa Bộc, Đống Đa, Hà Nội - 0911 584 114">
+                                        <i class="fa fa-map-marker"></i><span class="coso_bg"> Hà Nội -</span>
+                                        152 Chùa Bộc, Đống Đa, Hà Nội - 0911 584 114
+                                        <img src="/images/maps-compressor.png" class="coso_bg_img" alt="152 Chùa Bộc, Đống Đa, Hà Nội" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#popup4" class="showroom showroompopup4" title="268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - 0911 684 114 ">
+                                        <i class="fa fa-map-marker"></i><span class="coso_bg"> Đà Nẵng -</span>
+                                        268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - 0911 684 114
+                                        <img src="/images/maps-compressor.png" class="coso_bg_img" alt="268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#popup5" class="showroom showroompopup5" title="Gia Lai - 79 Hai Bà Trưng, P.Diên Hồng, Tp.Pleiku - 0911.520.114">
+                                        <i class="fa fa-map-marker"></i><span class="coso_bg"> Gia Lai -</span>
+                                        79 Hai Bà Trưng, P.Diên Hồng, Tp.Pleiku - 0911.520.114
+                                        <img class="coso_bg_img" src="/images/maps-compressor.png" alt="Gia Lai - 79 Hai Bà Trưng, P.Diên Hồng, Tp.Pleiku - 0911.520.114" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6 col">
+                        <div class="links">
+                            <span class="title">Trụ sở chính</span>
+                            <ul>
+                                <li><a class="decoration">Địa chỉ: 255 Bình Lợi, P. 13, Q. Bình Thạnh. Tp.HCM</a></li>
+                                <li><a class="decoration">Tel: 02 873 000 283 - Email: info@beautygarden.vn </a></li>
+                                <li><a class="decoration"> Website: www.beautygarden.vn </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xs-6 col">
+                        <div class="links">
+                            <span class="title">Website thuộc quyền</span>
+                            <ul>
+                                <li><a class="decoration">CÔNG TY CỔ PHẦN BEAUTY GARDEN</a></li>
+                                <li><a class="decoration">ĐKKD số: 0314635748</a></li>
+                                <li>
+                                    <a class="decoration">
+                                        Do Sở KH&ĐT Tp. HCM
+                                        Cấp ngày 21/09/2017
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .footer-opt-1 .footer-column .links .decoration {
+                text-decoration: none !important;
+            }
+        </style>
+        <div id="popup1" class="overlay light modalDialog">
+            <a class="cancel" href="#close" title="cancel"></a>
+            <div class="popup">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="google-maps" id="cs1">
+                </div>
+            </div>
+        </div>
+        <div id="popup2" class="overlay light modalDialog">
+            <a class="cancel" href="#close" title="cancel"></a>
+            <div class="popup">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="google-maps" id="cs2">
+                </div>
+            </div>
+        </div>
+        <div id="popup3" class="overlay light modalDialog">
+            <a class="cancel" href="#close" title="cancel"></a>
+            <div class="popup">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="google-maps" id="cs3">
+                </div>
+            </div>
+        </div>
+        <div id="popup4" class="overlay light modalDialog">
+            <a class="cancel" href="#close" title="cancel"></a>
+            <div class="popup">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="google-maps" id="cs4">
+                </div>
+            </div>
+        </div>
+        <div id="popup5" class="overlay light modalDialog">
+            <a class="cancel" href="#close" title="cancel"></a>
+            <div class="popup">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="google-maps" id="cs5">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/JsBg/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.firstVisitPopup.js"></script>
+    <!-- Google Code dành cho Thẻ tiếp thị lại -->
+    <!--------------------------------------------------
+    Không thể liên kết thẻ tiếp thị lại với thông tin nhận dạng cá nhân hay đặt thẻ tiếp thị lại trên các trang có liên quan đến danh mục nhạy cảm. Xem thêm thông tin và hướng dẫn về cách thiết lập thẻ trên: http://google.com/ads/remarketingsetup
+    --------------------------------------------------->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 869708714;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+</body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '1071737652879858',
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-customerchat" page_id="1572720252750427"></div>
+@Html.Action("Index", "PopUpBannerKM")
+<script>
+    $(function () {
+        var local = localStorage.getItem("showPopup");
+        var today = formatDate(new Date());
+        if (local && local === today) {
+            deleteCookie("fvpphomepage");
+            return;
+        } else {
+            $('#my-welcome-message').firstVisitPopup({
+                cookieName: 'homepage',
+                showAgainSelector: '#show-message'
+            });
+            localStorage.setItem("showPopup", today);
+        }
+    });
+
+    function deleteCookie(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    };
+    function formatDate(date) {
+        var d = date,
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".showroompopup1").on("click", function () {
+            $('#cs1').prepend('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5073721226327!2d106.67969531472941!3d10.772398262213871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f215e02ad09%3A0x48ac4ad825ee263c!2zU2hvcCBt4bu5IHBo4bqpbSBCZWF1dHkgR2FyZGVu!5e0!3m2!1svi!2sin!4v1506150870469" width="640" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>');
+        });
+        $(".showroompopup2").on("click", function () {
+            $('#cs2').prepend('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1042503124586!2d106.68210431480107!3d10.803326992303285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc42bde7b8e982ba4!2zTeG7uSBQaOG6qW0gQ2jDrW5oIEjDo25nIEJlYXV0eSBHYXJkZW4!5e0!3m2!1svi!2s!4v1501579356484" width="640" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>');
+        });
+        $(".showroompopup3").on("click", function () {
+            $('#cs3').prepend('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.5831342324113!2d105.82246431493229!3d21.00934098600893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7d168e4eae4098e5!2zTeG7uSBQaOG6qW0gQ2jDrW5oIEjDo25nIEJlYXV0eSBHYXJkZW4!5e0!3m2!1svi!2s!4v1501579590682" width="640" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>');
+        });
+        $(".showroompopup4").on("click", function () {
+            $('#cs4').prepend('<iframe defer src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.221362742578!2d108.21718911467893!3d16.05399874411063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219c8ca730c71%3A0x644326f9158a8723!2zMjY4IFRyxrBuZyBO4buvIFbGsMahbmcsIELDrG5oIFRodeG6rW4sIEjhuqNpIENow6J1LCDEkMOgIE7hurVuZywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1486369456336" width="640" height="450" frameborder="0" style="border: 0" allowfullscreen></iframe>');
+        });
+        $(".showroompopup5").on("click", function () {
+            $('#cs5').prepend('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.64781335061!2d107.99192661475087!3d13.979556695741406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316c1f7a2f906a0b%3A0xa02fd709d5ad9abd!2zNzkgSGFpIELDoCBUcsawbmcsIERpw6puIEjhu5NuZywgVHAuIFBsZWlrdSwgR2lhIExhaSA2MDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1510190205097" width="640" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>');
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,378 @@
+﻿@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Model.DanhSach
+@using PagedList.Mvc
+@using Shop.Model
+
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="#">Home    </a></li>
+        <li><a href="#">Electronics    </a></li>
+        <li class="active">Machine Pro</li>
+    </ol>
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-md-push-3  col-main">
+            <!-- images categori -->
+            @Html.Action("Index", "BannerTrangDanhSach")
+            <div class="toolbar-products toolbar-top">
+                <h1 class="cate-title">Electronics</h1>
+            </div>
+            <div class="products  products-grid">
+                <ol class="product-items row">
+                    @if (Model.SanPhamTheoDanhMucs.Any())
+                    {
+                        foreach (var menu in Model.SanPhamTheoDanhMucs)
+                        {
+                            <li class="col-sm-3 product-item ">
+                                <div class="product-item-opt-1">
+                                    <div class="product-item-info">
+                                        <div class="product-item-photo">
+                                            <a href="/sanpham/chitiet/@menu.id_" class="product-item-img">
+                                                <img src="@string.Format("https://beautygarden.vn/Files/Thumb/{0}",menu.Img)" alt="@menu.NameProduct">
+                                            </a>
+                                            <div class="product-item-actions">
+                                                <a href="" class="btn btn-quickview"><span>quickview</span></a>
+                                            </div>
+                                            <button class="btn btn-cart" type="button"><span>Thêm giỏ hàng</span></button>
+                                            @*  <span class="product-item-label label-price">30% <span>off</span></span>*@
+                                        </div>
+                                        <div class="product-item-detail">
+                                            <strong class="product-item-name"><a href="/sanpham/chitiet/@menu.id_">@menu.NameProduct</a></strong>
+                                            <div class="clearfix">
+                                                <div class="product-item-price">
+                                                    <span class="price">@string.Format("{0:#,#.##}", menu.PricePro)₫</span>
+                                                    @*<span class="old-price">$52.00</span>*@
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        }
+                    }
+                </ol>
+            </div>
+            <div class="toolbar-products toolbar-bottom">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model.SanPhamTheoDanhMucs, page => Url.Action("Index", new { page, id = Model.DanhMuc.id_ }))
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-pull-9  col-sidebar">
+            <div class="block-sidebar block-sidebar-categorie">
+                <div class="block-title">
+                    <strong>PRODUCT TYPES</strong>
+                </div>
+                <div class="block-content">
+                    <ul class="items">
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Dress</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li>
+                                    <a href="/sanpham/chitiet">subcategory 1</a>
+
+                                </li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/sanpham/chitiet">Bags</a>
+                        </li>
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Cost &amp; Jackets</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Beauty</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Jewellery</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Nightwear</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent">
+                            <a href="/sanpham/chitiet">Jumpers &amp; Cardigans</a>
+                            <span class="toggle-submenu"></span>
+                            <ul class="subcategory">
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                                <li><a href="/sanpham/chitiet">subcategory 1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Block  bestseller products-->
+            <!-- block filter products -->
+            <div id="layered-filter-block" class="block-sidebar block-filter no-hide">
+                <div class="close-filter-products"><i class="fa fa-times" aria-hidden="true"></i></div>
+                <div class="block-title">
+                    <strong>FILTER SELECTION</strong>
+                </div>
+                <div class="block-content">
+
+                    <!-- Filter Item  categori-->
+                    <div class="filter-options-item filter-options-categori">
+                        <div class="filter-options-title">Categories</div>
+                        <div class="filter-options-content">
+                            <ol class="items">
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Tops <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Network & Computer <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Batteries & Chargers <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Dresses <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Knitted <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Pants <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Best selling <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                                <li class="item ">
+                                    <label>
+                                        <input type="checkbox"><span>Headphone & Headset <span class="count">(20)</span></span>
+                                    </label>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- Filter Item  categori-->
+                    <!-- filter color-->
+                    <div class="filter-options-item filter-options-color">
+                        <div class="filter-options-title">COLOR</div>
+                        <div class="filter-options-content">
+                            <ol class="items">
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #fca53c;"></span>
+                                            <span class="count">(30)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #6b5a5c;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #000000;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #3063f2;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #f9334a;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #964b00;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #faebd7;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #e84c3d;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                                <li class="item">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>
+                                            <span class="img" style="background-color: #fccacd;"></span>
+                                            <span class="count">(20)</span>
+                                        </span>
+
+                                    </label>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-sidebar block-banner-sidebar">
+                <div class="owl-carousel"
+                     data-nav="false"
+                     data-dots="true"
+                     data-margin="0"
+                     data-items='1'
+                     data-autoplaytimeout="700"
+                     data-autoplay="true"
+                     data-loop="true">
+                    <div class="item item1">
+                        <img src="images/media/banner-sidebar1.jpg" alt="images">
+                    </div>
+                    <div class="item item2">
+                        <img src="images/media/banner-sidebar1.jpg" alt="images">
+                    </div>
+                    <div class="item item3">
+                        <img src="images/media/banner-sidebar1.jpg" alt="images">
+                    </div>
+                </div>
+            </div>
+            <div class="block-sidebar block-sidebar-products">
+                <div class="block-title">
+                    <strong>SPECIAL PRODUCTS</strong>
+                </div>
+                <div class="block-content">
+                    <div class="product-item product-item-opt-1">
+                        <div class="product-item-info">
+                            <div class="product-item-photo">
+                                <a class="product-item-img" href="">
+                                    <img alt="product name" src="images/media/floor5-1.jpg">
+                                </a>
+                            </div>
+                            <div class="product-item-detail">
+                                <strong class="product-item-name"><a href="/sanpham/chitiet">Security Camera Size Flared</a></strong>
+                                <div class="clearfix">
+                                    <div class="product-item-price">
+                                        <span class="price">$45.00</span>
+                                    </div>
+                                    <div class="product-reviews-summary">
+                                        <div class="rating-summary">
+                                            <div title="70%" class="rating-result">
+                                                <span style="width: 70%">
+                                                    <span><span>70</span>% of <span>100</span></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="" class="btn all-products">All products <i aria-hidden="true" class="fa fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="block-sidebar block-sidebar-tags">
+                <div class="block-title">
+                    <strong>product tags</strong>
+                </div>
+                <div class="block-content">
+                    <ul>
+                        <li><a href="" class="lv2">actual</a></li>
+                        <li><a href="" class="lv1">adorable</a></li>
+                        <li><a href="" class="lv3">amaze</a></li>
+                        <li><a href="" class="lv5">change</a></li>
+                        <li><a href="" class="lv2">consider</a></li>
+                        <li><a href="" class="lv1">delivery</a></li>
+                        <li><a href="" class="lv1">Top</a></li>
+                        <li><a href="" class="lv4">flexib</a></li>
+                        <li><a href="" class="lv1">phenomenon </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

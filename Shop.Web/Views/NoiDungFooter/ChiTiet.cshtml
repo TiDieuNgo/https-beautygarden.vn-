@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Nội dung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Model.NoiDungFooterModel
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li class="active">@Model.TinTucChiTiet.NameProduct</li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-md-push-3  col-main ">
+            <h1 class="page-heading">
+                <span class="page-heading-title2">@Model.TinTucChiTiet.NameProduct</span>
+            </h1>
+            <article class="entry-detail">
+                <div class="content-text clearfix">
+                    <p>@Html.Raw(Model.TinTucChiTiet.Content)</p>
+                </div>
+             
+            </article>
+        </div>
+        <!-- Main Content -->
+
+        <!-- Sidebar -->
+        <div class=" col-md-3 col-md-pull-9   col-sidebar">
+            <!-- Block  categorie-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  categorie-->
+            <!-- Block  Popular Posts-->
+            @Html.Action("TinHot","TinTuc")
+            <!-- Block  Popular Posts-->
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>

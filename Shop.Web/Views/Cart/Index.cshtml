@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@using Shop.Data
+@using Shop.Model
+@model Shop.Web.ViewModels.CartViewModel.CartModel
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ </a></li>
+        <li class="active"><a href="">Giỏ hàng</a></li>
+    </ol>
+    <div class="tiki-cart cart_tiki_copy">
+        <div class="wrap">
+            <div class="have-height">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 cart-col-1">
+                        <div class="row title">
+                            @if (Model.CartItems.Any())
+                            {
+                                <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <span class="cart_index">Giỏ hàng <span>(@Model.CartItems.Count sản phẩm)</span></span>
+                                    <span class="badge"></span>
+                                </div>
+                                <div class="col-lg-2 col-md-2 hidden-xs">
+                                    <h6>&nbsp; Giá mua</h6>
+                                </div>
+                                <div class="col-lg-2 col-md-2 hidden-xs">
+                                    <h6> Số lượng</h6>
+                                </div>
+                                <div class="col-lg-2 col-md-2 hidden-xs">
+                                    <h6> Thành tiền</h6>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-8 col-md-8 col-xs-6">
+                                    <h5>Giỏ hàng trống</h5>
+                                    <span class="badge"></span>
+                                </div>
+                            }
+                        </div>
+
+                        @if (Model.CartItems.Any())
+                        {
+                            foreach (var item in Model.CartItems)
+                            {
+                                int giagoc = 0, soluong = 0, tongtien = 0, giaKm = 0, tongKM = 0;
+                                giagoc = item.Price;
+                                soluong = item.Quantity;
+                                tongtien = giagoc * soluong;
+                                tongKM = item.PricePromotion * soluong;
+                                <div class="row shopping-cart-item">
+                                    <div class="col-lg-2 col-md-2 col-xs-3 img-thumnail-custom">
+                                        <p class="image">
+                                            <a class="top_zindex" href="@Url.RouteUrl("ChiTietSanPham", new {splink = item.Link})" title="@item.Name">
+                                                <img class="img-responsive" src="@string.Format("/Upload/Files/{0}?width=350&height=391", item.Image.Replace("/Upload/files/",""))" alt="@item.Name">
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 c2 col-xs-9">
+                                        <p class="name">
+                                            <a class="top_zindex" href="@Url.RouteUrl("ChiTietSanPham", new {splink = item.Link})" title="@item.Name"> @item.Name</a>
+                                        </p>
+                                        @Html.Action("QuaTangInGioHang", "KhoQuaTang", new { productId = item.ProductId })
+                                        <div class="list-endow">
+                                            <span class="gift js-product-gift-icon">
+                                                <img src="https://vcdn.tikicdn.com/assets/img/icon-svg/icon-gift.svg" class="imgquatang">
+                                            </span>
+                                            <img src="https://vcdn.tikicdn.com/assets/img/icon-svg/icon-24h.svg" class="img24h" alt="Hỗ trợ giao hàng trong 24h tại TPHCM" title="Hỗ trợ giao hàng trong 24h tại TPHCM">
+                                        </div>
+
+                                        <p id="product-status-@item.Barcode">
+                                        </p>
+                                        <p class="action">
+                                            <a href="/cart/DeleteCart?barcode=@item.Barcode" class="btn btn-link btn-item-delete" title="xóa"> Xóa </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2" style="position: inherit!important;">
+                                        <p class="price" style="color: #199427;"> @item.PricePromotion.ToString("#,###,###,###") ₫ </p>
+                                        @if (item.HasPromotion)
+                                        {
+                                            <p class="price2" style="color: #199427;"> @item.Price.ToString("#,###,###,###") ₫ </p>
+                                            <p class="sale">Giảm @item.Discount%</p>
+                                        }
+                                        @{
+                                            int giatru = ((item.Price * 2) * 10) / 100;
+                                            int gia = (item.Price * 2) - giatru;
+                                        }
+                                        @if (item.Price < 80000 && !item.HasPromotion)
+                                        {
+                                            if (gia > 100000)
+                                            {
+                                                <div class="txt_combo_giohang" title="Chỉ @gia.ToString().Substring(0,3)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="txt_combo_giohang" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP</div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-xs-6 ">
+                                        <!--Số lượng-->
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control input-qty" value='@item.Quantity'
+                                                       data-barcode="@item.Barcode"
+                                                       data-product-id="@item.ProductId"
+                                                       id="qty1_@item.Barcode" name="qty1" min="1" max="999">
+                                                <div class="input-group-addon" style="border:0"> <a href="@Url.RouteUrl("Cart")" title="giỏ hàng"> <i class="fa  fa-save"></i> </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <!--thành tiền-->
+                                        <p class="price" style="color: #199427;"> @tongKM.ToString("#,###,###,###") ₫ </p>
+                                    </div>
+                                    <div class="box-info-discount-mobile hidden-md hidden-lg"></div>
+                                </div>
+                                                }
+                                            }
+                        @Html.Action("ShowTinKhuyenMai", "Cart")
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        @if (Model.CartItems.Any())
+                        {
+                            <div class="panel panel-default fee">
+                                <div class="panel-body">
+                                    <p class="list-info-price">
+                                        <b>Tạm tính: </b> <span>@Model.Total.ToString("#,###,###,###") &nbsp;₫</span>
+                                    </p>
+                                    <p class="total2">Thành tiền: <span style="float: right">@Model.Total.ToString("#,###,###,###") &nbsp;₫ </span> </p>
+                                    <p class="text-right">
+                                        <i>(Chưa bao gồm phí vận chuyển)</i>
+                                    </p>
+                                </div>
+                            </div>
+                            <button id="btn_submit_cart" type="button" class="btn btn-large btn-block btn-default btn-checkout" onclick="location.href = '@Url.RouteUrl("Order")';return false; "> TIẾN HÀNH ĐẶT HÀNG </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("input.input-qty").on("change paste keyup", function () {
+            var quantity = $(this).val();
+            var code = $(this).attr("data-barcode");
+            var productId = $(this).attr("data-product-id");
+            $.post("/SanPham/KiemTraTonKhoTheoSoLuong", {
+                Barcode: code,
+                ProductId: productId,
+                Quantity: quantity
+            }, function (data) {
+                if (data.available) {
+                    $("#product-status-" + code).html("");
+                    updateCart(productId, code, quantity);
+                } else {
+                    //$("#product-status-" + code).html("<span class=\"not-available\">Hết hàng</span>");
+                    swal({ title: "Sản phẩm không đủ số lượng", timer: 1500, type: "warning" });
+                }
+            });
+        });
+        function updateCart(productId, code, quantity) {
+            $.post("/Cart/UpdateCart", {
+                Barcode: code,
+                ProductId: productId,
+                Quantity: quantity
+            }, function (data) {
+
+            });
+        }
+    });
+</script>
+<!--Code Remarketing FaceBook-->
+@Html.Raw(Shop.Web.Controllers.CartController.RemarkettingFacebookAddtocart(Model.Total, Model.ListProductId))

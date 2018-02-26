@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+@model Shop.Web.ViewModels.CartViewModel.OrderModel
+@{decimal tong = 0;}
+    <body>
+        <h2>Xác nhận đơn hàng</h2> <br /><br />
+        <p>Xin Chào: @Model.CartForm.Name<br />
+            <br />
+            Cám ơn quý khách đã mua hàng tại Beautygarden.vn. Chúng tôi hy vọng quý khách sẽ hài lòng với những sản phẩm vừa mua. 
+            Xin vui lòng xem thông tin chi tiết ở dưới:<br /><br />
+        </p>
+        <table style="width: 100%; border: 1px solid red;">
+        <tr style="background: #1f601f;">
+            <th style="font-weight: bold;color: white;">Hình ảnh</th>
+            <th style="font-weight: bold;color: white;" align="center">Sản phẩm</th>
+            <th style="font-weight: bold;color: white;" align="center">Giá</th>
+            <th style="font-weight: bold;color: white;" align="center">SL</th>
+            <th style="font-weight: bold;color: white;" align="center">Thành tiền</th>
+        </tr>
+                    @if (Model.CartItems.Any())
+                        {
+                            foreach (var item in Model.CartItems)
+                            {
+                               
+                                   
+                                    <tr style="border-bottom: 1px dotted red;">
+                                        <td> <img src="@string.Format("/Upload/Files/{0}",item.Image)" alt="@item.Name"></td>
+                                        <td>@item.Name</td>
+                                        @if(item.HasPromotion)
+                                        {
+                                             <td align="center" style="padding: 8px; border-bottom: 1px dotted red;">  @item.Price.ToString("#,###,###,###")đ</td>
+                                           
+                                        }
+                                        else
+                                        {
+                                              <td align="center" style="padding: 8px; border-bottom: 1px dotted red;"> @item.PricePromotion.ToString("#,###,###,###")đ</td>
+                                        }
+                                       
+                                        <td align="center" style="padding: 8px; border-bottom: 1px dotted red;"> @item.Quantity</td>
+                                        <td align="center" style="padding: 8px; border-bottom: 1px dotted red;"> @Model.Total.ToString("#,###,###,###")đ</td>
+                                    </tr>
+                                }
+                            }
+                            <tr >
+                <td colspan="3" align="right">Tổng Cộng:
+                </td>
+                <td style="padding: 8px;" align="center">
+                   @Model.Total.ToString("#,###,###,###")đ
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+        <p>
+            Chúng tôi luôn nỗ lực chuyển hàng tới quý khách trong thời gian sớm nhất.
+            Xin vui lòng xác nhận số lượng đơn hàng khi nhân viên đến giao hàng.<br /><br />
+            Trân trọng!.
+        </p>
+    </body>
+</html>

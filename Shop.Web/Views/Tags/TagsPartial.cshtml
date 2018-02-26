@@ -1,0 +1,22 @@
+﻿@model IList<Shop.Model.TagsLink>
+<div class="block-sidebar block-sidebar-tags">
+    <div class="block-title">
+        <strong>tags</strong>
+    </div>
+    <div class="block-content">
+        <ul>
+            @if(Model.Any())
+            {
+                int i = 0;
+                foreach (var tag in Model)
+                {
+
+                    i++;
+                    string lv = "lv" +@i;
+                     <li><a href="/sanpham/chitiet/@tag.id_" class="@lv">@tag.TenTags</a></li>
+                }
+            }
+           
+        </ul>
+    </div>
+</div>

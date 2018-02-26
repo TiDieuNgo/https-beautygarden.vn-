@@ -1,0 +1,45 @@
+﻿@model Shop.Web.Model.SanPhamMoiVeModel
+<div class="block-sidebar block-sidebar-products hidden-xs" id="sticker_moive">
+    <div class="block-title">
+        <strong>SẢN PHẨM MỚI VỀ</strong>
+    </div>
+    <div class="block-content" id="sonpro">
+        @if (Model.Products.Any())
+        {
+            foreach (var menu in Model.Products)
+            {
+                <div class="product-item product-item-opt-1 spmoive_tintuc" id="cuoi">
+                    <div class="product-item-info product-item-info_tintuc">
+                        <div class="product-item-photo" style="height: auto;">
+                            <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink = menu.Link })" title="@menu.NameProduct">
+                                <img alt="@menu.NameProduct" data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)" style="max-width: 80px;max-height: 90px;">
+                            </a>
+                        </div>
+                        <div class="product-item-detail">
+                            <strong class="product-item-name" style="margin-top: 10px;"><a href="@Url.RouteUrl("ChiTietSanPham", new { splink = menu.Link })" title="@menu.NameProduct">@menu.NameProduct</a></strong>
+                            <div class="clearfix">
+                                <div class="product-item-price giamoi_sptintuc" style="line-height: 40px !important;">
+                                    @if (menu.HasPromotion)
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                        <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#sticker_moive").sticky({ topSpacing: 50 });
+    });
+</script>

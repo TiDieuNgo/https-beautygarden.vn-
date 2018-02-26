@@ -1,0 +1,25 @@
+﻿@model Shop.Web.Areas.Admin.Models.SaveProductFormModel
+<div class="form-group">
+    <label class="col-sm-2 ">Chọn quà tặng</label>
+    <div class="col-sm-10">
+        @Html.DropDownListFor(o => o.IdSanPhamQuaTang, Model.SanPhams, new { @class = "chosen-select1", multiple = "multiple", style = "width:727px" })
+    </div>
+</div>
+<input type="hidden" name="IdQUaTangs" id="IdQUaTangs"/>
+<script>
+    $(document).ready(function () {
+        var ids = [];
+        $(".chosen-select1").chosen().change(function(e, p) {
+            console.log("p", p);
+            if (p.selected) {
+                ids.push(p.selected);
+            }
+            if (p.deselected) {
+                var index = ids.indexOf(p.deselected);
+                ids.splice(index, 1);
+            }
+            $("#IdQUaTangs").val(ids.join(","));
+            console.log("ids", ids);
+        });
+    });
+</script>

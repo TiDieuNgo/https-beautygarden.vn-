@@ -1,0 +1,43 @@
+﻿@model int
+<!-- block mini cart -->
+@*<div class="block-minicart dropdown">
+    <a class="dropdown-toggle" onclick="return showCart()" role="button">
+        <span class="cart-icon"></span>
+        <span class="cart-text">cart</span>
+        <span class="counter qty">
+            <span class="counter-number">@Model</span>
+        </span>
+    </a>
+</div>*@
+<!-- block mini cart -->
+
+<!--giỏ hàng-->
+<div class="box_cart" title="Giỏ hàng" onclick="return showCart()" role="button">
+    <div class="icon-cart">
+        <i class="fa fa-shopping-cart shop_cart"></i>
+    </div>
+    <span class="gio_hang_new">Giỏ hàng</span>
+    <span class="counter qty">
+     <span class="cart-count">@Model</span>
+    </span>
+</div>
+<!--giỏ hàng-->
+
+<!--thông tin đơn hàng-->
+@*<div class="box-notify" title="Thông tin đơn hàng">
+    <div class="icon-earth">
+        <i class="fa fa-globe globe_new"></i>
+    </div>
+    <div class="love_like">Đơn hàng</div>
+</div>*@
+<!--thông tin đơn hàng-->
+
+<!--yêu thích-->
+<div class="box_favorite" onclick="clickviewFavorites()" title="Sản phẩm yêu thích">
+    <div class="icon-favorite">
+        <i class="fa fa-heart-o heart_new"></i>
+    </div>
+    <span class="love_like"> Yêu thích</span>
+    <span id="countfavorite">0</span>
+</div>
+<!--yêu thích-->

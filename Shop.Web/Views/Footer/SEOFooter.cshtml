@@ -1,0 +1,11 @@
+﻿@model IList<Shop.Model.SEOFooter>
+<div class="col-md-5 col-lg-5 col-xs-12 col">
+    @if (Model.Any())
+    {
+        <span class="xuhuong_search">Xu hướng tìm kiếm: </span>
+        foreach (var tukhoa in Model)
+        {
+            <span><a href="@tukhoa.Link" title="xu hướng tìm kiếm" target="_blank"> @tukhoa.TieuDe</a>,</span>
+        }
+    }
+</div>

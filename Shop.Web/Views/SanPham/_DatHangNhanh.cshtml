@@ -1,0 +1,122 @@
+﻿@model Shop.Web.ViewModels.SanPhamViewModel.DetailPageViewModel
+  
+@*<div class="row">
+    <div class="col-lg-2 col-md-2 hidden-xs"></div>
+    <div class="col-lg-8 col-md-8 col-xs-12">
+        <!--CHI NHANH VA TON KHO--->
+        <div class="product-info-stock" id="brand_quantity_wrapperDatHangNhanh">
+            <div class="stock available">
+                <span class="diachi">
+                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Tp HCM:</strong>
+                    <br />
+                    @foreach (var b in Model.BranchItems.Where(o => o.Region.Equals("HCM")))
+                    {
+                        <span style="margin-left: 13px;">
+                            @b.Name -
+                            @if (b.Quantity > 0)
+                            {
+                                <span style="color: #199427 !important;">Còn hàng (@b.Quantity.ToString("#,###,###,###"))</span>
+                            }
+                            else
+                            {
+                                <span style="color: red !important;">Cháy hàng</span>
+                            }
+                        </span>
+                        <br />
+                    }
+                </span>
+                @{
+                    var hn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("HN"));
+                    var dn = Model.BranchItems.FirstOrDefault(o => o.Region.Equals("ĐN"));
+                }
+                <span class="diachi">
+                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Hà Nội:</strong>
+                    @if (hn.Quantity > 0)
+                    {
+                        <span>152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: #199427!important;">Còn hàng (@hn.Quantity.ToString("#,###,###,###"))</span> </span>
+                    }
+                    else
+                    {
+                        <span>
+                            152 Chùa Bộc, Đống Đa, Hà Nội - <span style="color: red !important;">Cháy hàng</span>
+                        </span>
+                    }
+                </span>
+                <br />
+                <span class="diachi">
+                    <i class="fa fa-map-marker" style="color: green;"></i><strong> Đà Nẵng:</strong>
+                    @if (dn.Quantity > 0)
+                    {
+                        <span>268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - <span style="color: #199427!important;">Còn hàng (@dn.Quantity.ToString("#,###,###,###"))</span> </span>
+                    }
+                    else
+                    {
+                        <span>
+                            268 Trưng Nữ Vương, P.Bình Thuận, Q.Hải Châu - 
+                            <span style="color: red !important;">Cháy hàng</span>
+                        </span>
+                    }
+                </span>
+
+            </div>
+        </div>
+
+
+        <!--ATTRIBUTE-->
+        <div class="product-add-form">
+
+            <div class="product-options-wrapper">
+
+                <div class="swatch-opt">
+                    <div class="swatch-attribute color">
+
+                        @if (Model.Attributes.Any(o=>o.Flag==1))
+                        {
+                            <span class="swatch-attribute-label">Chọn màu: </span>
+                        }
+                        @if (Model.Attributes.Any(o => o.Flag == 2))
+                        {
+                            <span class="swatch-attribute-label">Chọn mùi: </span>
+                        }
+                        @if (Model.Attributes.All(o => o.Flag != 0))
+                        {
+                            <div class="swatch-attribute-options clearfix">
+                                @if (Model.Attributes.Any())
+                                {
+                                    foreach (var menuOption in Model.Attributes)
+                                    {
+                                        string cl = "";
+                                        if (menuOption.Selected)
+                                        {
+                                            cl = "selected";
+                                        }
+                                        if ((menuOption.Img.IndexOf("#") != -1)||(menuOption.Img.IndexOf("rgba")!=-1)||(menuOption.Img.IndexOf("rgb")!=-1))
+                                        {
+                                            <div class="swatch-option color @cl" data-toggle="tooltip" data-placement="top"
+                                                 title="@menuOption.Name"
+                                                 style="background-color: @menuOption.Img"
+                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+                                     
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="swatch-option color @cl" data-toggle="tooltip"
+                                                 data-placement="top" title="@menuOption.Name"
+                                                             
+                                                 onclick="return checkQuantityByBarcode('@menuOption.Barcode',@Model.Product.ProductId,this)">
+                                                <img src="@string.Format("/Upload/Files/{0}", menuOption.Img)" title="@menuOption.Name"
+                                                     alt="@menuOption.Name" title="@menuOption.Name" id="@menuOption.Barcode" />
+                                            </div>
+                                        }
+
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@

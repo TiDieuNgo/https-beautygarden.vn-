@@ -1,0 +1,91 @@
+﻿@using Shop.Model
+@model Shop.Web.Models.DanhMucTienIchViewModel
+
+<div class="header-nav mid-header">
+    <div class="container">
+        <div class="box-header-nav">
+            <span data-action="toggle-nav-cat" class="nav-toggle-menu nav-toggle-cat"><span>Categories</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+            <div class="block-nav-categori">
+                <div class="block-title">
+                    <span>Categories</span>
+                </div>
+                <div class="block-content" id="hidecatagory">
+                    <div class="clearfix"><span data-action="close-cat" class="close-cate"><span>Categories</span></span></div>
+                    <ul class="ui-categori">
+                        @if (Model.DanhMucs != null && Model.DanhMucs.Any())
+                        {
+                            IList<DanhMucTienIch> danhmuccap1 = Model.DanhMucs.Where(o => o.Idcontrol == 0 && o.ok).OrderBy(o => o.SapXep).ToList(); //level 1
+                            foreach (var menu in danhmuccap1)
+                            {
+                                IList<DanhMucTienIch> danhmuccap2 = Model.DanhMucs.Where(o => o.Idcontrol == menu.id_ && o.ok).OrderBy(o => o.SapXep).ToList(); //level 2
+                                <li class="parent">
+                                    <a href="" title="@menu.TenDanhMuc">
+                                        <span class="icon"><img src="@string.Format("/Upload/Files/{0}", menu.IconDanhMuc)" alt="@menu.TenDanhMuc" style="width: 20px;height: 20px;"></span>
+                                        @menu.TenDanhMuc
+                                    </a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="submenu hidden-phone hidden-xs" id="fixkhung">
+                                        <ul class="categori-list">
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    @if (danhmuccap2.Any())
+                                                    {
+                                                        foreach (var menucon in danhmuccap2)
+                                                        {
+                                                            <li><a href="" title="@menucon.TenDanhMuc">@menucon.TenDanhMuc</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="submenu hidden-sm hidden-md hidden-lg hidden-desktop">
+                                        <ul class="categori-list">
+                                            <li class="col-sm-12" style="border-top: 1px dotted #ccc;">
+                                                <ul>
+                                                    @if (danhmuccap2.Any())
+                                                    {
+                                                        foreach (var menucon in danhmuccap2)
+                                                        {
+                                                            <li><a href="" title="@menucon.TenDanhMuc">@menucon.TenDanhMuc</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        <li>
+                            <a href="@Url.RouteUrl("LienHe")" title="liên hệ">
+                                <span class="icon"><img src="/Upload/files/address_book-128.png" alt="Liên Hệ" style="width: 20px;height: 20px;"></span>
+                                Liên Hệ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--click an menu catagories-->
+            @Html.Action("MenuTop", "Menu")
+            <span data-action="toggle-nav" class="nav-toggle-menu"><span>Menu</span><i aria-hidden="true" class="fa fa-bars"></i></span>
+            @Html.Action("CountDropdownCart", "Cart")
+            @*<div class="block-search">
+                <div class="block-title">
+                    <span>Search</span>
+                </div>
+                <div class="block-content">
+                    <div class="form-search">
+                        <form action="@Url.RouteUrl("SanPhamTimKiem")" method="GET">
+                            <div class="box-group">
+                                <input type="text" name="keyword" id="keySearchdown" class="form-control" placeholder="Tìm kiếm sản phẩmsd...">
+                                <button class="btn btn-search" type="submit"><span>search</span></button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@using Newtonsoft.Json
+@model List<Shop.Model.MenuOptionMapping.OptionShow>
+@{
+    var json2 = JsonConvert.SerializeObject(Model);
+}
+ 
+<div >
+    <textarea id="MaVachMuiJson" name="MaVachMuiJson">@json2</textarea>
+</div>
+
+
+    <ul id="images_other2">
+        @if (Model.Any())
+        {
+            foreach (var optionShow in Model)
+            {
+                <li>
+                      <img class="img-thumbnail" src="@optionShow.Img" onclick="return editMui(@optionShow.id_)"/>
+                       <span onclick="return remove(this)" class="remove"><i class="fa fa-close"></i></span>
+                </li>
+            
+            }
+        }
+
+    </ul>
+
+
+    
+        <div class="form-group">
+            <label class="col-sm-3">Tên mùi</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="Ten_mv1" name="Ten_mv1" type="text" value="">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 ">Hình ảnh</label>
+            <div class="col-sm-6">
+                <input class="form-control" id="Hinh_mv1" name="Hinh_mv1" type="text" value="">
+            </div>
+            <div class="col-sm-3">
+                <button onclick="return BrowseImages('Hinh_mv1');" type="button" class="btn btn-primary">+</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3">Mã vạch</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="maVach_mv1" name="maVach_mv1" type="text" value="">
+            </div>
+
+        </div>
+        <button type="button" onclick="return saveMui()" class="btn btn-success" style="margin-left: 115px;">Lưu mã vạch mùi</button>
+  
+<script type="text/javascript">
+  
+    var flag2 = 2;
+
+    function editMui(id) {
+        if (id === 0) return;
+        var inputJson = $("#MaVachMuiJson").val();
+        if (inputJson === "")
+            inputJson = "[]";
+        var MaVachMuiJson = JSON.parse(inputJson);
+
+        var item = {};
+        for (var i = 0; i < MaVachMuiJson.length; i++) {
+            if (MaVachMuiJson[i].id_ === id) {
+                item = MaVachMuiJson[i];
+                break;
+            }
+        }
+        $("#maVach_mv1").val(item.Barcode);
+        $("#Hinh_mv1").val(item.Img);
+        $("#Ten_mv1").val(item.TenLoai);
+      
+    }
+
+    function remove(ui) {
+        $(ui).parent().remove();
+    }
+
+    function saveMui() {
+        var inputJson = $("#MaVachMuiJson").val();
+        if (inputJson === "")
+            inputJson = "[]";
+        var MaVachMuiJson = JSON.parse(inputJson);
+        var o = {
+            id_: 0,
+            Barcode: $("#maVach_mv1").val(),
+            Img: $("#Hinh_mv1").val(),
+            TenLoai: $("#Ten_mv1").val(),
+            Flag: flag2
+        };
+        MaVachMuiJson.push(o);
+        $("#MaVachMuiJson").val(JSON.stringify(MaVachMuiJson));
+      
+        var hinh = o.Img;
+        var imgs = hinh.replace("/files/", "");
+        $("#images_other2").append(' <li class="hinhanh" style="list-style: none;">' +
+            '<img class="img-thumbnail" style=" width: 40px;height: 40px;margin-left: -40px; margin-bottom: 10px;" src="' + "/Upload/Files/" + imgs + '"/>' +
+            '<span onclick="return remove(this)" class="remove"><i class="fa fa-close"></i></span>' +
+            '</li>');
+        //reset testbox sau khi luu xong
+        document.getElementById("Ten_mv1").value = "";
+        document.getElementById("Hinh_mv1").value = "";
+        document.getElementById("maVach_mv1").value = "";
+    }
+   
+</script>

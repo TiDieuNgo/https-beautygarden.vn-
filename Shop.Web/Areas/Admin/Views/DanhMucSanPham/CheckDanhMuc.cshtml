@@ -1,0 +1,9 @@
+﻿@model Shop.Model.Menu
+@using (Html.BeginForm("CheckDanhMuc", "DanhMucSanPham", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+        <td>@Html.CheckBoxFor(o => o.ShowMenuTop)</td>
+    
+        <td>@Html.CheckBoxFor(o => o.ShowMenuHome)</td>
+
+}

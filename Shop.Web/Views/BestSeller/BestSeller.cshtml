@@ -1,0 +1,135 @@
+﻿@using Shop.Web.Core.Helper
+@model Shop.Web.ViewModels.SanPhamViewModel.TopSeller
+<div class="block-floor-products block-floor-products-opt2 floor-products7" id="floor0-1">
+    <div class="container">
+        <div class="block-title">
+            <!--ban desktop-->
+            <span class="title hidden-xs">
+                <span class="icon">
+                    <img alt="Trang Điểm" src="/images/sh11-128.png">
+                </span>
+                <span class="text">
+                    <a class="text_title" href="@Url.RouteUrl("top100banchay")"><h2 style="font-size: 20px;">Top 100 bán chạy</h2></a>
+                </span>
+            </span>
+            <!--ban desktop-->
+            <!--ban mobile-->
+            <span class="titlemobile hidden-lg hidden-sm hidden-md">
+                <span class="icon">
+                    <img alt="Trang Điểm" src="/images/sh11-128.png" style="display: block; vertical-align: initial; width: 25px;">
+                </span>
+                <span class="text"><a class="text_title" href="@Url.RouteUrl("top100banchay")">Top 100 bán chạy</a></span>
+            </span>
+            <!--ban mobile-->
+            <div class="links dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-custom" style="right: 0px; left: auto;">
+                    <ul>
+                        <!--trang diem, cham soc da || level menu=1-->
+                        @if (Model.MenuAndProducts.Any())
+                        {
+                            int j = 0;
+                            foreach (var menu in Model.MenuAndProducts)
+                            {
+                                <li><a href="@Url.RouteUrl("BestSeller",new{seo="top-100",id=menu.Id})" target="_blank">@menu.Name</a></li>
+                                j++;
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="block-content">
+            <div class="products products-grid tab-content">
+                <!--col-products tab-content-->
+                  <div class="tab-pane fade in active">
+                            @if (Model.Products.Any())
+                            {
+                                foreach (var sanpham in Model.Products)
+                                {
+                                    <div class="col-lg-2-4 col-xs-6 ">
+                                        <div class="product-item product-item-opt-2 product_home">
+                                            <div class="product-item-info">
+                                                <div class="product-item-photo">
+                                                    <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new {splink = sanpham.Link})">
+                                                        <img alt="@sanpham.NameProduct" data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", sanpham.Img)" style="max-width: 173px; max-height: 193px;">
+                                                    </a>
+                                                    <div class="product-item-actions">
+                                                        <a class="btn btn-wishlist" href="javascript:addtofavorites(@sanpham.id_);" id="@sanpham.id_"><span>wishlist</span></a>
+                                                    </div>
+                                                    @if (sanpham.HasPromotion)
+                                                    {
+                                                        <span class="product-item-label label-price">@sanpham.Discount% <span>off</span></span>
+                                                    }
+                                                    @{
+                                                        int giatru = ((sanpham.Price * 2) * 10)/100;
+                                                        int gia =(sanpham.Price * 2) - giatru;
+                                                    }
+                                                    @if (sanpham.Price < 80000 && !sanpham.HasPromotion)
+                                                    {
+                                                        if (gia > 100000)
+                                                        {
+                                                            <span class="label-price-combo2">@gia.ToString().Substring(0,3)K/2</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="label-price-combo2">@gia.ToString().Substring(0,2)K/2</span>
+                                                        }
+                                                    }
+                                                </div>
+                                                <div class="product-item-detail">
+                                                    @if (sanpham.Price < 80000 && !sanpham.HasPromotion)
+                                                    {
+                                                        if (gia > 100000)
+                                                        {
+                                                            <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP</div>
+                                                        }
+                                                    }
+                                                    <h3 class="product-item-name" style="font-size: 14px !important; margin-top: 0px;">
+                                                        <a href="@Url.RouteUrl("ChiTietSanPham", new {splink = sanpham.Link})" title="@sanpham.NameProduct">@WeBUrlHelper.Cat_Chuoi(47, @sanpham.NameProduct)</a>
+                                                    </h3>
+                                                    <div class="clearfix">
+                                                        <div class="product-item-price">
+                                                            @if (sanpham.HasPromotion)
+                                                            {
+                                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.PricePromotion)₫</span>
+                                                                <span class="old-price">@string.Format("{0:#,#.##}", sanpham.Price)₫</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="price">@string.Format("{0:#,#.##}", sanpham.Price)₫</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .txt_combo {
+                                            font-size: 11px !important;
+                                        }
+                                    </style>
+                                }
+                            }
+                        </div>
+                <!-- list product -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+    function LoadDataBestseller(id) {
+        if ($("#click-" + id).attr("onlyOne") == "0") {
+            $("#click-" + id).attr("onlyOne", "1");
+            $("#floor1-" + id).load('@(Url.Action("ShowDataBestSeller", "BestSeller", null, Request.Url.Scheme))?iddanhmuc=' + id);
+        }
+    }
+</script>

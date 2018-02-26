@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Kho quà tặng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@using PagedList.Mvc
+@model Shop.Web.Model.KhoQuaTangModel
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/">Trang chủ</a></li>
+        <li class="active"><a href="">Kho quà tặng</a></li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3 col-main">
+            <div class="toolbar-products toolbar-top">
+                <h1 class="cate-title">Kho quà tặng Beautygarden</h1>
+            </div>
+            <div class="products products-list">
+                <div class="divbody">
+                    Kho quà tặng bài giới thiệu...
+                    <div class="lprogift">
+                        @if (Model.Products.Any())
+                        {
+                            foreach (var menu in Model.Products)
+                            {
+                                <div class="item">
+                                    <a href="@Url.RouteUrl("ChiTietSanPham", new { splink = menu.Link })">
+                                        <img data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)" class="img" align="left" alt="@menu.NameProduct">
+                                    </a>
+                                    <div class="product-info-main">
+                                        <h2>
+                                            <a href="@Url.RouteUrl("ChiTietSanPham", new { splink = menu.Link })" title="@menu.NameProduct">@menu.NameProduct</a>
+                                        </h2>
+                                        @if (menu.HasPromotion)
+                                        {
+                                            <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                            <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price" style="font-size: 18px;
+                                      color: #199427;
+                                      font-weight: 700;">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                        }
+                                       
+                                        <div class="cctent">
+                                            <p style="text-align: justify;">
+                                                @Html.Raw(menu.Note)
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="tpron">
+                                        <img src="/images/ChiTay.png" alt="chọn sản phẩm" class="w29"> Chọn ngay sản phẩm để nhận quà tặng này
+                                    </div>
+                                   @Html.Action("QuaTang","KhoQuaTang",new {productId = menu.id_})
+                                </div>
+                            }
+                        }
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar-products toolbar-bottom">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model.Products, page => Url.Action("Index", new { page }))
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-pull-9  col-sidebar">
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            @Html.Action("BannerQCChiTiet", "Banner")
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+    </div>
+</div>

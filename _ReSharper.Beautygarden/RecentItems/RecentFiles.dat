@@ -1,0 +1,66 @@
+﻿<RecentFiles>
+  <RecentFiles>
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Authentication/f:DefaultFormsAuthentication.cs" caret="0" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:ActionFilters/f:EFMVCAuthorize.cs" caret="0" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:ActionFilters/f:UserFilter.cs" caret="0" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:ActionFilters/f:AntiForgeryTokenFilterProvider .cs" caret="0" fromTop="0" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:HomeController.cs" caret="294" fromTop="12" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:ViewModels/f:SanPhamViewModel.cs" caret="3088" fromTop="18" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:DangNhapController.cs" caret="3286" fromTop="13" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Views/f:Web.config" caret="1384" fromTop="18" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/f:Web.config" caret="0" fromTop="0" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:BoxBrandQuantity.cshtml" caret="2657" fromTop="26" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Models/f:Role.cs" caret="0" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Models/f:UserInfo.cs" caret="0" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Models/f:EFMVCUser.cs" caret="513" fromTop="0" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Extensions/f:SecurityExtensions.cs" caret="577" fromTop="20" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:SanPhamController.cs" caret="41001" fromTop="20" />
+    <File id="DBF57927-89DB-4526-A8E0-5C5AC90096B1/d:Helper/f:CookieHelper.cs" caret="2686" fromTop="19" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:OrderController.cs" caret="12910" fromTop="10" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/f:Web.config" caret="4232" fromTop="19" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Model/f:KhachHangModel.cs" caret="609" fromTop="14" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Content/d:csscompressor/f:Autocomplete.css" caret="160" fromTop="11" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Views/d:Shared/f:_Layout.cshtml" caret="2676" fromTop="1" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:ajax/f:HandlerAutocomplete.ashx" caret="375" fromTop="14" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:_FormDatHangNhanh.cshtml" caret="93" fromTop="1" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:Detail.cshtml" caret="37535" fromTop="12" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:_DatHangNhanh.cshtml" caret="636" fromTop="12" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:Shared/f:_Layout.cshtml" caret="1096" fromTop="20" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:Order/f:Form.cshtml" caret="52" fromTop="2" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:ViewModels/f:CartViewModel.cs" caret="3270" fromTop="27" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:DangKy/f:dangky.cshtml" caret="0" fromTop="0" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:DangKyController.cs" caret="3894" fromTop="18" />
+  </RecentFiles>
+  <RecentEdits>
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:KhachHangLienHeController.cs" caret="76" fromTop="2" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:LyDoMuaBGController.cs" caret="53" fromTop="1" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:ProductIdController.cs" caret="0" fromTop="0" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:SanPhamController.cs" caret="87" fromTop="3" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:SubMenu1Controller.cs" caret="68" fromTop="2" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:TagLinkController.cs" caret="91" fromTop="3" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:TestSubmenu1Controller.cs" caret="50" fromTop="2" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:ThuongHieuController.cs" caret="110" fromTop="4" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:TinBaoChiController.cs" caret="32" fromTop="1" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:TinKhuyenMaiController.cs" caret="15" fromTop="1" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:VeChungToiController.cs" caret="91" fromTop="3" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:YKienKhachHangController.cs" caret="87" fromTop="3" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:ProductBox.cshtml" caret="2222" fromTop="27" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:YKienKhachHang/f:YKien.cshtml" caret="164" fromTop="4" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:Footer/f:FooterPartial.cshtml" caret="2870" fromTop="12" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:HeThongCuaHang/f:HeThongShowRoom.cshtml" caret="4344" fromTop="16" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Model/f:YKienKhachHangModel.cs" caret="1324" fromTop="21" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:DangNhapController.cs" caret="8164" fromTop="24" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Areas/d:Admin/d:Controllers/f:HomeController.cs" caret="586" fromTop="21" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/f:Web.config" caret="4231" fromTop="13" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:ViewModels/f:SanPhamViewModel.cs" caret="3208" fromTop="21" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:BoxBrandQuantity.cshtml" caret="2657" fromTop="26" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:SanPham/f:Detail.cshtml" caret="45280" fromTop="25" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:DangKy/f:dangky.cshtml" caret="2804" fromTop="24" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:SanPhamController.cs" caret="41007" fromTop="23" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:OrderController.cs" caret="22866" fromTop="22" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Content/d:csscompressor/f:Autocomplete.css" caret="300" fromTop="19" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Views/d:Shared/f:_Layout.cshtml" caret="1096" fromTop="20" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:ViewModels/f:CartViewModel.cs" caret="3293" fromTop="28" />
+    <File id="169AFE38-1CA2-4624-BDC4-78C6653B04BD/d:Controllers/f:DangKyController.cs" caret="3949" fromTop="28" />
+  </RecentEdits>
+</RecentFiles>

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Phân Loại Tin Tức Theo Tag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@model Shop.Web.Model.TinTucModel
+@{
+    ViewBag.Title = string.IsNullOrEmpty(Model.TagTinTuc.Seotitle) ? @ViewData["tentag"] : Model.TagTinTuc.Seotitle;
+    ViewBag.Keyword = string.IsNullOrEmpty(Model.TagTinTuc.Seodcription) ? @ViewData["tentag"] : Model.TagTinTuc.Seodcription;
+    ViewBag.Description = string.IsNullOrEmpty(Model.TagTinTuc.Seodcription) ? @ViewData["tentag"] : Model.TagTinTuc.Seodcription;
+}
+<div class="columns container">
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li class="active"><a href="">Phân loại tin tức theo tag</a></li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3 col-main">
+            <h2 class="page-heading" style="border-bottom: none !important;">
+                <span class="page-heading-title2">@ViewData["tentag"]</span>
+            </h2>
+            <ul class="blog-posts">
+                @if (Model.TagForTinTucs.Any())
+                {
+                    foreach (var tinTuc in Model.TagForTinTucs)
+                    {
+                        <li class="post-item">
+                            <article class="entry">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="entry-thumb image-hover2 box_tintuc">
+                                            <a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=tinTuc.Link })" title="@tinTuc.Name">
+                                                <img data-src="@string.Format("/Upload/Files/{0}",tinTuc.Img)" alt="@tinTuc.Name" style="max-width: 345px;max-height: 222px;">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="entry-ci">
+                                            <h1 class="entry-title"><a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=tinTuc.Link })">@tinTuc.Name</a></h1>
+                                            <div class="entry-meta-data">
+                                                <span class="date"> @tinTuc.sDate.ToShortDateString()</span>
+                                            </div>
+
+                                            <div class="entry-excerpt">
+                                                @Html.Raw(tinTuc.Note)
+                                            </div>
+                                            <div class="entry-more">
+                                                <a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=tinTuc.Link })" title="xem tiếp">Xem tiếp</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="col-md-3 col-md-pull-9 col-sidebar">
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            @Html.Action("TinHot", "TinTuc")
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+    </div>
+</div>
+
+

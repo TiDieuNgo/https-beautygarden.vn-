@@ -1,0 +1,13 @@
+﻿@model IList<Shop.Model.Menu>
+@if (Model.Any())
+{
+    foreach (var thuonghieu in Model)
+    {
+        if (thuonghieu.id_ != 1538)
+        {
+            <div class="product-condition">
+                Thương hiệu: @thuonghieu.NameProduct
+            </div>
+        }
+    }
+}

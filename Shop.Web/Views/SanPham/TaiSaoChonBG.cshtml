@@ -1,0 +1,15 @@
+﻿
+@model Shop.Model.Menu
+@if (Model != null)
+{
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">@Model.ContentLabelTaiSao</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="description">
+            <div class="block-content">
+                <p>@Html.Raw(Model.ContentTaiSao)</p>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,395 @@
+﻿@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Web.Model.ChiTietModel
+
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <script src="https://apis.google.com/js/platform.js" async defer> </script>
+
+    <ol class="breadcrumb no-hide">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">@ViewData["duongdancha"]</a></li>
+        <li class="active">@Model.SanPham.NameProduct</li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+
+
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9  col-main">
+
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="product-media media-horizontal">
+                        <div class="image_preview_container images-large">
+                            @{
+                                string urlImages = "", images = "";
+                                images = Model.SanPham.Img;
+                                urlImages = images.Replace("/Upload/files/", "");
+                                
+                            }
+                            <img id="img_zoom" style="width: 328px;height: 366px;" data-zoom-image="@string.Format("/Upload/Files/{0}", @urlImages)" src="@string.Format("/Upload/Files/{0}", @urlImages)" alt="@Model.SanPham.NameProduct">
+                        </div>
+
+                        @Html.Action("HinhAnhKhac", "SanPham")
+                        <!--/ .product_preview-->
+
+                    </div>
+                    <!-- image product -->
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="product-info-main">
+
+                        <h1 class="page-title">
+                            @Model.SanPham.NameProduct
+                        </h1>
+                      
+
+                        <div class="product-info-price">
+                            <div class="price-box">
+                               @if (Model.Promotion != null && Model.Promotion.ProductIdsList.Contains(Model.SanPham.id_))
+                               {
+                                   
+                                   int price = Model.SanPham.PricePro.HasValue?(Model.SanPham.PricePro.Value - (Model.SanPham.PricePro.Value*Model.Promotion.Discount/100)):0;
+                                <span class="price">@string.Format("{0:#,#.##}", price)₫</span>
+                                    <span class="old-price">@string.Format("{0:#,#.##}", Model.SanPham.PricePro)₫</span>
+                                    <span class="label-sale">-@Model.Promotion.Discount%</span>
+                               }
+                               else
+                               {
+                                <span class="price">@string.Format("{0:#,#.##}", Model.SanPham.PricePro)₫</span>
+                               }
+                            </div>
+                        </div>
+                        @* @if (Model.MenuOptions.Any())
+                        {
+                            foreach (var menuOption in Model.MenuOptions)
+                            {
+                            <div class="product-code">
+                                Mã vạch: #@menuOption.Barcode
+
+                            </div>
+                            }
+                        }*@
+
+
+                        @if (Model.ThuongHieu.Any())
+                        {
+                            foreach (var thuonghieu in Model.ThuongHieu)
+                            {
+
+                                <div class="product-condition">
+                                    Thương hiệu: @thuonghieu.NameProduct
+
+                                </div>
+                            }
+                        }
+
+                         @Html.Action("TinhTrangSanPham", "SanPham")
+                     
+                        
+                        <style>
+                            .diachi span
+                            {
+                                color: #666 !important;
+                            }
+                        </style>
+                        
+                        <!--end tinh trang san pham-->
+                        <div class="product-overview">
+                            <div class="overview-content">
+                                @Html.Raw(Model.SanPham.Note)
+                            </div>
+                        </div>
+
+                        @if (@Model.CountMaVach != 0)
+                        {
+                            @Html.Action("TuyChonMauMui", "SanPham")
+                        }
+
+
+                        <div class="product-add-form">
+                            <form>
+                                <div class="product-options-wrapper">
+                                    <div class="form-qty">
+                                        <label class="label">Số lượng: </label>
+                                        <div class="control">
+                                            <input type="text" class="form-control input-qty" value='1' id="qty1" name="qty1" maxlength="12" minlength="1" data-product-id="@Model.SanPham.id_">
+                                            <button class="btn-number  qtyminus" data-type="minus" data-field="qty1"><span>-</span></button>
+                                            <button class="btn-number  qtyplus" data-type="plus" data-field="qty1"><span>+</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="product-options-bottom clearfix">
+
+                                    <div class="actions">
+
+                                        <button type="submit" title="Add to Cart" class="action btn-cart">
+                                            <span>Thêm giỏ hàng</span>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <!-- detail- product -->
+
+                </div>
+                <!-- Main detail -->
+
+            </div>
+
+            <!-- dung cho ban desktop -->
+
+            <div class="product-info-detailed hidden-xs hidden-sm">
+                @if (ViewData["viewnoidung1"] == "" || ViewData["viewnoidung1"] == null)
+                {
+                      
+                    <div class="noidung1 hidden-md hidden-lg hidden-sm hidden-xs">
+
+                        <ul class="nav nav-pills" role="tablist">
+                            <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">@Model.SanPham.ContentLabel</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="description">
+
+                                <div class="block-content">
+                                    <p>@Html.Raw(Model.SanPham.Content)</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">@Model.SanPham.ContentLabel</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.SanPham.Content)</p>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                @if (ViewData["viewnoidung2"] == "" || ViewData["viewnoidung2"] == null)
+                {
+                    <div class="noidung1 hidden-md hidden-lg hidden-sm hidden-xs">
+                        <ul class="nav nav-pills" role="tablist" style="margin-top: 10px;">
+                            <li role="presentation"><a role="tab" data-toggle="tab">@Model.SanPham.ContentLabel1</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+
+                            <div role="tabpanel" class="tab-pane active">
+
+
+
+                                <div class="block-content">
+                                    <p>@Html.Raw(Model.SanPham.Content1)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <ul class="nav nav-pills" role="tablist" style="margin-top: 20px!important;">
+                        <li role="presentation"><a role="tab" data-toggle="tab">@Model.SanPham.ContentLabel1</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active">
+
+
+
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.SanPham.Content1)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (ViewData["viewnoidung3"] == "" || ViewData["viewnoidung3"] == null)
+                {
+                    <div class="noidung1 hidden-md hidden-lg hidden-sm hidden-xs">
+                        <ul class="nav nav-pills" role="tablist" style="margin-top: 20px!important;">
+                            <li role="presentation"><a>@Model.SanPham.ContentLabel2</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+
+                                <div class="block-content">
+                                    <p>@Html.Raw(Model.SanPham.Content2)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <ul class="nav nav-pills" role="tablist" style="margin-top: 20px!important;">
+                        <li role="presentation"><a>@Model.SanPham.ContentLabel2</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active">
+
+
+
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.SanPham.Content2)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (ViewData["viewnoidung4"] == "" || ViewData["viewnoidung4"] == null)
+                {
+                    <div class="noidung1 hidden-md hidden-lg hidden-sm hidden-xs">
+                        <ul class="nav nav-pills" role="tablist" style="margin-top: 10px;">
+                            <li role="presentation"><a role="tab" data-toggle="tab">@Model.SanPham.ContentLabel3</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+
+
+
+                                <div class="block-content">
+                                    <p>@Html.Raw(Model.SanPham.Content3)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <ul class="nav nav-pills" role="tablist" style="margin-top: 20px!important;">
+                        <li role="presentation"><a role="tab" data-toggle="tab">@Model.SanPham.ContentLabel3</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active">
+
+
+
+                            <div class="block-content">
+                                <p>@Html.Raw(Model.SanPham.Content3)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- dung cho ban mobile -->
+            <div class="product-info-detailed hidden-md hidden-lg hidden-desktop">
+
+
+                <!-- Tab panes -->
+
+                <div role="tabpanel" class="tab-pane active" id="description">
+                    <div class="kengang">
+                        <div class="block-title1">@Model.SanPham.ContentLabel</div>
+                    </div>
+
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.SanPham.Content)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tags">
+                    <div class="kengang">
+                        <div class="block-title1">@Model.SanPham.ContentLabel1</div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.SanPham.Content1)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="reviews">
+                    <div class="kengang">
+                        <div class="block-title1">@Model.SanPham.ContentLabel2</div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.SanPham.Content2)</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="additional">
+                    <div class="kengang">
+                        <div class="block-title1">@Model.SanPham.ContentLabel3</div>
+                    </div>
+                    <div class="block-content">
+                        <p>@Html.Raw(Model.SanPham.Content3)</p>
+                    </div>
+                </div>
+                <style>
+                    .block-title1
+                    {
+                        font-size: 18px;
+                        border-bottom: 3px solid #1f601f;
+                        font-weight: 700;
+                    }
+
+                    .kengang
+                    {
+                        flex: 1 1 0;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                    }
+                </style>
+
+
+
+            </div>
+            <!-- product tab info -->
+
+            <!-- block-related product -->
+            @Html.Action("SanPhamMuaCung", "SanPham",new{idsanpham=Model.SanPham.id_,idnhacungcap=Model.SanPham.IdNhaCungCap})
+            <!-- block-related product -->
+
+            <!-- block-Upsell Products -->
+            @Html.Action("SanPhamCungLoai", "SanPham",new{iddanhmuc=1238})
+            <!-- block-Upsell Products -->
+            <div class="single-box">
+
+                <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="870"></div>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <!-- Sidebar -->
+        <div class=" col-md-3   col-sidebar">
+
+            @Html.Action("SanPhamBanChay", "SanPham")
+
+            <!-- Block  bestseller products-->
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            <!-- Block  bestseller products-->
+             <!-- block slide top -->
+       @*    @Html.Action("BannerQCChiTiet","Banner")*@
+            <!-- block slide top -->
+
+        
+             @Html.Action("SanPhamMoiVeInChiTiet","TinTuc")
+        </div>
+        <!-- Sidebar -->
+
+    </div>
+</div>

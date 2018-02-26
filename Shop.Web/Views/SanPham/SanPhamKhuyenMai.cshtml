@@ -1,0 +1,167 @@
+﻿@using System.Globalization
+@model Shop.Web.Model.SanPhamMoiVeModel
+<div class="container">
+    <div class="block-deals-of-opt2">
+        <div class="block-title ">
+            <h2 class="title">Sản phẩm mới về</h2>
+        </div>
+        <div class="block-content">
+            <div class="owl-carousel"
+                 data-nav="true"
+                 data-dots="false"
+                 data-margin="8"
+                 data-slide-by="3"
+                 data-smart-speed="10"
+                 data-responsive='{
+                            "0":{"items":2},
+                            "480":{"items":2},
+                            "640":{"items":3},
+                            "992":{"items":6},
+                            "1200":{"items":6}
+                            }'>
+                @if (Model.Products.Any())
+                {
+                    foreach (var menu in Model.Products)
+                    {
+                        DateTime date = DateTime.Now;
+                        DateTime startdate = date;
+                        DateTime enddate = menu.NgayHetHang;
+                        var subenddate = startdate.Subtract(enddate).Days;
+                        if (subenddate <= 30)
+                        {
+                            //hết hàng 30 ngày vẫn cho hiển thị
+                            <div class="product-item product-item-opt-2 promotion_product">
+                                <div class="product-item-info">
+                                    <div class="product-item-photo">
+                                        <a class="product-item-img" href="@Url.RouteUrl("ChiTietSanPham", new { splink=menu.Link })" title="@menu.NameProduct">
+                                            <img alt="@menu.NameProduct" src="@string.Format("/Upload/Files/{0}?width=350&height=391",menu.Img)" style="width: 168px!important;height: 187px!important;">
+                                        </a>
+                                        <div class="product-item-actions">
+                                            <a class="btn btn-wishlist" href="javascript:addtofavorites(@menu.id_);" id="@menu.id_" title="sản phẩm yêu thích"><span>wishlist</span></a>
+                                        </div>
+                                        @if (menu.HasPromotion)
+                                        {
+                                        <span class="product-item-label label-price">@menu.Discount% <span>off</span></span>
+                                        }
+                                        @{
+                                                int giatru = ((menu.Price * 2) * 10)/100;
+                                                int gia =(menu.Price * 2) - giatru;
+                                            }
+                                            @if (menu.Price < 80000 && !menu.HasPromotion)
+                                            {
+                                                if (gia > 100000)
+                                                {
+                                                    <span class="label-price-combo2">@gia.ToString().Substring(0,3)K/2</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label-price-combo2">@gia.ToString().Substring(0,2)K/2</span>
+                                                }
+                                            }
+                                        @if (enddate < startdate && menu.HasOnHand == false)
+                                        {
+                                            <span class="label-price-combo"><img src="/images/hethang.png" style="width: 45px; height: 45px;"/></span>
+                                            <button type="submit" onclick="return popupthongbaohethang(@menu.id_)" class="btn btn-info btn-thong-bao" style="text-transform: none;"><span>Thông báo khi có hàng</span></button>
+                                            <input type="hidden" id="idsp_moi"/>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-cart" onMouseOver="show_sidebar()" onMouseOut="hide_sidebar()" onclick="location.href = '/cart/QuickAdd?productId=@menu.id_';return false;"><span>Thêm giỏ hàng</span></button>
+                                        }
+
+                                    </div>
+
+                                    <div class="product-item-detail">
+                                        @if (menu.Price < 80000 && !menu.HasPromotion)
+                                        {
+                                            if (gia > 100000)
+                                            {
+                                                <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0,3)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 3)K khi mua online 2 SP</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="txt_combo" title="Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP">Chỉ @gia.ToString().Substring(0, 2)K khi mua online 2 SP</div>
+                                            }
+                                        }
+                                        <h3 class="product-item-name" style="margin-top: 0px;">
+                                            <a href="@Url.RouteUrl("ChiTietSanPham", new {splink = menu.Link})" title="@menu.NameProduct">@menu.NameProduct</a>
+                                        </h3>
+                                        <div class="clearfix">
+                                            <div class="product-item-price">
+                                                @if (menu.HasPromotion)
+                                                {
+                                                    <span class="price">@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                                                    <span class="old-price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="price">@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupthongbaohethang" class="popupthongbaohethang">
+    <!-- Popup Div Starts Here -->
+    <div id="popupContact">
+        <!-- Contact Us Form -->
+        <form action="#" id="form" method="post" name="form">
+            <img id="close" src="/images/close.png" onclick="div_hide1()">
+            <h4>Thông báo khi có hàng</h4>
+            <hr>
+            <input id="name" name="name" placeholder="Tên của bạn (*)" type="text" class="form-control">
+            <input id="phone" name="email" placeholder="Số điện thoại (*)" type="text" class="form-control">
+            <input id="email" name="email" placeholder="Email" type="text" class="form-control">
+            <a href="javascript:check_empty1()" id="submit">Gửi</a>
+        </form>
+    </div>
+    <!-- Popup Div Ends Here -->
+</div>
+<script>
+    //Function To Display Popup
+    function popupthongbaohethang(ProductId) {
+        document.getElementById('popupthongbaohethang').style.display = "block";
+        $("#idsp_moi").val(ProductId);
+    }
+    //Function to Hide Popup
+    function div_hide1() {
+        document.getElementById('popupthongbaohethang').style.display = "none";
+    }
+
+    function check_empty1() {
+        var ProductId = $("#idsp_moi").val();
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        if (name == '' || phone == '') {
+            alert("Vui lòng nhập đầy đủ thông tin");
+        } else {
+            $.post("/SanPham/AddKhiCoHang", {
+                ProductId:ProductId,
+                name: name,
+                phone: phone,
+                email: email
+            }, function (data) {
+                swal("Thông báo", "Gửi yêu cầu thành công!", "success");
+                document.getElementById('popupthongbaohethang').style.display = "none";
+            });
+        }
+    }
+
+</script>
+<script>
+    function show_sidebar() {
+        $(".txt_combo").css("display", "none");
+    }
+    function hide_sidebar() {
+        $(".txt_combo").css("display", "block");
+    }
+</script>

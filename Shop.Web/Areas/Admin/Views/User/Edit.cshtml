@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Shop.Model.User
+@using (Html.BeginForm("SaveEdit", "User", FormMethod.Post, new { @class = "form-horizontal well" }))
+{
+    @Html.HiddenFor(o => o.UserId)
+    <div class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls">
+            @Html.TextBoxFor(o => o.Email, new { @class = "input-xlarge" })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Họ Tên</label>
+        <div class="controls">
+            @Html.TextBoxFor(o => o.HoTen, new { @class = "input-xlarge" })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Tên Đăng Nhập</label>
+        <div class="controls">
+            @Html.TextBoxFor(o => o.TenDangNhap, new { @class = "input-xlarge" })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Mật Khẩu</label>
+        <div class="controls">
+            @Html.PasswordFor(o => o.MatKhau, new { @class = "input-xlarge" })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Ngày Tạo</label>
+        <div class="controls">
+            <input class="input-xlarge" type="text" name="NgayTao" id="NgayTao" value="@Model.NgayTao.ToShortDateString()" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Trạng Thái</label>
+        <div class="controls">
+            @Html.CheckBoxFor(o => o.TrangThai, new { @class = "input-xlarge" })
+        </div>
+    </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+}
+<script>
+    $(function () {
+        $("#NgayTao").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1911:2013'
+        });
+    });
+</script>

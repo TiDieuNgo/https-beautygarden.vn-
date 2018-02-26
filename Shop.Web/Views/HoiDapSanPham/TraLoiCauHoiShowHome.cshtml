@@ -1,0 +1,13 @@
+﻿@model IList<Shop.Model.TraLoiComment>
+@if(Model.Any())
+{
+    foreach (var traLoiComment in Model)
+    {
+        <p class="ans-content">
+            @Html.Raw(traLoiComment.NoiDungCmt)
+        </p>
+       
+    }
+
+}
+ 

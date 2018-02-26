@@ -1,0 +1,145 @@
+﻿4@{
+    ViewBag.Title = "Danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using Shop.Data
+@model IList<Shop.Model.DanhMucTienIch>
+<div id="page-wrapper" style="min-height: 407px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="margin: 20px 0 5px;">Danh mục tiện ích</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="color: blue;">
+                    <a href="/admin/danhmuctienich/add/">
+                        <button type="button" class="btn btn-success">Thêm mới</button></a>
+                  
+
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+
+                                           
+                                            <th style="text-align: center;">Tên danh mục</th>
+                                            
+                                            <th style="text-align: center; width: 100px;">Icon danh mục</th>
+                                          
+                                            <th style="width: 50px;">Ẩn/hiện?</th>
+                                            <th style="width: 50px;">Vị trí</th>
+                                            <th style="text-align: center;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var tag in Model)
+                                            {
+                                            <tr class="gradeU odd" role="row">
+                                               
+                                                <td>
+                                                   @tag.TenDanhMuc
+                                                     <br />
+                                                    <a href="/admin/DanhMucTienIchCon/index/@tag.id_" target="_blank" class="fa fa-folder-open" style="margin-top: 30px;color: #337ab7;font-weight: bold;">Sub menu(@GetslHientai(tag.id_))</a>
+
+                                                    <a href="/admin/DanhMucTienIchCon/add/@tag.id_" target="_blank" style="color: #337ab7;font-weight: bold;font-size: 13px;float: right;margin-top: 100px;"><i class="fa fa-plus-square"></i>Thêm sub menu</a>
+                                                </td>
+                                                
+                                                <td>
+                                                    <img src="@string.Format("/Upload/Files/{0}", tag.IconDanhMuc)"  style="width:50px;height:50px;"/></td>
+                                              
+                                            
+
+                                                @if (tag.ok)
+                                                {
+                                                    <td class="center" style="text-align: center;">
+                                                        <input type="checkbox" checked="checked" value="@tag.id_"/></td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="center" style="text-align: center;">
+                                                        <input type="checkbox" value="@tag.id_"/>
+                                                        <span style="color: red; font-weight: normal; float: right; margin-top: 90px;">ẩn</span>
+                                                    </td>
+                                                    
+                                                }
+                                                <td>@tag.SapXep</td>
+
+                                                <td class="actions">
+                                                    <a title="Sửa" href="/admin/danhmuctienich/edit/@tag.id_" class="btn"><i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a title="Xóa"  onclick="return xoa(@tag.id_)" href="#" class="btn"><i class="fa fa-trash-o"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                      
+
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+</div>
+<script>
+    function xoa(f) {
+        var r = confirm("Bạn có muốn xóa không?");
+        if (r) {
+            location.href = "/admin/danhmuctienich/Delete/" + f;
+        }
+    }
+</script>
+
+
+@functions {
+    public int GetslHientai(int idanhmuc)
+    {
+        using (var context = new ShopDataContex())
+        {
+            string sql = string.Format("select COUNT(*) from DanhMucTienIchs where Idcontrol={0}", idanhmuc);
+            return context.Database.SqlQuery<int>(sql).First();
+        }
+    }
+}
+<script>
+    //update an hien cho danh muc (catagories)
+    $("#dataTables-example tr td input").click(function (e) {
+        var that = $(this);
+        var vlCheck = that.val();
+       // alert(vlCheck);
+        var url = '/admin/DanhMucTienIch/UpdateOk';
+        $.post(url, {
+            idsanpham: vlCheck,
+            checked: that.is(':checked')
+
+        }, function (data) {
+            alert("Cập nhật trạng thái thành công!");
+        });
+    });
+</script>

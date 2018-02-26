@@ -1,0 +1,35 @@
+﻿@model Shop.Web.Model.QuaTangModel
+<div class="product-promotion">
+    @if (Model.Products.Any())
+    {
+        foreach (var menu in Model.Products)
+        {
+            <h4 class="pm-title-hd">
+                <img src="/images/gift.png" alt="quà tặng" title="quà tặng" style="width: 15px;" />Quà tặng khi mua sản phẩm
+            </h4>
+            <input id="txtIdGift" type="hidden" value="440">
+            <input id="txtGiftName" type="hidden" value="Mặt Nạ Bùn Shiseido Naturgo - Lột mụn cám &amp; mụn đầu đen">
+            <a style="text-decoration: none; cursor: pointer;">
+                <img data-src="@string.Format("/Upload/Files/{0}?width=350&height=391", menu.Img)" alt="@menu.NameProduct">
+                <h3 class="pm-title">@menu.NameProduct</h3>
+                <p><span class="sp01">Trị giá: </span>
+                    @if (menu.HasPromotion)
+                    {
+                        <span>@string.Format("{0:#,#.##}", menu.PricePromotion)₫</span>
+                        <span>@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                    }
+                    else
+                    {
+                        <span>@string.Format("{0:#,#.##}", menu.Price)₫</span>
+                    }
+                <br> <span id="click_scroll">Xem ngay quà tặng</span>
+            </a>
+        }
+    }
+</div>
+<hr />
+<script>
+    $('#click_scroll').on("click", function () {
+        $('html, body').animate({ scrollTop: 3800 }, 'slow');
+    });
+</script>

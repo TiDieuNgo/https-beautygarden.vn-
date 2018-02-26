@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /Areas/Admin/
+Disallow: /ajax/
+Disallow: /Content/ckeditor/
+Disallow: /Content/ckfinder
+Disallow: /Controllers/
+Disallow: /Model/
+Disallow: /ViewModels/
+Disallow: /Views/Cart/
+Disallow: /Views/DangNhap/
+Disallow: /Bin/

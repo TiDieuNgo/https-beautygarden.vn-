@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Chi tiết review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.content404 = "index, follow, noodp, noydir";
+}
+@using System.Text.RegularExpressions
+@model Shop.Web.Model.ReviewModel
+@{
+    ViewBag.Title = string.IsNullOrEmpty(Model.Review.SEOtitle) ? Model.Review.TieuDe : Model.Review.SEOtitle;
+    ViewBag.Keyword = @Model.Review.Mota == null ? "✅" + @Model.Review.Mota : Regex.Replace("✅" + @Model.Review.Mota, @"<[^>]*>", String.Empty);
+    ViewBag.Description = string.IsNullOrEmpty(Model.Review.SEODescription) ? Regex.Replace("✅" + Model.Review.Mota, @"<[^>]*>", string.Empty) : Model.Review.SEODescription;
+    ViewBag.image = "https://beautygarden.vn/Upload/Files/" + @Model.Review.HinhAnh;
+    ViewBag.canonical = "https://beautygarden.vn/review/" + @Model.Review.Link + ".html";
+}
+<div class="columns container">
+    <!-- Block  Breadcrumb-->
+    <ol class="breadcrumb no-hide">
+        <li><a href="https://beautygarden.vn/" title="Beautygarden">Trang chủ</a></li>
+        <li><a href="/review-san-pham" title="review sản phẩm">review sản phẩm</a></li>
+        <li class="active"><a href="">@Model.Review.TieuDe</a></li>
+    </ol>
+    <!-- Block  Breadcrumb-->
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-9 col-md-push-3  col-main ">
+            <h1 class="page-heading">
+                <span class="page-heading-title2">@Model.Review.TieuDe</span>
+            </h1>
+            <article class="entry-detail">
+                <div class="content-text clearfix">
+                    <p>@Html.Raw(Model.Review.ChiTiet)</p>
+                </div>
+            </article>
+            
+            <!--danh sach tag-->
+            <div class="tabpanel taglist">
+                <span>
+                    Tags:
+                    <ul class="tags">
+                        @if (Model.TagTinTucs.Any())
+                        {
+                            <!--neu san pham do co tag thi load duoi db len-->
+                            foreach (var tag in Model.TagTinTucs)
+                            {
+                                <li><a href="@Url.RouteUrl("TagTinTuc", new { taglink = tag.Link})" class="tag" target="_blank" title="@tag.TenTag">@tag.TenTag</a></li>
+                            }
+                        }
+                    </ul>
+                </span>
+            </div>
+            <!--danh sach tag-->
+            <!-- Related Posts -->
+            <div class="single-box">
+                <h2>Review khác</h2>
+                <ul class="related-posts owl-carousel" data-dots="false" data-loop="true" data-nav="true" data-margin="30" data-autoplaytimeout="1000" data-autoplayhoverpause="true" data-responsive='{"0":{"items":2},"600":{"items":2},"1000":{"items":4}}'>
+                    @if (Model.Reviewkhacs.Any())
+                    {
+                        foreach (var detailMenu in Model.Reviewkhacs)
+                        {
+                            <li class="post-item">
+                                <article class="entry">
+                                    <div class="entry-thumb image-hover2" style="width: 195px;height: 125px;">
+                                        <a href="@Url.RouteUrl("ChiTietReview", new { seolink=detailMenu.Link })" title="@detailMenu.TieuDe">
+                                            <img data-src="@string.Format("/Upload/files/{0}",detailMenu.HinhAnh)" alt="@detailMenu.TieuDe" style="margin-left: auto;margin-right: auto;display: block;">
+                                        </a>
+                                    </div>
+                                    <div class="entry-ci">
+                                        <h3 class="entry-title"><a href="@Url.RouteUrl("ChiTietReview", new { seolink=detailMenu.Link })" title="@detailMenu.TieuDe">@detailMenu.TieuDe</a></h3>
+                                    </div>
+                                </article>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="single-box">
+                <div class="fb-comments" data-href="" data-colorscheme="light" data-numposts="5" data-width="870"></div>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-pull-9 col-sidebar">
+            @Html.Action("DanhMucInDanhSachSp", "Menu")
+            @Html.Action("TinHot", "TinTuc")
+            @Html.Action("SanPhamMoiVeInChiTiet", "TinTuc")
+        </div>
+    </div>
+</div>
+<style>
+    iframe {
+        width: 100%;
+    }
+</style>

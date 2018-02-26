@@ -1,0 +1,25 @@
+﻿@model IList<Shop.Model.DetailMenu>
+<div class="block-sidebar block-PopularPosts">
+    <div class="block-title">
+        <strong>Tin nổi bật</strong>
+    </div>
+    <div class="block-content">
+        <ul class="blog-list-sidebar clearfix">
+            @if (Model.Any())
+            {
+                foreach (var tintuc in Model)
+                {
+                    <li>
+                        <div class="post-thumb">
+                            <a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=tintuc.Link })" title="@tintuc.Name">
+                                <img alt="@tintuc.Name" data-src="@string.Format("/Upload/files/{0}",tintuc.Img)" style="max-width: 70px;max-height: 50px;"></a>
+                        </div>
+                        <div class="post-info">
+                            <h5 class="entry_title entry_title_tinhot"><a href="@Url.RouteUrl("ChiTietTinTuc", new { seolink=tintuc.Link })">@tintuc.Name <span class="date" style="font-size: 12px;color: #857474;">(@tintuc.sDate.ToShortDateString())</span></a></h5>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
